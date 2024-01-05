@@ -9,5 +9,5 @@ declare global {
 	const Step: typeof scheme.Step;
 	const Ingredient: typeof scheme.Ingredient;
 	// biome-ignore lint/style/noVar: <explanation>
-	var recipes: Map<string, scheme.Recipe>;
+	var recipes: Record<string, scheme.Recipe>;
 }

@@ -1,1 +1,1 @@
-export const cookbook = Array.from(recipes.keys());
+export const cookbook = Object.keys(recipes);

@@ -9,6 +9,7 @@ const entrypoints = ["./src/index.ts", ...recipes, "./src/cookbook.ts"];
 
 const results = await build({
 	entrypoints,
+	minify: true,
 	plugins: [recipePlugin],
 	target: "node",
 });

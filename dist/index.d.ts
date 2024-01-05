@@ -12,6 +12,14 @@ declare module "src/scheme/jsx" {
         new (props: P): T;
     }, props: P, ...children: unknown[]): T;
 }
+declare module "src/scheme/Amount" {
+    export class Amount {
+        count?: number;
+        unit?: string;
+        constructor(options?: string | Amount);
+    }
+    export type AmountProp = ConstructorParameters<typeof Amount>[number];
+}
 declare module "src/scheme/RecipeContainer" {
     export interface RecipeContainerProps {
         children?: unknown[];
@@ -22,14 +30,17 @@ declare module "src/scheme/RecipeContainer" {
     }
 }
 declare module "src/scheme/Recipe" {
+    import { Amount, AmountProp } from "src/scheme/Amount";
     import { RecipeContainer, RecipeContainerProps } from "src/scheme/RecipeContainer";
     interface RecipeProps extends RecipeContainerProps {
         name: string;
         meal: string;
+        servings: AmountProp;
     }
     export class Recipe extends RecipeContainer {
         name: string;
         meal: string;
+        servings?: Amount;
         constructor(props: RecipeProps);
     }
     export class Directions extends RecipeContainer {
@@ -40,14 +51,6 @@ declare module "src/scheme/Recipe" {
     }
     export class Step extends RecipeContainer {
     }
-}
-declare module "src/scheme/Amount" {
-    export class Amount {
-        count?: number;
-        unit?: string;
-        constructor(options?: string | Amount);
-    }
-    export type AmountProp = ConstructorParameters<typeof Amount>[number];
 }
 declare module "src/scheme/Options" {
     export class Options extends Array<string> {
@@ -64,6 +67,7 @@ declare module "src/scheme/Ingredient" {
         amount?: AmountProp;
         category?: OptionsProp;
         manipulation?: OptionsProp;
+        children?: string;
     }
     export class Ingredient {
         key?: string;
@@ -84,4 +88,5 @@ declare module "src/index" {
     const recipes: Record<string, scheme.Recipe>;
     export { recipes };
 }
+declare module "src/recipes/Chicken Stir-Fry" { }
 declare module "src/recipes/Egg and Vegetable Scramble" { }

@@ -1,4 +1,4 @@
-<Recipe name="Egg and Vegetable Scramble" meal="breakfast">
+<Recipe name="Egg and Vegetable Scramble" meal="breakfast" servings="1">
 	<Directions>
 		<Step>Beat the eggs and set aside.</Step>
 		<Step>Heat oil in a pan.</Step>

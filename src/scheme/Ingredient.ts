@@ -7,6 +7,7 @@ interface Props {
 	amount?: AmountProp;
 	category?: OptionsProp;
 	manipulation?: OptionsProp;
+	children?: string;
 }
 
 export class Ingredient {
@@ -18,7 +19,7 @@ export class Ingredient {
 
 	constructor(props: Props) {
 		this.key = props.key;
-		this.name = props.name;
+		this.name = props.children ?? props.name;
 		this.amount = new Amount(props.amount);
 		this.category = new Options(props.category);
 		this.manipulation = new Options(props.manipulation);

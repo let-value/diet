@@ -2,6 +2,8 @@
   "name": "diet",
   "module": "index.ts",
   "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "devDependencies": {
     "@biomejs/biome": "^1.4.1",
     "@types/bun": "latest",

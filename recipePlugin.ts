@@ -9,26 +9,23 @@ function splice(src: string, idx: number, rem: number, str: string) {
 export const recipePlugin: BunPlugin = {
 	name: "recipe",
 	setup(builder) {
-		builder.onLoad(
-			{ filter: /recepies\/src\/recepies/ },
-			async ({ loader, path }) => {
-				const bunFile = file(path);
+		builder.onLoad({ filter: /src\/recipes/ }, async ({ loader, path }) => {
+			const bunFile = file(path);
 
-				let text = await bunFile.text();
+			let text = await bunFile.text();
 
-				const recepies = text.matchAll(regexp);
+			const recepies = text.matchAll(regexp);
 
-				for (const match of Array.from(recepies).reverse()) {
-					text = splice(
-						text,
-						match.index,
-						0,
-						`recepies["${match.groups.name}"] = `,
-					);
-				}
+			for (const match of Array.from(recepies).reverse()) {
+				text = splice(
+					text,
+					match.index,
+					0,
+					`recepies["${match.groups.name}"] = `,
+				);
+			}
 
-				return { loader, contents: text };
-			},
-		);
+			return { loader, contents: text };
+		});
 	},
 };

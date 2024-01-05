@@ -1,6 +1,9 @@
 import * as scheme from "./scheme";
 Object.assign(globalThis, scheme);
 
-const recepies = new Map<string, scheme.Recipe>();
+const recipes = new Map<string, scheme.Recipe>();
 
-export { recepies };
+export { recipes };
+
+export * from "./scheme";
+export * from "./cookbook";

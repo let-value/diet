@@ -21,7 +21,7 @@ export const recipePlugin: BunPlugin = {
 					text,
 					match.index,
 					0,
-					`recepies["${match.groups.name}"] = `,
+					`recipes["${match.groups.name}"] = `,
 				);
 			}
 

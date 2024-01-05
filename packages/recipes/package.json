@@ -1,0 +1,15 @@
+{
+  "name": "recipes",
+  "module": "index.ts",
+  "type": "module",
+  "main": "dist/recipes.js",
+  "dependencies": {
+    "schema": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "build": "bun build.ts && tcs"
+  }
+}

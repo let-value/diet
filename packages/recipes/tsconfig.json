@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"lib": ["ESNext"],
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleDetection": "force",
+
+		"declaration": true,
+		"emitDeclarationOnly": true,
+
+		"jsx": "react",
+		"jsxFactory": "jsx",
+
+		"importHelpers": false,
+
+		"moduleResolution": "Bundler",
+		"types": ["bun", "schema"]
+	}
+}

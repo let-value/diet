@@ -5,6 +5,8 @@
 		"module": "ESNext",
 		"moduleDetection": "force",
 
+		"outFile": "dist/index.d.ts",
+
 		"declaration": true,
 		"emitDeclarationOnly": true,
 
@@ -14,6 +16,7 @@
 		"importHelpers": false,
 
 		"moduleResolution": "Bundler",
-		"types": ["bun", "schema"]
-	}
+		"types": ["bun"]
+	},
+	"exclude": ["dist"]
 }

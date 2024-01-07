@@ -9,7 +9,7 @@ var __export = (target, all) => {
     });
 };
 
-// recipeseme/RecipeCo
+// cookbookme/RecipeCo
 var exports_scheme = {};
 __export(exports_scheme, {
   jsx: () => {
@@ -49,11 +49,11 @@ __export(exports_scheme, {
   }
 });
 
-// recipeseme/Recipe
+// cookbookme/Recipe
 function jsx(tag, props, ...children) {
   return new tag({ ...props, children });
 }
-// recipeseme/RecipeCon
+// cookbookme/RecipeCon
 var regexp = /(?<count>\d+)(?<separator>\W+)?(?<unit>\w+)?/;
 
 class Amount {
@@ -73,7 +73,15 @@ class Amount {
   }
 }
 
-// recipeseme/RecipeContainer.ts
+// cookbookme/RecipeCont
+class Options extends Array {
+  constructor(options) {
+    const optionsArray = options instanceof Options ? [...options] : Array.isArray(options) ? options : `${options}`.split(",").map((option) => option.trim());
+    super(...optionsArray);
+  }
+}
+
+// cookbookme/RecipeContainer.ts
 class RecipeContainer {
   children;
   constructor(props) {
@@ -81,7 +89,7 @@ class RecipeContainer {
   }
 }
 
-// recipeseme/RecipeCon
+// cookbookme/RecipeCon
 class Recipe extends RecipeContainer {
   name;
   meal;
@@ -89,7 +97,7 @@ class Recipe extends RecipeContainer {
   constructor(props) {
     super(props);
     this.name = props.name;
-    this.meal = props.meal;
+    this.meal = new Options(props.meal);
     this.servings = new Amount(props.servings);
   }
 }
@@ -117,15 +125,7 @@ class Step extends RecipeContainer {
     super(...arguments);
   }
 }
-// recipeseme/RecipeCont
-class Options extends Array {
-  constructor(options = "") {
-    const optionsArray = options instanceof Options ? [...options] : Array.isArray(options) ? options : options.split(",").map((option) => option.trim());
-    super(...optionsArray);
-  }
-}
-
-// recipeseme/RecipeContain
+// cookbookme/RecipeContain
 class Ingredient {
   key;
   name;
@@ -140,13 +140,13 @@ class Ingredient {
     this.manipulation = new Options(props.manipulation);
   }
 }
-// recipeseme/R
+// cookbookme/R
 Object.assign(globalThis, exports_scheme);
 var recipes = {};
 export {
   recipes
 };
-// recipeseme/RecipeContainer.ts Sc
+// cookbookme/RecipeContainer.ts Sc
 recipes["Chicken Stir-Fry"] = jsx(Recipe, {
   name: "Chicken Stir-Fry",
   meal: "dinner",
@@ -198,7 +198,7 @@ recipes["Chicken Stir-Fry"] = jsx(Recipe, {
   amount: "1",
   manipulation: "beat,scramble"
 }, "egg"), ". Once cooked, store in an airtight container in the refrigerator.")));
-// recipeseme/RecipeContainer.ts Scramble.tsx
+// cookbookme/RecipeContainer.ts Scramble.tsx
 recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
   name: "Egg and Vegetable Scramble",
   meal: "breakfast",
@@ -235,8 +235,25 @@ var __export = (target, all) => {
     });
 };
 
-// recipeseme/Reci
-var cookbook = Object.keys(recipes);
+// cookbookme/RecipeContain
+var getRandomRecipe = function(group = []) {
+  return group[Math.floor(Math.random() * group.length)];
+};
+var list = Object.keys(recipes);
+var groups = Object.values(recipes).reduce((groups2, recipe) => {
+  for (const group of recipe.meal) {
+    if (!groups2[group]) {
+      groups2[group] = [];
+    }
+    groups2[group].push(recipe.name);
+    return groups2;
+  }
+}, {});
+var cookbook = {
+  list,
+  groups,
+  getRandomRecipe
+};
 export {
   cookbook
 };

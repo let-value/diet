@@ -1,22 +1,25 @@
 import { Amount, AmountProp } from "./Amount";
+import { Options, OptionsProp } from "./Options";
 import { RecipeContainer, RecipeContainerProps } from "./RecipeContainer";
+
+type Meal = "breakfast" | "lunch" | "dinner" | "snack" | "dessert";
 
 interface RecipeProps extends RecipeContainerProps {
 	name: string;
-	meal: string;
+	meal: OptionsProp<Meal>;
 	servings: AmountProp;
 }
 
 export class Recipe extends RecipeContainer {
 	name: string;
-	meal: string;
+	meal: Options<Meal>;
 	servings?: Amount;
 
 	constructor(props: RecipeProps) {
 		super(props);
 
 		this.name = props.name;
-		this.meal = props.meal;
+		this.meal = new Options<Meal>(props.meal);
 		this.servings = new Amount(props.servings);
 	}
 }

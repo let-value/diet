@@ -1,27 +1,64 @@
-import { build, write, Glob } from "bun";
+import { build, write, Glob, BuildOutput, readableStreamToText } from "bun";
 import path from "path";
 import { recipePlugin } from "./recipePlugin";
 
-const glob = new Glob("./src/recipes/*");
-const recipes = glob.scanSync({ cwd: "./" });
+export const DIST_PATH = "dist";
 
-const entrypoints = ["./src/index.ts", ...recipes, "./src/cookbook.ts"];
-
-const results = await build({
-	entrypoints,
-	plugins: [recipePlugin],
-	target: "node",
-});
-
-if (!results.success) {
-	console.log(results);
-	process.exit(1);
+async function buildTypings() {
+	const { stdout } = Bun.spawn(["tsc"]);
+	const text = await readableStreamToText(stdout);
+	console.log(text);
 }
 
-const result: BlobPart[] = [];
+function getEntryPoints() {
+	const glob = new Glob("./src/recipes/*");
+	const recipes = glob.scanSync({ cwd: "./" });
 
-for (const output of results.outputs) {
-	result.push(await output.arrayBuffer());
+	return ["./src/index.ts", ...recipes, "./src/cookbook/cookbook.ts"];
 }
 
-await write(path.join("dist", "index.js"), result);
+async function buildDist(entrypoints: string[]) {
+	const buildOutput = await build({
+		entrypoints,
+		plugins: [recipePlugin],
+		target: "node",
+	});
+
+	if (!buildOutput.success) {
+		return buildOutput;
+	}
+
+	const result: BlobPart[] = [];
+
+	for (const output of buildOutput.outputs) {
+		result.push(await output.arrayBuffer());
+	}
+
+	await write(path.join(DIST_PATH, "index.js"), result);
+
+	return buildOutput;
+}
+
+export async function buildCookbook() {
+	try {
+		await buildTypings();
+		const entrypoints = getEntryPoints();
+		const outputs = await buildDist(entrypoints);
+
+		if (outputs.success) {
+			console.log("Build successful!");
+		} else {
+			console.error("Build failed!");
+			console.log(outputs);
+		}
+
+		return outputs.success;
+	} catch (e) {
+		console.error(e);
+	}
+}
+
+if (import.meta.main) {
+	const success = await buildCookbook();
+	process.exit(success ? 0 : 1);
+}

@@ -5,8 +5,8 @@ interface Props {
 	key?: string;
 	name?: string;
 	amount?: AmountProp;
-	category?: OptionsProp;
-	manipulation?: OptionsProp;
+	category?: OptionsProp<string>;
+	manipulation?: OptionsProp<string>;
 	children?: string;
 }
 
@@ -14,8 +14,8 @@ export class Ingredient {
 	key?: string;
 	name?: string;
 	amount?: Amount;
-	category?: Options;
-	manipulation?: Options;
+	category?: Options<string>;
+	manipulation?: Options<string>;
 
 	constructor(props: Props) {
 		this.key = props.key;

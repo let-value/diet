@@ -3,10 +3,14 @@ declare module "recipePlugin" {
     import { BunPlugin } from "bun";
     export const recipePlugin: BunPlugin;
 }
-declare module "build" { }
-declare module "src/cookbook" {
-    export const cookbook: string[];
+declare module "build" {
+    export const DIST_PATH = "dist";
+    export function buildCookbook(): Promise<boolean>;
 }
+declare module "serve" {
+    export function startServer(): import("bun").Server;
+}
+declare module "watch" { }
 declare module "src/scheme/jsx" {
     export function jsx<T, P>(tag: {
         new (props: P): T;
@@ -20,6 +24,13 @@ declare module "src/scheme/Amount" {
     }
     export type AmountProp = ConstructorParameters<typeof Amount>[number];
 }
+declare module "src/scheme/Options" {
+    type CommaSeparated<T extends string, U extends T = T> = T extends string ? [U] extends [T] ? T : `${`${T},` | ""}${CommaSeparated<Exclude<U, T>>}` : T;
+    export class Options<TOptions extends string> extends Array<TOptions> {
+        constructor(options: TOptions | TOptions[] | CommaSeparated<TOptions> | Options<TOptions>);
+    }
+    export type OptionsProp<TOptions extends string> = ConstructorParameters<typeof Options<TOptions>>[number];
+}
 declare module "src/scheme/RecipeContainer" {
     export interface RecipeContainerProps {
         children?: unknown[];
@@ -31,15 +42,17 @@ declare module "src/scheme/RecipeContainer" {
 }
 declare module "src/scheme/Recipe" {
     import { Amount, AmountProp } from "src/scheme/Amount";
+    import { Options, OptionsProp } from "src/scheme/Options";
     import { RecipeContainer, RecipeContainerProps } from "src/scheme/RecipeContainer";
+    type Meal = "breakfast" | "lunch" | "dinner" | "snack" | "dessert";
     interface RecipeProps extends RecipeContainerProps {
         name: string;
-        meal: string;
+        meal: OptionsProp<Meal>;
         servings: AmountProp;
     }
     export class Recipe extends RecipeContainer {
         name: string;
-        meal: string;
+        meal: Options<Meal>;
         servings?: Amount;
         constructor(props: RecipeProps);
     }
@@ -52,12 +65,6 @@ declare module "src/scheme/Recipe" {
     export class Step extends RecipeContainer {
     }
 }
-declare module "src/scheme/Options" {
-    export class Options extends Array<string> {
-        constructor(options?: string | string[] | Options);
-    }
-    export type OptionsProp = ConstructorParameters<typeof Options>[number];
-}
 declare module "src/scheme/Ingredient" {
     import { Amount, AmountProp } from "src/scheme/Amount";
     import { Options, OptionsProp } from "src/scheme/Options";
@@ -65,16 +72,16 @@ declare module "src/scheme/Ingredient" {
         key?: string;
         name?: string;
         amount?: AmountProp;
-        category?: OptionsProp;
-        manipulation?: OptionsProp;
+        category?: OptionsProp<string>;
+        manipulation?: OptionsProp<string>;
         children?: string;
     }
     export class Ingredient {
         key?: string;
         name?: string;
         amount?: Amount;
-        category?: Options;
-        manipulation?: Options;
+        category?: Options<string>;
+        manipulation?: Options<string>;
         constructor(props: Props);
     }
 }
@@ -87,6 +94,14 @@ declare module "src/index" {
     import * as scheme from "src/scheme/index";
     const recipes: Record<string, scheme.Recipe>;
     export { recipes };
+}
+declare module "src/cookbook/cookbook" {
+    function getRandomRecipe(group?: string[]): string;
+    export const cookbook: {
+        list: string[];
+        groups: {};
+        getRandomRecipe: typeof getRandomRecipe;
+    };
 }
 declare module "src/recipes/Chicken Stir-Fry" { }
 declare module "src/recipes/Egg and Vegetable Scramble" { }

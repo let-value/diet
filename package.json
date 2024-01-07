@@ -7,11 +7,13 @@
   "devDependencies": {
     "@biomejs/biome": "^1.4.1",
     "@types/bun": "latest",
-    "serve": "^14.2.1",
+    "chokidar": "^3.5.3",
+    "node-watch": "^0.7.4",
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "build": "tsc && bun build.ts",
-    "serve": "serve dist"
+    "build": "bun build.ts",
+    "serve": "bun serve.ts",
+    "watch": "bun watch.ts"
   }
 }

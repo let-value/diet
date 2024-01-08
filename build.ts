@@ -1,4 +1,4 @@
-import { build, write, Glob, BuildOutput, readableStreamToText } from "bun";
+import { build, write, Glob, readableStreamToText, BuildOutput } from "bun";
 import path from "path";
 import { recipePlugin } from "./recipePlugin";
 
@@ -11,10 +11,10 @@ async function buildTypings() {
 }
 
 function getEntryPoints() {
-	const glob = new Glob("./src/recipes/*");
+	const glob = new Glob("./src/recipes/*.tsx");
 	const recipes = glob.scanSync({ cwd: "./" });
 
-	return ["./src/index.ts", ...recipes, "./src/cookbook/cookbook.ts"];
+	return ["./src/index.ts", ...recipes];
 }
 
 async function buildDist(entrypoints: string[]) {
@@ -24,10 +24,10 @@ async function buildDist(entrypoints: string[]) {
 		target: "node",
 	});
 
-	if (!buildOutput.success) {
-		return buildOutput;
-	}
+	return buildOutput;
+}
 
+async function writeDist(buildOutput: BuildOutput) {
 	const result: BlobPart[] = [];
 
 	for (const output of buildOutput.outputs) {
@@ -35,8 +35,6 @@ async function buildDist(entrypoints: string[]) {
 	}
 
 	await write(path.join(DIST_PATH, "index.js"), result);
-
-	return buildOutput;
 }
 
 export async function buildCookbook() {
@@ -47,6 +45,7 @@ export async function buildCookbook() {
 
 		if (outputs.success) {
 			console.log("Build successful!");
+			await writeDist(outputs);
 		} else {
 			console.error("Build failed!");
 			console.log(outputs);

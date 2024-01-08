@@ -20,7 +20,7 @@ declare module "src/scheme/Amount" {
     export class Amount {
         count?: number;
         unit?: string;
-        constructor(options?: string | Amount);
+        constructor(options?: string | number | Amount);
     }
     export type AmountProp = ConstructorParameters<typeof Amount>[number];
 }
@@ -33,7 +33,7 @@ declare module "src/scheme/Options" {
 }
 declare module "src/scheme/RecipeContainer" {
     export interface RecipeContainerProps {
-        children?: unknown[];
+        children?: unknown | unknown[];
     }
     export class RecipeContainer {
         children: unknown[];
@@ -62,8 +62,6 @@ declare module "src/scheme/Recipe" {
     }
     export class Preparation extends RecipeContainer {
     }
-    export class Step extends RecipeContainer {
-    }
 }
 declare module "src/scheme/Ingredient" {
     import { Amount, AmountProp } from "src/scheme/Amount";
@@ -85,23 +83,54 @@ declare module "src/scheme/Ingredient" {
         constructor(props: Props);
     }
 }
+declare module "src/scheme/Step" {
+    import { Amount, AmountProp } from "src/scheme/Amount";
+    import { RecipeContainer, RecipeContainerProps } from "src/scheme/RecipeContainer";
+    interface Props extends RecipeContainerProps {
+        duration?: AmountProp;
+    }
+    export class Step extends RecipeContainer {
+        duration?: Amount;
+        constructor(props: Props);
+    }
+}
 declare module "src/scheme/index" {
     export * from "src/scheme/jsx";
     export * from "src/scheme/Recipe";
+    export * from "src/scheme/RecipeContainer";
     export * from "src/scheme/Ingredient";
+    export * from "src/scheme/Step";
 }
-declare module "src/index" {
-    import * as scheme from "src/scheme/index";
-    const recipes: Record<string, scheme.Recipe>;
-    export { recipes };
+declare module "src/recipes" {
+    import { Recipe } from "src/scheme/index";
+    export const recipes: Record<string, Recipe>;
 }
 declare module "src/cookbook/cookbook" {
-    function getRandomRecipe(group?: string[]): string;
-    export const cookbook: {
-        list: string[];
-        groups: {};
-        getRandomRecipe: typeof getRandomRecipe;
+    export let cookbook: any;
+    export function buildCookbook(): any;
+}
+declare module "src/cookbook/recipeExtensions" {
+    import { Recipe, RecipeContainer } from "src/scheme/index";
+    export function flattenRecipeContainer(container: RecipeContainer): Generator<unknown>;
+    export function normalizeRecipe(recipe: Recipe): {
+        ingredients: unknown[];
+        name: string;
+        meal: import("@/scheme/Options").Options<"breakfast" | "lunch" | "dinner" | "snack" | "dessert">;
+        servings?: import("@/scheme/Amount").Amount;
+        children: unknown[];
     };
+}
+declare module "src/cookbook/index" {
+    export * from "src/cookbook/cookbook";
+    export * from "src/cookbook/recipeExtensions";
+}
+declare module "src/index" {
+    export * from "src/scheme/index";
+    export * from "src/recipes";
+    export * from "src/cookbook/index";
+}
+declare module "src/recipe.test" {
+    export const test_Recipe: any;
 }
 declare module "src/recipes/Chicken Stir-Fry" { }
 declare module "src/recipes/Egg and Vegetable Scramble" { }

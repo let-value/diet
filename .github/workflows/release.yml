@@ -15,8 +15,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
+      - name: Install dependencies
+        run: bun i
+      - name: Test
+        run: bun test
       - name: Build
-        run: bun i && bun run build     
+        run: bun run build
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"

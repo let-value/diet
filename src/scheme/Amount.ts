@@ -4,7 +4,11 @@ export class Amount {
 	count?: number;
 	unit?: string;
 
-	constructor(options: string | Amount = "") {
+	constructor(options: string | number | Amount = "") {
+		if (typeof options === "number") {
+			this.count = options;
+		}
+
 		if (typeof options === "string") {
 			const match = options.match(regexp);
 			const { count, unit } = match?.groups ?? {};

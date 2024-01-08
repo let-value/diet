@@ -1,65 +1,17 @@
-var __defProp = Object.defineProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, {
-      get: all[name],
-      enumerable: true,
-      configurable: true,
-      set: (newValue) => all[name] = () => newValue
-    });
-};
-
-// cookbookme/RecipeCo
-var exports_scheme = {};
-__export(exports_scheme, {
-  jsx: () => {
-    {
-      return jsx;
-    }
-  },
-  Step: () => {
-    {
-      return Step;
-    }
-  },
-  Recipe: () => {
-    {
-      return Recipe;
-    }
-  },
-  Preparation: () => {
-    {
-      return Preparation;
-    }
-  },
-  Ingredients: () => {
-    {
-      return Ingredients;
-    }
-  },
-  Ingredient: () => {
-    {
-      return Ingredient;
-    }
-  },
-  Directions: () => {
-    {
-      return Directions;
-    }
-  }
-});
-
-// cookbookme/Recipe
+// recipeseme/Option
 function jsx(tag, props, ...children) {
   return new tag({ ...props, children });
 }
-// cookbookme/RecipeCon
+// recipeseme/Options.t
 var regexp = /(?<count>\d+)(?<separator>\W+)?(?<unit>\w+)?/;
 
 class Amount {
   count;
   unit;
   constructor(options = "") {
+    if (typeof options === "number") {
+      this.count = options;
+    }
     if (typeof options === "string") {
       const match = options.match(regexp);
       const { count, unit } = match?.groups ?? {};
@@ -73,7 +25,7 @@ class Amount {
   }
 }
 
-// cookbookme/RecipeCont
+// recipeseme/Options.ts
 class Options extends Array {
   constructor(options) {
     const optionsArray = options instanceof Options ? [...options] : Array.isArray(options) ? options : `${options}`.split(",").map((option) => option.trim());
@@ -81,15 +33,15 @@ class Options extends Array {
   }
 }
 
-// cookbookme/RecipeContainer.ts
+// recipeseme/Options.tstensions
 class RecipeContainer {
   children;
   constructor(props) {
-    this.children = props.children;
+    this.children = Array.isArray(props.children) ? props.children : [props.children];
   }
 }
 
-// cookbookme/RecipeCon
+// recipeseme/Options.t
 class Recipe extends RecipeContainer {
   name;
   meal;
@@ -119,13 +71,7 @@ class Preparation extends RecipeContainer {
     super(...arguments);
   }
 }
-
-class Step extends RecipeContainer {
-  constructor() {
-    super(...arguments);
-  }
-}
-// cookbookme/RecipeContain
+// recipeseme/Options.tsten
 class Ingredient {
   key;
   name;
@@ -140,13 +86,99 @@ class Ingredient {
     this.manipulation = new Options(props.manipulation);
   }
 }
-// cookbookme/R
-Object.assign(globalThis, exports_scheme);
+// recipeseme/Options
+class Step extends RecipeContainer {
+  duration;
+  constructor(props) {
+    super(props);
+    this.duration = new Amount(props.duration);
+  }
+}
+// recipeseme/Opt
 var recipes = {};
+// recipeseme/Options.tsten
+function buildCookbook() {
+  const list = Object.keys(recipes);
+  const groups = Object.values(recipes).reduce((groups2, recipe) => {
+    for (const group of recipe.meal) {
+      if (!groups2[group]) {
+        groups2[group] = [];
+      }
+      groups2[group].push(recipe.name);
+      return groups2;
+    }
+  }, {});
+  function getRandomRecipe(group = []) {
+    return group[Math.floor(Math.random() * group.length)];
+  }
+  cookbook = {
+    list,
+    groups,
+    getRandomRecipe
+  };
+  return cookbook;
+}
+var cookbook = null;
+// recipeseme/Options.tstensions.ts
+function* flattenRecipeContainer(container) {
+  yield container;
+  for (const child of container.children) {
+    yield child;
+    if (child instanceof RecipeContainer) {
+      yield* flattenRecipeContainer(child);
+    }
+  }
+}
+function normalizeRecipe(recipe) {
+  const items = Array.from(flattenRecipeContainer(recipe));
+  const ingredients = items.filter((node) => node instanceof Ingredient).map((ingredient) => ingredient);
+  return {
+    ...recipe,
+    ingredients
+  };
+}
 export {
-  recipes
+  recipes,
+  normalizeRecipe,
+  jsx,
+  flattenRecipeContainer,
+  cookbook,
+  buildCookbook,
+  Step,
+  RecipeContainer,
+  Recipe,
+  Preparation,
+  Ingredients,
+  Ingredient,
+  Directions
 };
-// cookbookme/RecipeContainer.ts Sc
+// recipeseme/Options.tstensions.tsramble.tsx
+recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
+  name: "Egg and Vegetable Scramble",
+  meal: "breakfast",
+  servings: "1"
+}, jsx(Directions, null, jsx(Step, null, "Beat the eggs and set aside."), jsx(Step, null, "Heat oil in a pan."), jsx(Step, null, "Add the diced bell peppers, onions, and tomatoes."), jsx(Step, null, "Once vegetables are softened, pour in the eggs."), jsx(Step, null, "Scramble until fully cooked."), jsx(Step, null, "Season with salt, pepper, and chili flakes."), jsx(Step, null, "Serve with a toasted tortilla slice.")), jsx(Ingredients, null, jsx(Ingredient, {
+  category: "Protein",
+  amount: "3"
+}, "Large eggs"), jsx(Ingredient, {
+  key: "bell_peppers",
+  category: "Vegetable"
+}, "Bell peppers (mixed colors)"), jsx(Ingredient, {
+  category: "Carbohydrate",
+  name: "Tortillas",
+  amount: "1 slice"
+})), jsx(Preparation, null, jsx(Step, null, "Wash and dice", " ", jsx(Ingredient, {
+  key: "bell_peppers",
+  amount: "60g",
+  manipulation: "wash,dice"
+}, "bell peppers"), ",", " ", jsx(Ingredient, {
+  amount: "60g",
+  manipulation: "dice"
+}, "onions"), ", and", " ", jsx(Ingredient, {
+  amount: "60g",
+  manipulation: "wash,dice"
+}, "tomatoes"), ".")));
+// recipeseme/Options.tstensions.ts
 recipes["Chicken Stir-Fry"] = jsx(Recipe, {
   name: "Chicken Stir-Fry",
   meal: "dinner",
@@ -198,62 +230,3 @@ recipes["Chicken Stir-Fry"] = jsx(Recipe, {
   amount: "1",
   manipulation: "beat,scramble"
 }, "egg"), ". Once cooked, store in an airtight container in the refrigerator.")));
-// cookbookme/RecipeContainer.ts Scramble.tsx
-recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
-  name: "Egg and Vegetable Scramble",
-  meal: "breakfast",
-  servings: "1"
-}, jsx(Directions, null, jsx(Step, null, "Beat the eggs and set aside."), jsx(Step, null, "Heat oil in a pan."), jsx(Step, null, "Add the diced bell peppers, onions, and tomatoes."), jsx(Step, null, "Once vegetables are softened, pour in the eggs."), jsx(Step, null, "Scramble until fully cooked."), jsx(Step, null, "Season with salt, pepper, and chili flakes."), jsx(Step, null, "Serve with a toasted tortilla slice.")), jsx(Ingredients, null, jsx(Ingredient, {
-  category: "Protein",
-  amount: "3"
-}, "Large eggs"), jsx(Ingredient, {
-  key: "bell_peppers",
-  category: "Vegetable"
-}, "Bell peppers (mixed colors)"), jsx(Ingredient, {
-  category: "Carbohydrate",
-  name: "Tortillas",
-  amount: "1 slice"
-})), jsx(Preparation, null, jsx(Step, null, "Wash and dice", " ", jsx(Ingredient, {
-  key: "bell_peppers",
-  amount: "60g",
-  manipulation: "wash,dice"
-}, "bell peppers"), ",", " ", jsx(Ingredient, {
-  amount: "60g",
-  manipulation: "dice"
-}, "onions"), ", and", " ", jsx(Ingredient, {
-  amount: "60g",
-  manipulation: "wash,dice"
-}, "tomatoes"), ".")));
-var __defProp = Object.defineProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, {
-      get: all[name],
-      enumerable: true,
-      configurable: true,
-      set: (newValue) => all[name] = () => newValue
-    });
-};
-
-// cookbookme/RecipeContain
-var getRandomRecipe = function(group = []) {
-  return group[Math.floor(Math.random() * group.length)];
-};
-var list = Object.keys(recipes);
-var groups = Object.values(recipes).reduce((groups2, recipe) => {
-  for (const group of recipe.meal) {
-    if (!groups2[group]) {
-      groups2[group] = [];
-    }
-    groups2[group].push(recipe.name);
-    return groups2;
-  }
-}, {});
-var cookbook = {
-  list,
-  groups,
-  getRandomRecipe
-};
-export {
-  cookbook
-};

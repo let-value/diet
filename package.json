@@ -12,6 +12,7 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
+    "test": "bun test",
     "build": "bun build.ts",
     "serve": "bun serve.ts",
     "watch": "bun watch.ts"

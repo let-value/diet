@@ -16,7 +16,10 @@
 		"importHelpers": false,
 
 		"moduleResolution": "Bundler",
-		"types": ["bun"]
+		"types": ["bun"],
+		"paths": {
+			"@/*": ["./src/*"]
+		}
 	},
 	"exclude": ["dist"]
 }

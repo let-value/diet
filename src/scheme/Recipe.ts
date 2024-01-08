@@ -29,5 +29,3 @@ export class Directions extends RecipeContainer {}
 export class Ingredients extends RecipeContainer {}
 
 export class Preparation extends RecipeContainer {}
-
-export class Step extends RecipeContainer {}

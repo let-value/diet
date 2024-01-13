@@ -66,10 +66,11 @@ declare module "src/scheme/Recipe" {
     }
 }
 declare module "src/scheme/Quantity" {
-    import Quantity from "js-quantities";
-    export { Quantity };
-    export function parseQuantity(value?: QuantityProp): Quantity;
-    export type QuantityProp = ConstructorParameters<typeof Quantity>[number] | Quantity | undefined;
+    import { unit, Unit } from "mathjs";
+    export type Quantity = Unit;
+    export { unit, Unit };
+    export function parseQuantity(value?: QuantityProp): Unit;
+    export type QuantityProp = Parameters<typeof unit>[number] | Quantity | undefined;
 }
 declare module "src/scheme/helpers" {
     export function joinStringChildren(children?: string | string[]): string;
@@ -134,19 +135,23 @@ declare module "src/cookbook/flattenRecipeContainer" {
     import { RecipeContainer } from "src/scheme/index";
     export function flattenRecipeContainer(container: RecipeContainer): Generator<unknown>;
 }
-declare module "src/cookbook/normalizeRecipe" {
+declare module "src/cookbook/gatherIngredients" {
     import { Recipe, Ingredient } from "src/scheme/index";
     export function getIngredientKey({ key, name }: Ingredient): string;
     export function gatherIngredients(recipe: Recipe): Ingredient[];
+}
+declare module "src/cookbook/normalizeRecipe" {
+    import { Recipe } from "src/scheme/index";
     export function normalizeRecipe(recipe: Recipe): {
         recipe: Recipe;
-        ingredients: Ingredient[];
+        ingredients: import("@/scheme").Ingredient[];
     };
 }
 declare module "src/test/recipe.test" {
     export const test_recipe: any;
 }
 declare module "src/cookbook/test/flattenRecipeContainer.test" { }
+declare module "src/cookbook/test/gatherIngredients.test" { }
 declare module "src/cookbook/test/normalizeRecipe.test" { }
 declare module "src/recipes/Chicken Stir-Fry" { }
 declare module "src/recipes/Egg and Vegetable Scramble" { }

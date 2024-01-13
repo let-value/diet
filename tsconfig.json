@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"lib": ["ESNext"],
+		"lib": ["ESNext", "ESNext.Object"],
 		"target": "ESNext",
 		"module": "ESNext",
 		"moduleDetection": "force",
@@ -16,7 +16,7 @@
 		"importHelpers": false,
 
 		"moduleResolution": "Bundler",
-		"types": ["bun"],
+		"types": ["bun",],
 		"paths": {
 			"@/*": ["./src/*"]
 		}

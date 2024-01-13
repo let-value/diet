@@ -18,16 +18,18 @@ declare module "src/scheme/jsx" {
 }
 declare module "src/scheme/Amount" {
     export class Amount {
-        count?: number;
+        quantity?: number;
         unit?: string;
-        constructor(options?: string | number | Amount);
+        constructor(props: Amount);
     }
-    export type AmountProp = ConstructorParameters<typeof Amount>[number];
+    export function parseAmount(options?: string | number | Amount): Amount;
+    export type AmountProp = Parameters<typeof parseAmount>[number];
 }
 declare module "src/scheme/Options" {
     type CommaSeparated<T extends string, U extends T = T> = T extends string ? [U] extends [T] ? T : `${`${T},` | ""}${CommaSeparated<Exclude<U, T>>}` : T;
+    function parseOptions<TOptions extends string>(options: TOptions | TOptions[] | CommaSeparated<TOptions> | Options<TOptions>): TOptions[];
     export class Options<TOptions extends string> extends Array<TOptions> {
-        constructor(options: TOptions | TOptions[] | CommaSeparated<TOptions> | Options<TOptions>);
+        constructor(...args: Parameters<typeof parseOptions<TOptions>>);
     }
     export type OptionsProp<TOptions extends string> = ConstructorParameters<typeof Options<TOptions>>[number];
 }
@@ -63,13 +65,22 @@ declare module "src/scheme/Recipe" {
     export class Preparation extends RecipeContainer {
     }
 }
+declare module "src/scheme/Quantity" {
+    import Quantity from "js-quantities";
+    export { Quantity };
+    export function parseQuantity(value?: QuantityProp): Quantity;
+    export type QuantityProp = ConstructorParameters<typeof Quantity>[number] | Quantity | undefined;
+}
+declare module "src/scheme/helpers" {
+    export function joinStringChildren(children?: string | string[]): string;
+}
 declare module "src/scheme/Ingredient" {
-    import { Amount, AmountProp } from "src/scheme/Amount";
     import { Options, OptionsProp } from "src/scheme/Options";
+    import { Quantity, QuantityProp } from "src/scheme/Quantity";
     interface Props {
         key?: string;
         name?: string;
-        amount?: AmountProp;
+        quantity?: QuantityProp;
         category?: OptionsProp<string>;
         manipulation?: OptionsProp<string>;
         children?: string;
@@ -77,7 +88,7 @@ declare module "src/scheme/Ingredient" {
     export class Ingredient {
         key?: string;
         name?: string;
-        amount?: Amount;
+        quantity?: Quantity;
         category?: Options<string>;
         manipulation?: Options<string>;
         constructor(props: Props);
@@ -100,6 +111,8 @@ declare module "src/scheme/index" {
     export * from "src/scheme/RecipeContainer";
     export * from "src/scheme/Ingredient";
     export * from "src/scheme/Step";
+    export * from "src/scheme/Amount";
+    export * from "src/scheme/Quantity";
 }
 declare module "src/recipes" {
     import { Recipe } from "src/scheme/index";
@@ -109,28 +122,31 @@ declare module "src/cookbook/cookbook" {
     export let cookbook: any;
     export function buildCookbook(): any;
 }
-declare module "src/cookbook/recipeExtensions" {
-    import { Recipe, RecipeContainer } from "src/scheme/index";
-    export function flattenRecipeContainer(container: RecipeContainer): Generator<unknown>;
-    export function normalizeRecipe(recipe: Recipe): {
-        ingredients: unknown[];
-        name: string;
-        meal: import("@/scheme/Options").Options<"breakfast" | "lunch" | "dinner" | "snack" | "dessert">;
-        servings?: import("@/scheme/Amount").Amount;
-        children: unknown[];
-    };
-}
 declare module "src/cookbook/index" {
     export * from "src/cookbook/cookbook";
-    export * from "src/cookbook/recipeExtensions";
 }
 declare module "src/index" {
     export * from "src/scheme/index";
     export * from "src/recipes";
     export * from "src/cookbook/index";
 }
-declare module "src/recipe.test" {
-    export const test_Recipe: any;
+declare module "src/cookbook/flattenRecipeContainer" {
+    import { RecipeContainer } from "src/scheme/index";
+    export function flattenRecipeContainer(container: RecipeContainer): Generator<unknown>;
 }
+declare module "src/cookbook/normalizeRecipe" {
+    import { Recipe, Ingredient } from "src/scheme/index";
+    export function getIngredientKey({ key, name }: Ingredient): string;
+    export function gatherIngredients(recipe: Recipe): Ingredient[];
+    export function normalizeRecipe(recipe: Recipe): {
+        recipe: Recipe;
+        ingredients: Ingredient[];
+    };
+}
+declare module "src/test/recipe.test" {
+    export const test_recipe: any;
+}
+declare module "src/cookbook/test/flattenRecipeContainer.test" { }
+declare module "src/cookbook/test/normalizeRecipe.test" { }
 declare module "src/recipes/Chicken Stir-Fry" { }
 declare module "src/recipes/Egg and Vegetable Scramble" { }

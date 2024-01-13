@@ -4,21 +4,27 @@ type CommaSeparated<T extends string, U extends T = T> = T extends string
 		: `${`${T},` | ""}${CommaSeparated<Exclude<U, T>>}`
 	: T;
 
-export class Options<TOptions extends string> extends Array<TOptions> {
-	constructor(
-		options:
-			| TOptions
-			| TOptions[]
-			| CommaSeparated<TOptions>
-			| Options<TOptions>,
-	) {
-		const optionsArray =
-			options instanceof Options
-				? [...options]
-				: Array.isArray(options)
-				  ? options
-				  : `${options}`.split(",").map((option) => option.trim());
+function parseOptions<TOptions extends string>(
+	options: TOptions | TOptions[] | CommaSeparated<TOptions> | Options<TOptions>,
+): TOptions[] {
+	if (options === undefined) {
+		return [];
+	}
 
+	if (options instanceof Options) {
+		return [...options];
+	}
+
+	if (Array.isArray(options)) {
+		return options;
+	}
+
+	return `${options}`.split(",").map((option) => option.trim() as TOptions);
+}
+
+export class Options<TOptions extends string> extends Array<TOptions> {
+	constructor(...args: Parameters<typeof parseOptions<TOptions>>) {
+		const optionsArray = parseOptions(...args);
 		super(...optionsArray);
 	}
 }

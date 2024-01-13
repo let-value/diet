@@ -1,0 +1,549 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`jsx recipe 1`] = `
+Recipe {
+  "children": [
+    Directions {
+      "children": [
+        Step {
+          "children": [
+            "step 1",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "step 2",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "step 3",
+          ],
+          "duration": undefined,
+        },
+      ],
+    },
+    Ingredients {
+      "children": [
+        Ingredient {
+          "category": [
+            "category1",
+          ],
+          "key": undefined,
+          "manipulation": [],
+          "name": "ingredient1",
+          "quantity": Unit {
+            "dimensions": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+            ],
+            "fixPrefix": false,
+            "skipAutomaticSimplification": true,
+            "units": [
+              {
+                "power": 1,
+                "prefix": {
+                  "name": "",
+                  "scientific": true,
+                  "value": 1,
+                },
+                "unit": {
+                  "base": {
+                    "dimensions": [
+                      1,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                    ],
+                    "key": "MASS",
+                  },
+                  "dimensions": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                  ],
+                  "name": "g",
+                  "offset": 0,
+                  "prefixes": {
+                    "E": {
+                      "name": "E",
+                      "scientific": true,
+                      "value": 1000000000000000000,
+                    },
+                    "G": {
+                      "name": "G",
+                      "scientific": true,
+                      "value": 1000000000,
+                    },
+                    "M": {
+                      "name": "M",
+                      "scientific": true,
+                      "value": 1000000,
+                    },
+                    "P": {
+                      "name": "P",
+                      "scientific": true,
+                      "value": 1000000000000000,
+                    },
+                    "Q": {
+                      "name": "Q",
+                      "scientific": true,
+                      "value": 1000000000000000000000000000000,
+                    },
+                    "R": {
+                      "name": "R",
+                      "scientific": true,
+                      "value": 1000000000000000000000000000,
+                    },
+                    "T": {
+                      "name": "T",
+                      "scientific": true,
+                      "value": 1000000000000,
+                    },
+                    "Y": {
+                      "name": "Y",
+                      "scientific": true,
+                      "value": 1000000000000000000000000,
+                    },
+                    "Z": {
+                      "name": "Z",
+                      "scientific": true,
+                      "value": 1000000000000000000000,
+                    },
+                    "a": {
+                      "name": "a",
+                      "scientific": true,
+                      "value": 0.000000000000000001,
+                    },
+                    "c": {
+                      "name": "c",
+                      "scientific": false,
+                      "value": 0.01,
+                    },
+                    "d": {
+                      "name": "d",
+                      "scientific": false,
+                      "value": 0.1,
+                    },
+                    "da": {
+                      "name": "da",
+                      "scientific": false,
+                      "value": 10,
+                    },
+                    "f": {
+                      "name": "f",
+                      "scientific": true,
+                      "value": 0.000000000000001,
+                    },
+                    "h": {
+                      "name": "h",
+                      "scientific": false,
+                      "value": 100,
+                    },
+                    "k": {
+                      "name": "k",
+                      "scientific": true,
+                      "value": 1000,
+                    },
+                    "m": {
+                      "name": "m",
+                      "scientific": true,
+                      "value": 0.001,
+                    },
+                    "n": {
+                      "name": "n",
+                      "scientific": true,
+                      "value": 0.000000001,
+                    },
+                    "p": {
+                      "name": "p",
+                      "scientific": true,
+                      "value": 0.000000000001,
+                    },
+                    "q": {
+                      "name": "q",
+                      "scientific": true,
+                      "value": 0.000000000000000000000000000001,
+                    },
+                    "r": {
+                      "name": "r",
+                      "scientific": true,
+                      "value": 0.000000000000000000000000001,
+                    },
+                    "u": {
+                      "name": "u",
+                      "scientific": true,
+                      "value": 0.000001,
+                    },
+                    "y": {
+                      "name": "y",
+                      "scientific": true,
+                      "value": 0.000000000000000000000001,
+                    },
+                    "z": {
+                      "name": "z",
+                      "scientific": true,
+                      "value": 0.000000000000000000001,
+                    },
+                  },
+                  "value": 0.001,
+                },
+              },
+            ],
+            "value": 0.001,
+          },
+        },
+        Ingredient {
+          "category": [
+            "category2",
+          ],
+          "key": undefined,
+          "manipulation": [],
+          "name": "ingredient2 (raw)",
+          "quantity": undefined,
+        },
+        Ingredient {
+          "category": [
+            "category3",
+          ],
+          "key": "ingredient3",
+          "manipulation": [],
+          "name": "Fresh ingredient 3",
+          "quantity": Unit {
+            "dimensions": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+            ],
+            "fixPrefix": false,
+            "skipAutomaticSimplification": true,
+            "units": [
+              {
+                "power": 1,
+                "prefix": {
+                  "name": "",
+                  "scientific": true,
+                  "value": 1,
+                },
+                "unit": {
+                  "base": {
+                    "dimensions": [
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      1,
+                    ],
+                    "key": "things_STUFF",
+                  },
+                  "dimensions": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                  ],
+                  "name": "slices",
+                  "offset": 0,
+                  "prefixes": {},
+                  "value": 1,
+                },
+              },
+            ],
+            "value": 20,
+          },
+        },
+      ],
+    },
+    Preparation {
+      "children": [
+        Step {
+          "children": [
+            "take ",
+            Ingredient {
+              "category": [],
+              "key": undefined,
+              "manipulation": [
+                "boil",
+              ],
+              "name": "ingredient1",
+              "quantity": undefined,
+            },
+            " and boil it",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "then take",
+            " ",
+            Ingredient {
+              "category": [],
+              "key": undefined,
+              "manipulation": [
+                "fry",
+              ],
+              "name": "ingredient2",
+              "quantity": Unit {
+                "dimensions": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                ],
+                "fixPrefix": false,
+                "skipAutomaticSimplification": true,
+                "units": [
+                  {
+                    "power": 1,
+                    "prefix": {
+                      "name": "k",
+                      "scientific": true,
+                      "value": 1000,
+                    },
+                    "unit": {
+                      "base": {
+                        "dimensions": [
+                          1,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                        ],
+                        "key": "MASS",
+                      },
+                      "dimensions": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                      ],
+                      "name": "g",
+                      "offset": 0,
+                      "prefixes": {
+                        "E": {
+                          "name": "E",
+                          "scientific": true,
+                          "value": 1000000000000000000,
+                        },
+                        "G": {
+                          "name": "G",
+                          "scientific": true,
+                          "value": 1000000000,
+                        },
+                        "M": {
+                          "name": "M",
+                          "scientific": true,
+                          "value": 1000000,
+                        },
+                        "P": {
+                          "name": "P",
+                          "scientific": true,
+                          "value": 1000000000000000,
+                        },
+                        "Q": {
+                          "name": "Q",
+                          "scientific": true,
+                          "value": 1000000000000000000000000000000,
+                        },
+                        "R": {
+                          "name": "R",
+                          "scientific": true,
+                          "value": 1000000000000000000000000000,
+                        },
+                        "T": {
+                          "name": "T",
+                          "scientific": true,
+                          "value": 1000000000000,
+                        },
+                        "Y": {
+                          "name": "Y",
+                          "scientific": true,
+                          "value": 1000000000000000000000000,
+                        },
+                        "Z": {
+                          "name": "Z",
+                          "scientific": true,
+                          "value": 1000000000000000000000,
+                        },
+                        "a": {
+                          "name": "a",
+                          "scientific": true,
+                          "value": 0.000000000000000001,
+                        },
+                        "c": {
+                          "name": "c",
+                          "scientific": false,
+                          "value": 0.01,
+                        },
+                        "d": {
+                          "name": "d",
+                          "scientific": false,
+                          "value": 0.1,
+                        },
+                        "da": {
+                          "name": "da",
+                          "scientific": false,
+                          "value": 10,
+                        },
+                        "f": {
+                          "name": "f",
+                          "scientific": true,
+                          "value": 0.000000000000001,
+                        },
+                        "h": {
+                          "name": "h",
+                          "scientific": false,
+                          "value": 100,
+                        },
+                        "k": {
+                          "name": "k",
+                          "scientific": true,
+                          "value": 1000,
+                        },
+                        "m": {
+                          "name": "m",
+                          "scientific": true,
+                          "value": 0.001,
+                        },
+                        "n": {
+                          "name": "n",
+                          "scientific": true,
+                          "value": 0.000000001,
+                        },
+                        "p": {
+                          "name": "p",
+                          "scientific": true,
+                          "value": 0.000000000001,
+                        },
+                        "q": {
+                          "name": "q",
+                          "scientific": true,
+                          "value": 0.000000000000000000000000000001,
+                        },
+                        "r": {
+                          "name": "r",
+                          "scientific": true,
+                          "value": 0.000000000000000000000000001,
+                        },
+                        "u": {
+                          "name": "u",
+                          "scientific": true,
+                          "value": 0.000001,
+                        },
+                        "y": {
+                          "name": "y",
+                          "scientific": true,
+                          "value": 0.000000000000000000000001,
+                        },
+                        "z": {
+                          "name": "z",
+                          "scientific": true,
+                          "value": 0.000000000000000000001,
+                        },
+                      },
+                      "value": 0.001,
+                    },
+                  },
+                ],
+                "value": 2,
+              },
+            },
+            " ",
+            "and fry in on a pan",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "after that take",
+            " ",
+            Ingredient {
+              "category": [],
+              "key": "ingredient3",
+              "manipulation": [
+                "boil",
+              ],
+              "name": "ingredient 3",
+              "quantity": undefined,
+            },
+            " ",
+            "and boil it for 10 minutes",
+          ],
+          "duration": Amount {
+            "quantity": 10,
+            "unit": undefined,
+          },
+        },
+      ],
+    },
+  ],
+  "meal": [
+    "breakfast",
+    "lunch",
+    "dinner",
+  ],
+  "name": "test recipe",
+  "servings": Amount {
+    "quantity": 4,
+    "unit": undefined,
+  },
+}
+`;

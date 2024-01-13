@@ -9,26 +9,26 @@
 		<Step>Serve with a toasted tortilla slice.</Step>
 	</Directions>
 	<Ingredients>
-		<Ingredient category="Protein" amount="3">
+		<Ingredient category="Protein" quantity="3">
 			Large eggs
 		</Ingredient>
 		<Ingredient key="bell_peppers" category="Vegetable">
 			Bell peppers (mixed colors)
 		</Ingredient>
-		<Ingredient category="Carbohydrate" name="Tortillas" amount="1 slice" />
+		<Ingredient category="Carbohydrate" name="Tortillas" quantity="1 slice" />
 	</Ingredients>
 	<Preparation>
 		<Step>
 			Wash and dice{" "}
-			<Ingredient key="bell_peppers" amount="60g" manipulation="wash,dice">
+			<Ingredient key="bell_peppers" quantity="60g" manipulation="wash,dice">
 				bell peppers
 			</Ingredient>
 			,{" "}
-			<Ingredient amount="60g" manipulation="dice">
+			<Ingredient quantity="60g" manipulation="dice">
 				onions
 			</Ingredient>
 			, and{" "}
-			<Ingredient amount="60g" manipulation="wash,dice">
+			<Ingredient quantity="60g" manipulation="wash,dice">
 				tomatoes
 			</Ingredient>
 			.

@@ -1,4 +1,4 @@
-import { Amount, AmountProp } from "./Amount";
+import { Amount, AmountProp, parseAmount } from "./Amount";
 import { Options, OptionsProp } from "./Options";
 import { RecipeContainer, RecipeContainerProps } from "./RecipeContainer";
 
@@ -20,7 +20,7 @@ export class Recipe extends RecipeContainer {
 
 		this.name = props.name;
 		this.meal = new Options<Meal>(props.meal);
-		this.servings = new Amount(props.servings);
+		this.servings = parseAmount(props.servings);
 	}
 }
 

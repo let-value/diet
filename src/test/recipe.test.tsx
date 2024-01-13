@@ -10,7 +10,7 @@ import {
 	Preparation,
 } from "@/scheme";
 
-export const test_Recipe = (
+export const test_recipe = (
 	<Recipe name="test recipe" meal="breakfast,lunch,dinner" servings="4">
 		<Directions>
 			<Step>step 1</Step>
@@ -18,9 +18,9 @@ export const test_Recipe = (
 			<Step>step 3</Step>
 		</Directions>
 		<Ingredients>
-			<Ingredient name="ingredient1" amount="1g" category="category1" />
+			<Ingredient name="ingredient1" quantity="1g" category="category1" />
 			<Ingredient category="category2">ingredient2 (raw)</Ingredient>
-			<Ingredient key="ingredient3" amount="20 slices" category="category3">
+			<Ingredient key="ingredient3" quantity="20 slices" category="category3">
 				Fresh ingredient 3
 			</Ingredient>
 		</Ingredients>
@@ -31,7 +31,7 @@ export const test_Recipe = (
 			</Step>
 			<Step>
 				then take{" "}
-				<Ingredient amount="2kg" manipulation="fry">
+				<Ingredient quantity="2kg" manipulation="fry">
 					ingredient2
 				</Ingredient>{" "}
 				and fry in on a pan
@@ -47,6 +47,6 @@ export const test_Recipe = (
 	</Recipe>
 );
 
-test("Recipe", () => {
-	expect(test_Recipe).toMatchSnapshot();
+test("jsx recipe", () => {
+	expect(test_recipe).toMatchSnapshot();
 });

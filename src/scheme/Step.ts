@@ -1,4 +1,4 @@
-import { Amount, AmountProp } from "./Amount";
+import { Amount, AmountProp, parseAmount } from "./Amount";
 import { RecipeContainer, RecipeContainerProps } from "./RecipeContainer";
 
 interface Props extends RecipeContainerProps {
@@ -11,6 +11,6 @@ export class Step extends RecipeContainer {
 	constructor(props: Props) {
 		super(props);
 
-		this.duration = new Amount(props.duration);
+		this.duration = parseAmount(props.duration);
 	}
 }

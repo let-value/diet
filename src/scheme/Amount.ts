@@ -1,27 +1,41 @@
-const regexp = /(?<count>\d+)(?<separator>\W+)?(?<unit>\w+)?/;
+const regexp = /(?<rawQuantity>\d+)(?<separator>\W+)?(?<rawUnit>\w+)?/;
 
 export class Amount {
-	count?: number;
+	quantity?: number;
 	unit?: string;
 
-	constructor(options: string | number | Amount = "") {
-		if (typeof options === "number") {
-			this.count = options;
-		}
-
-		if (typeof options === "string") {
-			const match = options.match(regexp);
-			const { count, unit } = match?.groups ?? {};
-
-			this.count = count ? Number(count) : undefined;
-			this.unit = unit;
-		}
-
-		if (options instanceof Amount) {
-			this.count = options.count;
-			this.unit = options.unit;
-		}
+	constructor(props: Amount) {
+		this.quantity = props.quantity;
+		this.unit = props.unit;
 	}
 }
 
-export type AmountProp = ConstructorParameters<typeof Amount>[number];
+export function parseAmount(options?: string | number | Amount) {
+	if (options === undefined) {
+		return undefined;
+	}
+
+	let quantity: number | undefined = undefined;
+	let unit: string | undefined = undefined;
+
+	if (typeof options === "number") {
+		quantity = options;
+	}
+
+	if (typeof options === "string") {
+		const match = options.match(regexp);
+		const { rawQuantity, rawUnit } = match?.groups ?? {};
+
+		quantity = rawQuantity ? Number(rawQuantity) : undefined;
+		unit = rawUnit;
+	}
+
+	if (options instanceof Amount) {
+		quantity = options.quantity;
+		unit = options.unit;
+	}
+
+	return new Amount({ quantity, unit });
+}
+
+export type AmountProp = Parameters<typeof parseAmount>[number];

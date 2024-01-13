@@ -9,12 +9,18 @@
     "@types/bun": "latest",
     "chokidar": "^3.5.3",
     "node-watch": "^0.7.4",
-    "typescript": "^5.0.0"
+    "typescript": "npm:@typescript-deploys/pr-build@5.4.0-pr-56805-4"
   },
   "scripts": {
     "test": "bun test",
+    "test:watch": "bun test --watch --update-snapshots",
     "build": "bun build.ts",
     "serve": "bun serve.ts",
     "watch": "bun watch.ts"
+  },
+  "dependencies": {
+    "@types/js-quantities": "^1.6.6",
+    "js-quantities": "^1.8.0",
+    "mathjs": "^12.3.0"
   }
 }

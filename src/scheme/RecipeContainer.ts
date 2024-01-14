@@ -1,11 +1,11 @@
-export interface RecipeContainerProps {
-	children?: unknown | unknown[];
+export interface RecipeContainerProps<TChildren = unknown> {
+	children?: TChildren | TChildren[];
 }
 
-export class RecipeContainer {
-	children: unknown[];
+export class RecipeContainer<TChildren = unknown> {
+	children: TChildren[];
 
-	constructor(props: RecipeContainerProps) {
+	constructor(props: RecipeContainerProps<TChildren>) {
 		this.children = Array.isArray(props.children)
 			? props.children
 			: [props.children];

@@ -3,28 +3,6 @@
 exports[`jsx recipe 1`] = `
 Recipe {
   "children": [
-    Directions {
-      "children": [
-        Step {
-          "children": [
-            "step 1",
-          ],
-          "duration": undefined,
-        },
-        Step {
-          "children": [
-            "step 2",
-          ],
-          "duration": undefined,
-        },
-        Step {
-          "children": [
-            "step 3",
-          ],
-          "duration": undefined,
-        },
-      ],
-    },
     Ingredients {
       "children": [
         Ingredient {
@@ -293,6 +271,73 @@ Recipe {
             "value": 20,
           },
         },
+        Ingredient {
+          "category": [
+            "category4",
+          ],
+          "key": undefined,
+          "manipulation": [],
+          "name": "ingredient4",
+          "quantity": Unit {
+            "dimensions": [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+            ],
+            "fixPrefix": false,
+            "skipAutomaticSimplification": true,
+            "units": [
+              {
+                "power": 1,
+                "prefix": {
+                  "name": "",
+                  "scientific": true,
+                  "value": 1,
+                },
+                "unit": {
+                  "base": {
+                    "dimensions": [
+                      0,
+                      3,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                    ],
+                    "key": "VOLUME",
+                  },
+                  "dimensions": [
+                    0,
+                    3,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                  ],
+                  "name": "tsp",
+                  "offset": 0,
+                  "prefixes": {},
+                  "value": 0.000005,
+                },
+              },
+            ],
+            "value": 0.000005,
+          },
+        },
       ],
     },
     Preparation {
@@ -534,6 +579,28 @@ Recipe {
         },
       ],
     },
+    Directions {
+      "children": [
+        Step {
+          "children": [
+            "step 1",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "step 2",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "step 3",
+          ],
+          "duration": undefined,
+        },
+      ],
+    },
   ],
   "meal": [
     "breakfast",
@@ -541,9 +608,23 @@ Recipe {
     "dinner",
   ],
   "name": "test recipe",
-  "servings": Amount {
-    "quantity": 4,
-    "unit": undefined,
+  "servings": Unit {
+    "dimensions": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+    ],
+    "fixPrefix": false,
+    "skipAutomaticSimplification": true,
+    "units": [],
+    "value": 4,
   },
 }
 `;

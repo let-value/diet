@@ -12,17 +12,13 @@ import {
 
 export const test_recipe = (
 	<Recipe name="test recipe" meal="breakfast,lunch,dinner" servings="4">
-		<Directions>
-			<Step>step 1</Step>
-			<Step>step 2</Step>
-			<Step>step 3</Step>
-		</Directions>
 		<Ingredients>
 			<Ingredient name="ingredient1" quantity="1g" category="category1" />
 			<Ingredient category="category2">ingredient2 (raw)</Ingredient>
 			<Ingredient key="ingredient3" quantity="20 slices" category="category3">
 				Fresh ingredient 3
 			</Ingredient>
+			<Ingredient name="ingredient4" quantity="1tsp" category="category4" />
 		</Ingredients>
 		<Preparation>
 			<Step>
@@ -44,6 +40,11 @@ export const test_recipe = (
 				and boil it for 10 minutes
 			</Step>
 		</Preparation>
+		<Directions>
+			<Step>step 1</Step>
+			<Step>step 2</Step>
+			<Step>step 3</Step>
+		</Directions>
 	</Recipe>
 );
 

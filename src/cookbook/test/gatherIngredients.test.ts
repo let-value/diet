@@ -10,7 +10,35 @@ test("getIngredientKey", () => {
 });
 
 test("gatherIngredients", () => {
-	const ingredients = gatherIngredients(test_recipe);
+	const { children: ingredients } = gatherIngredients(test_recipe);
 
-	expect(ingredients).toHaveLength(3);
+	expect(ingredients).toHaveLength(4);
+
+	expect(ingredients.map(({ key }) => key)).toEqual([
+		"ingredient1",
+		"ingredient2",
+		"ingredient3",
+		"ingredient4",
+	]);
+
+	expect(ingredients.map(({ name }) => name)).toEqual([
+		"ingredient1",
+		"ingredient2 (raw)",
+		"Fresh ingredient 3",
+		"ingredient4",
+	]);
+
+	expect(ingredients.map(({ quantity }) => quantity.toString())).toEqual([
+		"1 g",
+		"2 kg",
+		"20 slices",
+		"1 tsp",
+	]);
+
+	expect(ingredients.flatMap(({ category }) => category)).toEqual([
+		"category1",
+		"category2",
+		"category3",
+		"category4",
+	]);
 });

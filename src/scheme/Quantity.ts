@@ -1,44 +1,6 @@
-import { createUnit, unit, Unit } from "mathjs";
+import { unit, Unit } from "mathjs";
 
-createUnit("things", {
-	aliases: [
-		"slice",
-		"slices",
-		"serving",
-		"servings",
-		"thing",
-		"things",
-		"item",
-		"items",
-		"piece",
-		"pieces",
-		"portion",
-		"portions",
-		"part",
-		"parts",
-		"unit",
-		"units",
-		"chunk",
-		"chunks",
-		"hunk",
-		"hunks",
-		"slab",
-		"slabs",
-		"sliver",
-		"slivers",
-		"wedge",
-		"wedges",
-	],
-});
-
-createUnit(
-	"bit",
-	{
-		definition: "1 thing",
-		aliases: ["bit", "bits"],
-	},
-	{ override: true },
-);
+import "./customUnits";
 
 export type Quantity = Unit;
 export { unit, Unit };

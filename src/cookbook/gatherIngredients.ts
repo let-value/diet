@@ -6,18 +6,18 @@ import {
 	parseQuantity,
 } from "@/scheme";
 
-import { flattenRecipeContainer } from "./flattenRecipeContainer";
+import {
+	filterRecipeContainer,
+	findRecipeContainer,
+} from "./recipeContainerExtensions";
 import { add } from "mathjs";
 import { Options } from "@/scheme/Options";
 
 function getIngredients(container: RecipeContainer): Ingredient[] {
-	const items = Array.from(flattenRecipeContainer(container));
-
-	const ingredients = items.filter(
+	return filterRecipeContainer(
+		container,
 		(node): node is Ingredient => node instanceof Ingredient,
 	);
-
-	return ingredients;
 }
 
 export function getIngredientKey({ key, name }: Ingredient) {
@@ -45,9 +45,8 @@ function combineOptions(options: Options<string>[]) {
 }
 
 export function gatherIngredients(recipe: Recipe) {
-	const items = Array.from(flattenRecipeContainer(recipe));
-
-	const ingredientsContainer = items.find(
+	const ingredientsContainer = findRecipeContainer(
+		recipe,
 		(node): node is Ingredients => node instanceof Ingredients,
 	);
 
@@ -56,7 +55,7 @@ export function gatherIngredients(recipe: Recipe) {
 
 	const similar = Object.groupBy(allIngredients, getIngredientKey);
 
-	const result: Ingredient[] = [];
+	const children: Ingredient[] = [];
 
 	for (const [key, variants] of Object.entries(similar)) {
 		let main = variants.find((ingredient) =>
@@ -90,10 +89,10 @@ export function gatherIngredients(recipe: Recipe) {
 			manipulation,
 		});
 
-		result.push(ingredient);
+		children.push(ingredient);
 	}
 
-	return result;
+	return new Ingredients({ children });
 }
 
 /**

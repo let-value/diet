@@ -19,6 +19,9 @@ export const test_recipe = (
 				Fresh ingredient 3
 			</Ingredient>
 			<Ingredient name="ingredient4" quantity="1tsp" category="category4" />
+			<Ingredient category="category5" quantity="1">
+				ingredient5
+			</Ingredient>
 		</Ingredients>
 		<Preparation>
 			<Step>
@@ -32,7 +35,7 @@ export const test_recipe = (
 				</Ingredient>{" "}
 				and fry in on a pan
 			</Step>
-			<Step duration={10}>
+			<Step duration="10 minutes">
 				after that take{" "}
 				<Ingredient key="ingredient3" manipulation="boil">
 					ingredient 3

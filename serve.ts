@@ -19,7 +19,11 @@ export function startServer() {
 	const server = Bun.serve({
 		port: 8080,
 		async fetch(req) {
-			const filePath = path.join(DIST_PATH, new URL(req.url).pathname);
+			let { pathname } = new URL(req.url);
+			if (pathname.endsWith("/") || pathname.endsWith("/index.html"))
+				pathname = `${path.dirname(pathname)}/index.html`;
+
+			const filePath = path.join(DIST_PATH, pathname);
 			const file = Bun.file(filePath);
 			console.log(filePath, await file.exists());
 			return new Response(file, { headers });

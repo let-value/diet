@@ -12,13 +12,14 @@ test("getIngredientKey", () => {
 test("gatherIngredients", () => {
 	const { children: ingredients } = gatherIngredients(test_recipe);
 
-	expect(ingredients).toHaveLength(4);
+	expect(ingredients).toHaveLength(5);
 
 	expect(ingredients.map(({ key }) => key)).toEqual([
 		"ingredient1",
 		"ingredient2",
 		"ingredient3",
 		"ingredient4",
+		"ingredient5",
 	]);
 
 	expect(ingredients.map(({ name }) => name)).toEqual([
@@ -26,6 +27,7 @@ test("gatherIngredients", () => {
 		"ingredient2 (raw)",
 		"Fresh ingredient 3",
 		"ingredient4",
+		"ingredient5",
 	]);
 
 	expect(ingredients.map(({ quantity }) => quantity.toString())).toEqual([
@@ -33,6 +35,7 @@ test("gatherIngredients", () => {
 		"2 kg",
 		"20 slices",
 		"1 tsp",
+		"1",
 	]);
 
 	expect(ingredients.flatMap(({ category }) => category)).toEqual([
@@ -40,5 +43,6 @@ test("gatherIngredients", () => {
 		"category2",
 		"category3",
 		"category4",
+		"category5",
 	]);
 });

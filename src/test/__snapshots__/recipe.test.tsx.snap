@@ -9,6 +9,7 @@ Recipe {
           "category": [
             "category1",
           ],
+          "description": undefined,
           "key": undefined,
           "manipulation": [],
           "name": "ingredient1",
@@ -198,6 +199,7 @@ Recipe {
           "category": [
             "category2",
           ],
+          "description": undefined,
           "key": undefined,
           "manipulation": [],
           "name": "ingredient2 (raw)",
@@ -207,6 +209,7 @@ Recipe {
           "category": [
             "category3",
           ],
+          "description": undefined,
           "key": "ingredient3",
           "manipulation": [],
           "name": "Fresh ingredient 3",
@@ -275,6 +278,7 @@ Recipe {
           "category": [
             "category4",
           ],
+          "description": undefined,
           "key": undefined,
           "manipulation": [],
           "name": "ingredient4",
@@ -338,6 +342,33 @@ Recipe {
             "value": 0.000005,
           },
         },
+        Ingredient {
+          "category": [
+            "category5",
+          ],
+          "description": undefined,
+          "key": undefined,
+          "manipulation": [],
+          "name": "ingredient5",
+          "quantity": Unit {
+            "dimensions": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+            ],
+            "fixPrefix": false,
+            "skipAutomaticSimplification": true,
+            "units": [],
+            "value": 1,
+          },
+        },
       ],
     },
     Preparation {
@@ -347,6 +378,7 @@ Recipe {
             "take ",
             Ingredient {
               "category": [],
+              "description": undefined,
               "key": undefined,
               "manipulation": [
                 "boil",
@@ -364,6 +396,7 @@ Recipe {
             " ",
             Ingredient {
               "category": [],
+              "description": undefined,
               "key": undefined,
               "manipulation": [
                 "fry",
@@ -562,6 +595,7 @@ Recipe {
             " ",
             Ingredient {
               "category": [],
+              "description": undefined,
               "key": "ingredient3",
               "manipulation": [
                 "boil",
@@ -572,9 +606,65 @@ Recipe {
             " ",
             "and boil it for 10 minutes",
           ],
-          "duration": Amount {
-            "quantity": 10,
-            "unit": undefined,
+          "duration": Unit {
+            "dimensions": [
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+            ],
+            "fixPrefix": false,
+            "skipAutomaticSimplification": true,
+            "units": [
+              {
+                "power": 1,
+                "prefix": {
+                  "name": "",
+                  "scientific": true,
+                  "value": 1,
+                },
+                "unit": {
+                  "base": {
+                    "dimensions": [
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                    ],
+                    "key": "TIME",
+                  },
+                  "dimensions": [
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                  ],
+                  "name": "minutes",
+                  "offset": 0,
+                  "prefixes": {},
+                  "value": 60,
+                },
+              },
+            ],
+            "value": 600,
           },
         },
       ],
@@ -602,6 +692,7 @@ Recipe {
       ],
     },
   ],
+  "description": undefined,
   "meal": [
     "breakfast",
     "lunch",

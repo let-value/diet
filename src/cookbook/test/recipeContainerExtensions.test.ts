@@ -27,7 +27,7 @@ test("flattenRecipeContainer", () => {
 	).toEqual({
 		Recipe: 1,
 		Ingredients: 1,
-		Ingredient: 7,
+		Ingredient: 8,
 		Preparation: 1,
 		Step: 6,
 		string: 13,
@@ -50,7 +50,7 @@ test("filterRecipeContainer", () => {
 		(node): node is Ingredient => node instanceof Ingredient,
 	);
 
-	expect(containers).toHaveLength(7);
+	expect(containers).toHaveLength(8);
 });
 
 test("mapRecipeContainer", () => {
@@ -67,7 +67,7 @@ test("mapRecipeContainer", () => {
 		(node): node is Ingredient => node instanceof Ingredient,
 	);
 
-	expect(ingredients).toHaveLength(7);
+	expect(ingredients).toHaveLength(8);
 	expect(Array.from(new Set(ingredients.map(({ name }) => name)))).toEqual([
 		"mapped",
 	]);

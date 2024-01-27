@@ -2413,39 +2413,6 @@ var require_defineProperty = __commonJS((exports, module) => {
 function jsx(tag, props, ...children) {
   return new tag({ ...props, children });
 }
-// recipesdules/mathjs/
-function parseAmount(options) {
-  if (options === undefined) {
-    return;
-  }
-  let quantity = undefined;
-  let unit = undefined;
-  if (typeof options === "number") {
-    quantity = options;
-  }
-  if (typeof options === "string") {
-    const match = options.match(regexp);
-    const { rawQuantity, rawUnit } = match?.groups ?? {};
-    quantity = rawQuantity ? Number(rawQuantity) : undefined;
-    unit = rawUnit;
-  }
-  if (options instanceof Amount) {
-    quantity = options.quantity;
-    unit = options.unit;
-  }
-  return new Amount({ quantity, unit });
-}
-var regexp = /(?<rawQuantity>\d+)(?<separator>\W+)?(?<rawUnit>\w+)?/;
-
-class Amount {
-  quantity;
-  unit;
-  constructor(props) {
-    this.quantity = props.quantity;
-    this.unit = props.unit;
-  }
-}
-
 // recipesdules/mathjs/l
 var parseOptions = function(options) {
   if (options === undefined) {
@@ -2475,36 +2442,6 @@ class RecipeContainer {
   }
 }
 
-// recipesdules/mathjs/
-class Recipe extends RecipeContainer {
-  name;
-  meal;
-  servings;
-  constructor(props) {
-    super(props);
-    this.name = props.name;
-    this.meal = new Options(props.meal);
-    this.servings = parseAmount(props.servings);
-  }
-}
-
-class Directions extends RecipeContainer {
-  constructor() {
-    super(...arguments);
-  }
-}
-
-class Ingredients extends RecipeContainer {
-  constructor() {
-    super(...arguments);
-  }
-}
-
-class Preparation extends RecipeContainer {
-  constructor() {
-    super(...arguments);
-  }
-}
 // recipesdules/mathjs/lib/esm/function/algebra/sparse
 var extends2 = __toESM(require_extends(), 1);
 
@@ -8538,7 +8475,7 @@ var createNumber = factory(name11, dependencies12, (_ref) => {
   };
   return number14;
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jss.
+// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jsss
 var name12 = "bignumber";
 var dependencies13 = ["typed", "BigNumber"];
 var createBignumber = factory(name12, dependencies13, (_ref) => {
@@ -8733,7 +8670,7 @@ var createAddScalar = factory(name17, dependencies18, (_ref) => {
     })
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jss.j
+// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jssse
 var name18 = "subtractScalar";
 var dependencies19 = ["typed"];
 var createSubtractScalar = factory(name18, dependencies19, (_ref) => {
@@ -9395,7 +9332,7 @@ var createBroadcast = factory(name27, dependancies, (_ref) => {
   }
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jss.js.js
+// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jssseric/
 var name28 = "matrixAlgorithmSuite";
 var dependencies28 = ["typed", "matrix", "concat"];
 var createMatrixAlgorithmSuite = factory(name28, dependencies28, (_ref) => {
@@ -9522,7 +9459,7 @@ var createMatrixAlgorithmSuite = factory(name28, dependencies28, (_ref) => {
   };
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jss.j
+// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jssse
 var name29 = "multiplyScalar";
 var dependencies29 = ["typed"];
 var createMultiplyScalar = factory(name29, dependencies29, (_ref) => {
@@ -14629,14 +14566,15 @@ var unit = createUnitFunction({
   typed
 });
 
-// recipesdules/mathjs/li
-function parseQuantity(value) {
-  try {
-    return unit(value);
-  } catch (error) {
-    return;
-  }
-}
+// recipesdules/mathjs/lib/e
+createUnit("tsp", {
+  definition: "1 teaspoon",
+  aliases: ["tsp", "ts", "t"]
+}, { override: true });
+createUnit("tbsp", {
+  definition: "1 tablespoon",
+  aliases: ["tbsp", "tbs", "tb"]
+}, { override: true });
 createUnit("things", {
   aliases: [
     "slice",
@@ -14664,7 +14602,15 @@ createUnit("things", {
     "sliver",
     "slivers",
     "wedge",
-    "wedges"
+    "wedges",
+    "container",
+    "containers",
+    "package",
+    "packages",
+    "dash",
+    "dashes",
+    "stalk",
+    "stalks"
   ]
 });
 createUnit("bit", {
@@ -14672,6 +14618,31 @@ createUnit("bit", {
   aliases: ["bit", "bits"]
 }, { override: true });
 
+// recipesdules/mathjs/li
+function parseQuantity(value) {
+  if (value === undefined)
+    return;
+  try {
+    return unit(value);
+  } catch (error) {
+    return;
+  }
+}
+
+// recipesdules/mathjs/
+class Recipe extends RecipeContainer {
+  name;
+  description;
+  meal;
+  servings;
+  constructor(props) {
+    super(props);
+    this.name = props.name;
+    this.description = props.description;
+    this.meal = new Options(props.meal);
+    this.servings = parseQuantity(props.servings);
+  }
+}
 // recipesdules/mathjs/l
 function joinStringChildren(children) {
   if (children === undefined) {
@@ -14690,15 +14661,23 @@ function joinStringChildren(children) {
 class Ingredient {
   key;
   name;
+  description;
   quantity;
   category;
   manipulation;
   constructor(props) {
     this.key = props.key;
     this.name = joinStringChildren(props.children) ?? props.name;
+    this.description = props.description;
     this.quantity = parseQuantity(props.quantity);
     this.category = new Options(props.category);
     this.manipulation = new Options(props.manipulation);
+  }
+}
+// recipesdules/mathjs/lib/e
+class Ingredients extends RecipeContainer {
+  constructor() {
+    super(...arguments);
   }
 }
 // recipesdules/mathj
@@ -14706,7 +14685,29 @@ class Step extends RecipeContainer {
   duration;
   constructor(props) {
     super(props);
-    this.duration = parseAmount(props.duration);
+    this.duration = parseQuantity(props.duration);
+  }
+}
+// recipesdules/mathjs/lib/e
+class Preparation extends RecipeContainer {
+  constructor() {
+    super(...arguments);
+  }
+}
+// recipesdules/mathjs/lib/
+class Directions extends RecipeContainer {
+  constructor() {
+    super(...arguments);
+  }
+}
+// recipesdules/mathjs/lib/e
+class Measurement {
+  scale;
+  quantity;
+  constructor(props) {
+    this.scale = props.scale;
+    const quantity = joinStringChildren(props.children) ?? props.value;
+    this.quantity = parseQuantity(quantity);
   }
 }
 // recipesdules/m
@@ -14720,8 +14721,8 @@ function buildCookbook() {
         groups2[group] = [];
       }
       groups2[group].push(recipe.name);
-      return groups2;
     }
+    return groups2;
   }, {});
   function getRandomRecipe(group = []) {
     return group[Math.floor(Math.random() * group.length)];
@@ -14735,22 +14736,20 @@ function buildCookbook() {
 }
 var cookbook = null;
 export {
-  unit,
   recipes,
   parseQuantity,
-  parseAmount,
   jsx,
   cookbook,
   buildCookbook,
-  Unit,
   Step,
   RecipeContainer,
   Recipe,
   Preparation,
+  Options,
+  Measurement,
   Ingredients,
   Ingredient,
-  Directions,
-  Amount
+  Directions
 };
 // recipesdules/mathjs/lib/esm/function/algeb
 recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
@@ -14778,6 +14777,43 @@ recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
   quantity: "60g",
   manipulation: "wash,dice"
 }, "tomatoes"), ".")));
+// recipesdules/mathjs/lib/esm/function/al
+recipes["Ranch Chicken Meal Prep"] = jsx(Recipe, {
+  name: "Ranch Chicken Meal Prep",
+  description: "This simple chicken meal prep features garlic herb chicken, roasted potatoes and broccoli, and a little ranch dressing to drizzle over top!",
+  servings: "4 servings",
+  meal: "lunch,dinner"
+}, jsx(Ingredients, null), jsx(Preparation, null, jsx(Step, null, "Clean and dice the", " ", jsx(Ingredient, {
+  manipulation: "clean,dice"
+}, "potatoes"), " into roughly", " ", jsx(Measurement, null, "2 cm"), "pieces."), jsx(Step, null, "In a small bowl, combine the", " ", jsx(Ingredient, {
+  quantity: "1/3 cup"
+}, "Parmesan"), ",", " ", jsx(Ingredient, {
+  quantity: "1/2 tsp"
+}, "garlic powder"), ",", " ", jsx(Ingredient, {
+  quantity: "1/4 tsp"
+}, "paprika"), ", and", " ", jsx(Ingredient, {
+  quantity: "1/4 tsp"
+}, "salt"), "."), jsx(Step, null, "Place the diced potatoes in a bowl, drizzle with", " ", jsx(Ingredient, {
+  quantity: "1 tbsp"
+}, "cooking oil"), " and the seasoned Parmesan, then toss until evenly coated."), jsx(Step, null, "Place the ", jsx(Ingredient, {
+  quantity: "1 lb"
+}, "broccoli florets"), " in a bowl and drizzle with", " ", jsx(Ingredient, {
+  quantity: "1 tbsp"
+}, "cooking oil"), ", and add a", " ", jsx(Ingredient, {
+  quantity: "1/4 tsp"
+}, "salt"), " and", " ", jsx(Ingredient, {
+  quantity: "1/4 tsp"
+}, "pepper"), ". Toss until the broccoli is evenly coated."), jsx(Step, null, "Fillet the ", jsx(Ingredient, {
+  quantity: "1 lb"
+}, "chicken breast"), " into two thinner pieces to help them cook faster and more evenly. Season both sides of the chicken with", " ", jsx(Ingredient, {
+  quantity: "1 tbsp"
+}, "garlic herb seasoning"), ".")), jsx(Directions, null, jsx(Step, null, "Preheat the oven to ", jsx(Measurement, null, "200 celsius"), "."), jsx(Step, {
+  duration: "15 minutes"
+}, "Spread the potatoes out over a parchment-lined baking sheet, place in the oven and roast for 15 minutes."), jsx(Step, null, "After 15 minutes, add the broccoli to the baking sheet with the potatoes."), jsx(Step, {
+  duration: "10 minutes"
+}, "Roast the potatoes and broccoli together for 10 minutes."), jsx(Step, null, "Then, add the chicken to the baking sheet."), jsx(Step, {
+  duration: "20 minutes"
+}, "Continue roasting for an additional 15-20 minutes or until the chicken is fully cooked, the potatoes are golden and crispy, and the broccoli is tender and browned at the edges")));
 // recipesdules/mathjs/lib/esm/func
 recipes["Chicken Stir-Fry"] = jsx(Recipe, {
   name: "Chicken Stir-Fry",

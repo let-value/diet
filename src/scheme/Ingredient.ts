@@ -5,6 +5,7 @@ import { joinStringChildren } from "./helpers";
 interface Props {
 	key?: string;
 	name?: string;
+	description?: string;
 	quantity?: QuantityProp;
 	category?: OptionsProp<string>;
 	manipulation?: OptionsProp<string>;
@@ -14,6 +15,7 @@ interface Props {
 export class Ingredient {
 	key?: string;
 	name?: string;
+	description?: string;
 	quantity?: Quantity;
 	category?: Options<string>;
 	manipulation?: Options<string>;
@@ -21,6 +23,7 @@ export class Ingredient {
 	constructor(props: Props) {
 		this.key = props.key;
 		this.name = joinStringChildren(props.children) ?? props.name;
+		this.description = props.description;
 		this.quantity = parseQuantity(props.quantity);
 		this.category = new Options(props.category);
 		this.manipulation = new Options(props.manipulation);

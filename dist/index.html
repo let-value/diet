@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>diet</title>
+</head>
+
+<body>
+    <script src="index.js" type="module"></script>
+    <script type="module">
+        var diet = await import("./index.js");
+        var cookbook = diet.buildCookbook();
+        console.log(cookbook);
+    </script>
+</body>
+
+</html>

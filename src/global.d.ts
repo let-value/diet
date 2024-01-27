@@ -9,5 +9,6 @@ declare global {
 	const Preparation: typeof scheme.Preparation;
 	const Step: typeof scheme.Step;
 	const Ingredient: typeof scheme.Ingredient;
+	const Measurement: typeof scheme.Measurement;
 	function buildCookbook(): void;
 }

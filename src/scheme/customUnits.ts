@@ -49,6 +49,10 @@ createUnit("things", {
 		"containers",
 		"package",
 		"packages",
+		"dash",
+		"dashes",
+		"stalk",
+		"stalks",
 	],
 });
 

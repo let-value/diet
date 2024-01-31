@@ -10,7 +10,6 @@ import {
 	filterRecipeContainer,
 	findRecipeContainer,
 } from "./recipeContainerExtensions";
-import { add } from "mathjs";
 import { Options } from "@/scheme/Options";
 
 function getIngredients(container: RecipeContainer): Ingredient[] {
@@ -34,7 +33,7 @@ export function getIngredientKey({ key, name }: Ingredient) {
 
 function combineQuantity(ingredients: Ingredient[]) {
 	return ingredients.reduce(
-		(acc, { quantity }) => (quantity ? add(acc, quantity) : acc),
+		(acc, { quantity }) => (quantity ? acc.add(quantity) : acc),
 		parseQuantity("0g"),
 	);
 }

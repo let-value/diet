@@ -1,9 +1,8 @@
 {
     "name": "cookbook",
-    "module": "index.ts",
     "type": "module",
     "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "types": "types/src/index.d.ts",
     "scripts": {
       "test": "bun test",
       "test:watch": "bun test --watch --update-snapshots",
@@ -12,7 +11,8 @@
       "watch": "bun watch.ts"
     },
     "dependencies": {
-      "mathjs": "^12.3.0"
+      "mathjs": "^12.3.0",
+      "unitmath": "^1.0.2"
     }
   }
   

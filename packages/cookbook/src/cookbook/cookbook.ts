@@ -1,29 +1,28 @@
-import { recipes } from "../index";
-
-export let cookbook = null;
+import { Meal, recipes } from "../index";
 
 export function buildCookbook() {
 	const list = Object.keys(recipes);
 
-	const groups = Object.values(recipes).reduce((groups, recipe) => {
-		for (const group of recipe.meal) {
-			if (!groups[group]) {
-				groups[group] = [];
+	const groups = Object.values(recipes).reduce(
+		(groups, recipe) => {
+			for (const group of recipe.meal) {
+				if (!groups[group]) {
+					groups[group] = [];
+				}
+				groups[group].push(recipe.name);
 			}
-			groups[group].push(recipe.name);
-		}
-		return groups;
-	}, {});
+			return groups;
+		},
+		{} as Partial<Record<Meal, string[]>>,
+	);
 
 	function getRandomRecipe(group: string[] = []) {
 		return group[Math.floor(Math.random() * group.length)];
 	}
 
-	cookbook = {
+	return {
 		list,
 		groups,
 		getRandomRecipe,
 	};
-
-	return cookbook;
 }

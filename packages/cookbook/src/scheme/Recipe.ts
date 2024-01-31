@@ -2,7 +2,7 @@ import { Options, OptionsProp } from "./Options";
 import { RecipeContainer, RecipeContainerProps } from "./RecipeContainer";
 import { Quantity, QuantityProp, parseQuantity } from "./Quantity";
 
-type Meal = "breakfast" | "lunch" | "dinner" | "snack" | "dessert";
+export type Meal = "breakfast" | "lunch" | "dinner" | "snack" | "dessert";
 
 interface RecipeProps extends RecipeContainerProps {
 	name: string;

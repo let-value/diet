@@ -1,6 +1,6 @@
-import { unit, Unit } from "mathjs";
+import { Unit } from "unitmath";
 
-import "./customUnits";
+import { unit } from "./customUnits";
 
 export type Quantity = Unit;
 

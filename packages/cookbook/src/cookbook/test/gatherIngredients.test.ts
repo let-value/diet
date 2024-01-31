@@ -30,13 +30,9 @@ test("gatherIngredients", () => {
 		"ingredient5",
 	]);
 
-	expect(ingredients.map(({ quantity }) => quantity.toString())).toEqual([
-		"1 g",
-		"2 kg",
-		"20 slices",
-		"1 tsp",
-		"1",
-	]);
+	expect(
+		ingredients.map(({ quantity }) => quantity.simplify().toString()),
+	).toEqual(["1 g", "2000 g", "20 slices", "1 tsp", "1"]);
 
 	expect(ingredients.flatMap(({ category }) => category)).toEqual([
 		"category1",

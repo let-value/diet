@@ -7,6 +7,7 @@ interface Props {
     quantity?: QuantityProp;
     category?: OptionsProp<string>;
     manipulation?: OptionsProp<string>;
+    optional?: boolean;
     children?: string;
 }
 export declare class Ingredient {
@@ -16,6 +17,7 @@ export declare class Ingredient {
     quantity?: Quantity;
     category?: Options<string>;
     manipulation?: Options<string>;
+    optional?: boolean;
     constructor(props: Props);
 }
 export {};

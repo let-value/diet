@@ -1,6 +1,6 @@
 // Bun Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`jsx recipe 1`] = `
+exports[`test_recipe 1`] = `
 Recipe {
   "children": [
     Ingredients {
@@ -13,6 +13,7 @@ Recipe {
           "key": undefined,
           "manipulation": [],
           "name": "ingredient1",
+          "optional": false,
           "quantity": _Unit {
             "dimension": {
               "MASS": 1,
@@ -75,6 +76,7 @@ Recipe {
           "key": undefined,
           "manipulation": [],
           "name": "ingredient2 (raw)",
+          "optional": false,
           "quantity": undefined,
         },
         Ingredient {
@@ -85,6 +87,7 @@ Recipe {
           "key": "ingredient3",
           "manipulation": [],
           "name": "Fresh ingredient 3",
+          "optional": false,
           "quantity": _Unit {
             "dimension": {},
             "fixed": false,
@@ -115,6 +118,7 @@ Recipe {
           "key": undefined,
           "manipulation": [],
           "name": "ingredient4",
+          "optional": false,
           "quantity": _Unit {
             "dimension": {
               "LENGTH": 3,
@@ -149,6 +153,7 @@ Recipe {
           "key": undefined,
           "manipulation": [],
           "name": "ingredient5",
+          "optional": false,
           "quantity": _Unit {
             "dimension": {},
             "fixed": false,
@@ -172,9 +177,68 @@ Recipe {
                 "boil",
               ],
               "name": "ingredient1",
+              "optional": false,
               "quantity": undefined,
             },
-            " and boil it",
+            " and boil it at ",
+            Measurement {
+              "quantity": _Unit {
+                "dimension": {
+                  "TEMPERATURE": 1,
+                },
+                "fixed": false,
+                "type": "Unit",
+                "unitList": [
+                  {
+                    "power": 1,
+                    "prefix": "",
+                    "unit": {
+                      "basePrefix": undefined,
+                      "dimension": {
+                        "TEMPERATURE": 1,
+                      },
+                      "formatPrefixes": undefined,
+                      "name": "celsius",
+                      "offset": 273.15,
+                      "prefixGroup": {},
+                      "value": 1,
+                    },
+                  },
+                ],
+                "value": 100,
+              },
+              "scale": undefined,
+            },
+            " for",
+            " ",
+            Measurement {
+              "quantity": _Unit {
+                "dimension": {
+                  "TIME": 1,
+                },
+                "fixed": false,
+                "type": "Unit",
+                "unitList": [
+                  {
+                    "power": 1,
+                    "prefix": "",
+                    "unit": {
+                      "basePrefix": undefined,
+                      "dimension": {
+                        "TIME": 1,
+                      },
+                      "formatPrefixes": undefined,
+                      "name": "minutes",
+                      "offset": 0,
+                      "prefixGroup": {},
+                      "value": 60,
+                    },
+                  },
+                ],
+                "value": 10,
+              },
+              "scale": undefined,
+            },
           ],
           "duration": undefined,
         },
@@ -190,6 +254,7 @@ Recipe {
                 "fry",
               ],
               "name": "ingredient2",
+              "optional": false,
               "quantity": _Unit {
                 "dimension": {
                   "MASS": 1,
@@ -261,10 +326,39 @@ Recipe {
                 "boil",
               ],
               "name": "ingredient 3",
+              "optional": false,
               "quantity": undefined,
             },
             " ",
-            "and boil it for 10 minutes",
+            "and boil it for ",
+            Measurement {
+              "quantity": _Unit {
+                "dimension": {
+                  "TIME": 1,
+                },
+                "fixed": false,
+                "type": "Unit",
+                "unitList": [
+                  {
+                    "power": 1,
+                    "prefix": "",
+                    "unit": {
+                      "basePrefix": undefined,
+                      "dimension": {
+                        "TIME": 1,
+                      },
+                      "formatPrefixes": undefined,
+                      "name": "minutes",
+                      "offset": 0,
+                      "prefixGroup": {},
+                      "value": 60,
+                    },
+                  },
+                ],
+                "value": 10,
+              },
+              "scale": undefined,
+            },
           ],
           "duration": _Unit {
             "dimension": {
@@ -330,6 +424,418 @@ Recipe {
     "type": "Unit",
     "unitList": [],
     "value": 4,
+  },
+}
+`;
+
+exports[`mediterraneanDelight 1`] = `
+Recipe {
+  "children": [
+    Ingredients {
+      "children": [
+        Ingredient {
+          "category": [
+            "fruit",
+          ],
+          "description": undefined,
+          "key": undefined,
+          "manipulation": [],
+          "name": "dragon fruit",
+          "optional": false,
+          "quantity": _Unit {
+            "dimension": {},
+            "fixed": false,
+            "type": "Unit",
+            "unitList": [],
+            "value": 2,
+          },
+        },
+        Ingredient {
+          "category": [
+            "fruit",
+          ],
+          "description": undefined,
+          "key": undefined,
+          "manipulation": [],
+          "name": "mango",
+          "optional": false,
+          "quantity": _Unit {
+            "dimension": {},
+            "fixed": false,
+            "type": "Unit",
+            "unitList": [],
+            "value": 1,
+          },
+        },
+        Ingredient {
+          "category": [
+            "fruit",
+          ],
+          "description": undefined,
+          "key": undefined,
+          "manipulation": [],
+          "name": "kiwi",
+          "optional": false,
+          "quantity": _Unit {
+            "dimension": {},
+            "fixed": false,
+            "type": "Unit",
+            "unitList": [],
+            "value": 3,
+          },
+        },
+        Ingredient {
+          "category": [
+            "fruit",
+          ],
+          "description": undefined,
+          "key": undefined,
+          "manipulation": [],
+          "name": "pomegranate seeds",
+          "optional": false,
+          "quantity": _Unit {
+            "dimension": {
+              "LENGTH": 3,
+            },
+            "fixed": false,
+            "type": "Unit",
+            "unitList": [
+              {
+                "power": 1,
+                "prefix": "",
+                "unit": {
+                  "basePrefix": undefined,
+                  "dimension": {
+                    "LENGTH": 3,
+                  },
+                  "formatPrefixes": undefined,
+                  "name": "cup",
+                  "offset": 0,
+                  "prefixGroup": {},
+                  "value": 0.0002365882365,
+                },
+              },
+            ],
+            "value": 1,
+          },
+        },
+        Ingredient {
+          "category": [
+            "herb",
+          ],
+          "description": undefined,
+          "key": undefined,
+          "manipulation": [],
+          "name": "fresh mint leaves",
+          "optional": false,
+          "quantity": undefined,
+        },
+        Ingredient {
+          "category": [
+            "liquid",
+          ],
+          "description": undefined,
+          "key": undefined,
+          "manipulation": [],
+          "name": "lime juice",
+          "optional": false,
+          "quantity": _Unit {
+            "dimension": {
+              "LENGTH": 3,
+            },
+            "fixed": false,
+            "type": "Unit",
+            "unitList": [
+              {
+                "power": 1,
+                "prefix": "",
+                "unit": {
+                  "basePrefix": undefined,
+                  "dimension": {
+                    "LENGTH": 3,
+                  },
+                  "formatPrefixes": undefined,
+                  "name": "tbsp",
+                  "offset": 0,
+                  "prefixGroup": {},
+                  "value": 0.000014786764781249999,
+                },
+              },
+            ],
+            "value": 2,
+          },
+        },
+        Ingredient {
+          "category": [
+            "sweetener",
+          ],
+          "description": undefined,
+          "key": undefined,
+          "manipulation": [],
+          "name": "honey",
+          "optional": true,
+          "quantity": _Unit {
+            "dimension": {
+              "LENGTH": 3,
+            },
+            "fixed": false,
+            "type": "Unit",
+            "unitList": [
+              {
+                "power": 1,
+                "prefix": "",
+                "unit": {
+                  "basePrefix": undefined,
+                  "dimension": {
+                    "LENGTH": 3,
+                  },
+                  "formatPrefixes": undefined,
+                  "name": "tbsp",
+                  "offset": 0,
+                  "prefixGroup": {},
+                  "value": 0.000014786764781249999,
+                },
+              },
+            ],
+            "value": 1,
+          },
+        },
+      ],
+    },
+    Preparation {
+      "children": [
+        Step {
+          "children": [
+            "Peel and cube the ",
+            Ingredient {
+              "category": [],
+              "description": undefined,
+              "key": undefined,
+              "manipulation": [],
+              "name": "dragon fruit",
+              "optional": false,
+              "quantity": undefined,
+            },
+            " and",
+            " ",
+            Ingredient {
+              "category": [],
+              "description": undefined,
+              "key": undefined,
+              "manipulation": [],
+              "name": "mango",
+              "optional": false,
+              "quantity": undefined,
+            },
+            ". Slice the",
+            " ",
+            Ingredient {
+              "category": [],
+              "description": undefined,
+              "key": undefined,
+              "manipulation": [],
+              "name": "kiwi",
+              "optional": false,
+              "quantity": undefined,
+            },
+            ".",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "In a large bowl, combine the cubed ",
+            Ingredient {
+              "category": [],
+              "description": undefined,
+              "key": undefined,
+              "manipulation": [],
+              "name": "dragon fruit",
+              "optional": false,
+              "quantity": undefined,
+            },
+            ",",
+            " ",
+            Ingredient {
+              "category": [],
+              "description": undefined,
+              "key": undefined,
+              "manipulation": [],
+              "name": "mango",
+              "optional": false,
+              "quantity": undefined,
+            },
+            ", sliced ",
+            Ingredient {
+              "category": [],
+              "description": undefined,
+              "key": undefined,
+              "manipulation": [],
+              "name": "kiwi",
+              "optional": false,
+              "quantity": undefined,
+            },
+            ", and",
+            " ",
+            Ingredient {
+              "category": [],
+              "description": undefined,
+              "key": undefined,
+              "manipulation": [],
+              "name": "pomegranate seeds",
+              "optional": false,
+              "quantity": undefined,
+            },
+            ".",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "Gently toss with ",
+            Ingredient {
+              "category": [],
+              "description": undefined,
+              "key": undefined,
+              "manipulation": [],
+              "name": "lime juice",
+              "optional": false,
+              "quantity": undefined,
+            },
+            " and",
+            " ",
+            Ingredient {
+              "category": [],
+              "description": undefined,
+              "key": undefined,
+              "manipulation": [],
+              "name": "honey",
+              "optional": true,
+              "quantity": undefined,
+            },
+            " (if using).",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "Let the salad sit for ",
+            Measurement {
+              "quantity": _Unit {
+                "dimension": {
+                  "TIME": 1,
+                },
+                "fixed": false,
+                "type": "Unit",
+                "unitList": [
+                  {
+                    "power": 1,
+                    "prefix": "",
+                    "unit": {
+                      "basePrefix": undefined,
+                      "dimension": {
+                        "TIME": 1,
+                      },
+                      "formatPrefixes": undefined,
+                      "name": "minutes",
+                      "offset": 0,
+                      "prefixGroup": {},
+                      "value": 60,
+                    },
+                  },
+                ],
+                "value": 5,
+              },
+              "scale": undefined,
+            },
+            " to blend the flavors.",
+          ],
+          "duration": _Unit {
+            "dimension": {
+              "TIME": 1,
+            },
+            "fixed": false,
+            "type": "Unit",
+            "unitList": [
+              {
+                "power": 1,
+                "prefix": "",
+                "unit": {
+                  "basePrefix": undefined,
+                  "dimension": {
+                    "TIME": 1,
+                  },
+                  "formatPrefixes": undefined,
+                  "name": "minutes",
+                  "offset": 0,
+                  "prefixGroup": {},
+                  "value": 60,
+                },
+              },
+            ],
+            "value": 5,
+          },
+        },
+        Step {
+          "children": [
+            "Garnish with",
+            " ",
+            Ingredient {
+              "category": [],
+              "description": undefined,
+              "key": undefined,
+              "manipulation": [],
+              "name": "fresh mint leaves",
+              "optional": false,
+              "quantity": undefined,
+            },
+            " ",
+            "before serving.",
+          ],
+          "duration": undefined,
+        },
+      ],
+    },
+    Directions {
+      "children": [
+        Step {
+          "children": [
+            "Prepare and combine fruits",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "Toss with dressing",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "Let sit and blend flavors",
+          ],
+          "duration": undefined,
+        },
+        Step {
+          "children": [
+            "Garnish and serve",
+          ],
+          "duration": undefined,
+        },
+      ],
+    },
+  ],
+  "description": undefined,
+  "meal": [
+    "dessert",
+  ],
+  "name": "Exotic Fruit Salad",
+  "servings": _Unit {
+    "dimension": {},
+    "fixed": false,
+    "type": "Unit",
+    "unitList": [],
+    "value": 6,
   },
 }
 `;

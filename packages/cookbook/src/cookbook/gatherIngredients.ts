@@ -4,13 +4,14 @@ import {
 	Ingredients,
 	RecipeContainer,
 	parseQuantity,
+	Options,
 } from "@/scheme";
 
 import {
 	filterRecipeContainer,
 	findRecipeContainer,
 } from "./recipeContainerExtensions";
-import { Options } from "@/scheme/Options";
+import { groupBy } from "./utils";
 
 function getIngredients(container: RecipeContainer): Ingredient[] {
 	return filterRecipeContainer(
@@ -52,7 +53,7 @@ export function gatherIngredients(recipe: Recipe) {
 	const mainIngredients = getIngredients(ingredientsContainer);
 	const allIngredients = getIngredients(recipe);
 
-	const similar = Object.groupBy(allIngredients, getIngredientKey);
+	const similar = groupBy(allIngredients, getIngredientKey);
 
 	const children: Ingredient[] = [];
 

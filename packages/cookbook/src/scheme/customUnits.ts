@@ -1,4 +1,3 @@
-import { createUnit } from "mathjs";
 import unitmath from "unitmath";
 
 const tsp = {
@@ -58,34 +57,6 @@ const bit = {
 	definition: "1 thing",
 	aliases: ["bit", "bits"],
 };
-
-createUnit(
-	tsp.name,
-	{
-		definition: tsp.definition,
-		aliases: tsp.aliases,
-	},
-	{ override: true },
-);
-createUnit(
-	tbsp.name,
-	{
-		definition: tbsp.definition,
-		aliases: tbsp.aliases,
-	},
-	{ override: true },
-);
-createUnit(things.name, {
-	aliases: things.aliases,
-});
-createUnit(
-	bit.name,
-	{
-		definition: bit.definition,
-		aliases: bit.aliases,
-	},
-	{ override: true },
-);
 
 export type UnitFactory = ReturnType<typeof unitmath.config<number>>;
 export type Unit = ReturnType<UnitFactory>;

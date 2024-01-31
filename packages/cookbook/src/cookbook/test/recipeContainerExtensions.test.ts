@@ -8,11 +8,12 @@ import {
 	filterRecipeContainer,
 	mapRecipeContainer,
 } from "../recipeContainerExtensions";
+import { groupBy } from "../utils";
 
 test("flattenRecipeContainer", () => {
 	const array = flattenRecipeContainer(test_recipe);
 
-	const groups = Object.groupBy(array, (node) => {
+	const groups = groupBy(array, (node) => {
 		if (typeof node === "object") {
 			return node.constructor.name;
 		}
@@ -28,9 +29,10 @@ test("flattenRecipeContainer", () => {
 		Recipe: 1,
 		Ingredients: 1,
 		Ingredient: 8,
+		Measurement: 3,
 		Preparation: 1,
 		Step: 6,
-		string: 13,
+		string: 15,
 		Directions: 1,
 	});
 });

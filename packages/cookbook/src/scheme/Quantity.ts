@@ -1,6 +1,4 @@
-import { Unit } from "unitmath";
-
-import { unit } from "./customUnits";
+import { unit, Unit } from "./customUnits";
 
 export type Quantity = Unit;
 
@@ -9,7 +7,7 @@ export type QuantityProp =
 	| Quantity
 	| undefined;
 
-export function parseQuantity(value?: QuantityProp) {
+export function parseQuantity(value?: QuantityProp): Unit | undefined {
 	if (value === undefined) return undefined;
 
 	try {

@@ -3,11 +3,10 @@
 		"lib": ["ESNext"],
 		"target": "ESNext",
 		"module": "ESNext",
-		"moduleDetection": "force",
 
 		"declaration": true,
 		"emitDeclarationOnly": true,
-		"declarationDir": "types",
+		"declarationDir": "ts",
 		"isolatedModules": false,
 
 		"jsx": "react",
@@ -15,11 +14,12 @@
 
 		"importHelpers": false,
 
-		"moduleResolution": "Bundler",
+		"allowSyntheticDefaultImports": true,
+		"moduleResolution": "Node",
 		"types": ["bun",],
 		"paths": {
 			"@/*": ["./src/*"]
 		}
 	},
-	"exclude": ["dist", "types"]
+	"exclude": ["dist", "ts"]
 }

@@ -4382,7 +4382,7 @@ function buildCookbook() {
 function jsx(tag, props, ...children) {
   return new tag({ ...props, children });
 }
-// src/scheme/Options.ts
+// recipesode_modules/ma
 var parseOptions = function(options) {
   if (options === undefined) {
     return [];
@@ -4403,7 +4403,7 @@ class Options extends Array {
   }
 }
 
-// src/scheme/RecipeContainer.ts
+// recipesode_modules/mathjs/lib
 class RecipeContainer {
   children;
   constructor(props) {
@@ -16502,7 +16502,7 @@ var createUnit = createCreateUnit({
   typed
 });
 
-// src/scheme/customUnits.ts
+// recipesode_modules/mathjs
 var import_unitmath = __toESM(require_UnitMath(), 1);
 var tsp = {
   name: "tsp",
@@ -16595,7 +16595,7 @@ var unit = import_unitmath.default.config({
   }
 });
 
-// src/scheme/Quantity.ts
+// recipesode_modules/mat
 function parseQuantity(value) {
   if (value === undefined)
     return;
@@ -16606,7 +16606,7 @@ function parseQuantity(value) {
   }
 }
 
-// src/scheme/Recipe.ts
+// recipesode_modules/m
 class Recipe extends RecipeContainer {
   name;
   description;
@@ -16634,7 +16634,7 @@ function joinStringChildren(children) {
   return children.join("");
 }
 
-// src/scheme/Ingredient.ts
+// recipesode_modules/mathj
 class Ingredient {
   key;
   name;
@@ -16651,13 +16651,13 @@ class Ingredient {
     this.manipulation = new Options(props.manipulation);
   }
 }
-// src/scheme/Ingredients.ts
+// recipesode_modules/mathjs
 class Ingredients extends RecipeContainer {
   constructor() {
     super(...arguments);
   }
 }
-// src/scheme/Step.ts
+// recipesode_modules
 class Step extends RecipeContainer {
   duration;
   constructor(props) {
@@ -16665,19 +16665,19 @@ class Step extends RecipeContainer {
     this.duration = parseQuantity(props.duration);
   }
 }
-// src/scheme/Preparation.ts
+// recipesode_modules/mathjs
 class Preparation extends RecipeContainer {
   constructor() {
     super(...arguments);
   }
 }
-// src/scheme/Directions.ts
+// recipesode_modules/mathj
 class Directions extends RecipeContainer {
   constructor() {
     super(...arguments);
   }
 }
-// src/scheme/Measurement.ts
+// recipesode_modules/mathjs
 class Measurement {
   scale;
   quantity;
@@ -16687,7 +16687,7 @@ class Measurement {
     this.quantity = parseQuantity(quantity);
   }
 }
-// src/cookbook/recipeContainerExtensions.ts
+// recipesode_modules/mathjs/lib/esm/functio
 function findRecipeContainer(container, predicate) {
   for (const child of container.children) {
     if (predicate(child)) {
@@ -16729,7 +16729,7 @@ function mapRecipeContainer(container, map2) {
   return mapped;
 }
 
-// src/cookbook/gatherIngredients.ts
+// recipesode_modules/mathjs/lib/esm
 var getIngredients = function(container) {
   return filterRecipeContainer(container, (node) => node instanceof Ingredient);
 };
@@ -16783,7 +16783,7 @@ var assertIngredientPart = function(part, name48) {
   }
 };
 
-// src/cookbook/normalizeRecipe.ts
+// recipesode_modules/mathjs/lib/e
 function normalizeRecipe(original) {
   const ingredients = gatherIngredients(original);
   const preparation = findRecipeContainer(original, (node) => node instanceof Preparation);
@@ -16795,7 +16795,7 @@ function normalizeRecipe(original) {
     children: [ingredients, preparation, directions]
   });
 }
-// src/cookbook/scaleRecipe.ts
+// recipesode_modules/mathjs/l
 function scaleRecipe(original, days) {
   return mapRecipeContainer(original, (node) => {
     if (node instanceof Ingredient && node.quantity) {
@@ -16828,7 +16828,7 @@ export {
   Ingredient,
   Directions
 };
-// src/recipes/Egg and Vegetable Scramble.tsx
+// recipesode_modules/mathjs/lib/esm/function
 recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
   name: "Egg and Vegetable Scramble",
   meal: "breakfast",
@@ -16854,7 +16854,7 @@ recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
   quantity: "60g",
   manipulation: "wash,dice"
 }, "tomatoes"), ".")));
-// src/recipes/Ranch Chicken Meal Prep.tsx
+// recipesode_modules/mathjs/lib/esm/funct
 recipes["Ranch Chicken Meal Prep"] = jsx(Recipe, {
   name: "Ranch Chicken Meal Prep",
   description: "This simple chicken meal prep features garlic herb chicken, roasted potatoes and broccoli, and a little ranch dressing to drizzle over top!",
@@ -16891,7 +16891,7 @@ recipes["Ranch Chicken Meal Prep"] = jsx(Recipe, {
 }, "Roast the potatoes and broccoli together for 10 minutes."), jsx(Step, null, "Then, add the chicken to the baking sheet."), jsx(Step, {
   duration: "20 minutes"
 }, "Continue roasting for an additional 15-20 minutes or until the chicken is fully cooked, the potatoes are golden and crispy, and the broccoli is tender and browned at the edges")));
-// src/recipes/Chicken Stir-Fry.tsx
+// recipesode_modules/mathjs/lib/es
 recipes["Chicken Stir-Fry"] = jsx(Recipe, {
   name: "Chicken Stir-Fry",
   meal: "dinner",

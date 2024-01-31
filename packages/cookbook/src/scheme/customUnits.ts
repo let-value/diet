@@ -87,7 +87,10 @@ createUnit(
 	{ override: true },
 );
 
-export const unit = unitmath.config({
+export type UnitFactory = ReturnType<typeof unitmath.config<number>>;
+export type Unit = ReturnType<UnitFactory>;
+
+export const unit: UnitFactory = unitmath.config({
 	definitions: {
 		units: {
 			[tsp.name]: {

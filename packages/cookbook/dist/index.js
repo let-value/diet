@@ -16,7 +16,7 @@ var __toESM = (mod, isNodeMode, target) => {
 };
 var __commonJS = (cb, mod) => () => (mod || cb((mod = { exports: {} }).exports, mod), mod.exports);
 
-// recipesdules/mathjs/lib/esm/function/algebra/s
+// /home/alex/diet/node_modules/@babel/runtime/helpers/extends.js
 var require_extends = __commonJS((exports, module) => {
   var _extends = function() {
     module.exports = _extends = Object.assign ? Object.assign.bind() : function(target) {
@@ -35,7 +35,7 @@ var require_extends = __commonJS((exports, module) => {
   module.exports = _extends, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/c
+// /home/alex/diet/node_modules/typed-function/lib/umd/typed-function.js
 var require_typed_function = __commonJS((exports, module) => {
   (function(global, factory) {
     typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory() : typeof define === "function" && define.amd ? define(factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, global["'typed'"] = factory());
@@ -1231,7 +1231,7 @@ var require_typed_function = __commonJS((exports, module) => {
   });
 });
 
-// recipesdules/mathjs/lib/esm/functi
+// /home/alex/diet/node_modules/complex.js/complex.js
 var require_complex = __commonJS((exports, module) => {
   (function(root) {
     var cosh2 = Math.cosh || function(x) {
@@ -1832,7 +1832,7 @@ var require_complex = __commonJS((exports, module) => {
   })(exports);
 });
 
-// recipesdules/mathjs/lib/esm/function
+// /home/alex/diet/node_modules/fraction.js/fraction.js
 var require_fraction = __commonJS((exports, module) => {
   (function(root) {
     var MAX_CYCLE_LEN = 2000;
@@ -2347,7 +2347,7 @@ var require_fraction = __commonJS((exports, module) => {
   })(exports);
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/
+// /home/alex/diet/node_modules/@babel/runtime/helpers/typeof.js
 var require_typeof = __commonJS((exports, module) => {
   var _typeof = function(o) {
     "@babel/helpers - typeof";
@@ -2360,7 +2360,7 @@ var require_typeof = __commonJS((exports, module) => {
   module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/spars
+// /home/alex/diet/node_modules/@babel/runtime/helpers/toPrimitive.js
 var require_toPrimitive = __commonJS((exports, module) => {
   var toPrimitive = function(t, r) {
     if (_typeof(t) != "object" || !t)
@@ -2378,7 +2378,7 @@ var require_toPrimitive = __commonJS((exports, module) => {
   module.exports = toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/
+// /home/alex/diet/node_modules/@babel/runtime/helpers/toPropertyKey.js
 var require_toPropertyKey = __commonJS((exports, module) => {
   var toPropertyKey = function(t) {
     var i = toPrimitive(t, "string");
@@ -2389,7 +2389,7 @@ var require_toPropertyKey = __commonJS((exports, module) => {
   module.exports = toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/c
+// /home/alex/diet/node_modules/@babel/runtime/helpers/defineProperty.js
 var require_defineProperty = __commonJS((exports, module) => {
   var _defineProperty = function(obj, key, value) {
     key = toPropertyKey(key);
@@ -2409,11 +2409,11 @@ var require_defineProperty = __commonJS((exports, module) => {
   module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 
-// recipesdules/math
+// recipesode_module
 function jsx(tag, props, ...children) {
   return new tag({ ...props, children });
 }
-// recipesdules/mathjs/l
+// recipesode_modules/ma
 var parseOptions = function(options) {
   if (options === undefined) {
     return [];
@@ -2434,7 +2434,7 @@ class Options extends Array {
   }
 }
 
-// recipesdules/mathjs/lib/esm/f
+// recipesode_modules/mathjs/lib
 class RecipeContainer {
   children;
   constructor(props) {
@@ -2442,10 +2442,10 @@ class RecipeContainer {
   }
 }
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse
+// /home/alex/diet/node_modules/mathjs/lib/esm/entry/configReadonly.js
 var extends2 = __toESM(require_extends(), 1);
 
-// recipesdules/mathjs/lib/esm/function/algeb
+// /home/alex/diet/node_modules/mathjs/lib/esm/core/config.js
 var DEFAULT_CONFIG = {
   epsilon: 0.000000000001,
   matrix: "Matrix",
@@ -2455,7 +2455,7 @@ var DEFAULT_CONFIG = {
   randomSeed: null
 };
 
-// recipesdules/mathjs/lib/esm/function/al
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/is.js
 function isNumber(x) {
   return typeof x === "number";
 }
@@ -2594,7 +2594,7 @@ function typeOf(x) {
 }
 var isArray = Array.isArray;
 
-// recipesdules/mathjs/lib/esm/function/algebr
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/object.js
 function clone(x) {
   var type = typeof x;
   if (type === "number" || type === "string" || type === "boolean" || x === null || x === undefined) {
@@ -2685,11 +2685,11 @@ function pickShallow(object, properties) {
   return copy;
 }
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse
+// /home/alex/diet/node_modules/mathjs/lib/esm/core/function/config.js
 var MATRIX_OPTIONS = ["Matrix", "Array"];
 var NUMBER_OPTIONS = ["number", "BigNumber", "Fraction"];
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse
+// /home/alex/diet/node_modules/mathjs/lib/esm/entry/configReadonly.js
 var config3 = function config4(options) {
   if (options) {
     throw new Error("The global config is readonly. \nPlease create a mathjs instance if you want to change the default configuration. \nExample:\n\n  import { create, all } from \'mathjs\';\n  const mathjs = create(all);\n  mathjs.config({ number: \'BigNumber\' });\n");
@@ -2701,10 +2701,10 @@ extends2.default(config3, DEFAULT_CONFIG, {
   NUMBER_OPTIONS
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/spars
+// /home/alex/diet/node_modules/mathjs/lib/esm/core/function/typed.js
 var import_typed_function = __toESM(require_typed_function(), 1);
 
-// recipesdules/mathjs/lib/esm/function/algebr
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/number.js
 function isInteger(value) {
   if (typeof value === "boolean") {
     return true;
@@ -3014,10 +3014,10 @@ var expm1 = Math.expm1 || function expm12(x) {
 };
 var DBL_EPSILON = Number.EPSILON || 0.0000000000000002220446049250313;
 
-// recipesdules/mathjs/lib/esm/function/algeb
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/array.js
 var extends3 = __toESM(require_extends(), 1);
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFk
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/bignumber/formatter.js
 var formatBigNumberToBase = function(n, base, size) {
   var BigNumberCtor = n.constructor;
   var big2 = new BigNumberCtor(2);
@@ -3135,7 +3135,7 @@ function toFixed2(value, precision) {
   return value.toFixed(precision);
 }
 
-// recipesdules/mathjs/lib/esm/function/algebr
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/string.js
 function endsWith(text, search) {
   var start = text.length - search.length;
   var end = text.length;
@@ -3225,7 +3225,7 @@ var controlCharacters = {
   "\t": "\\t"
 };
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse
+// /home/alex/diet/node_modules/mathjs/lib/esm/error/DimensionError.js
 function DimensionError(actual, expected, relation) {
   if (!(this instanceof DimensionError)) {
     throw new SyntaxError("Constructor must be called with the new operator");
@@ -3241,7 +3241,7 @@ DimensionError.prototype.constructor = RangeError;
 DimensionError.prototype.name = "DimensionError";
 DimensionError.prototype.isDimensionError = true;
 
-// recipesdules/mathjs/lib/esm/function/algebra/sp
+// /home/alex/diet/node_modules/mathjs/lib/esm/error/IndexError.js
 function IndexError(index, min, max) {
   if (!(this instanceof IndexError)) {
     throw new SyntaxError("Constructor must be called with the new operator");
@@ -3268,7 +3268,7 @@ IndexError.prototype.constructor = RangeError;
 IndexError.prototype.name = "IndexError";
 IndexError.prototype.isIndexError = true;
 
-// recipesdules/mathjs/lib/esm/function/algeb
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/array.js
 function arraySize(x) {
   var s = [];
   while (Array.isArray(x)) {
@@ -3585,7 +3585,7 @@ function clone2(array) {
   return extends3.default([], array);
 }
 
-// recipesdules/mathjs/lib/esm/function/algebra
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/factory.js
 function factory(name, dependencies, create, meta) {
   function assertAndCreate(scope) {
     var deps = pickShallow(scope, dependencies.map(stripOptionalNotation));
@@ -3614,7 +3614,7 @@ function stripOptionalNotation(dependency) {
   return dependency && dependency[0] === "?" ? dependency.slice(1) : dependency;
 }
 
-// recipesdules/mathjs/lib/esm/function/algebra
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/customs.js
 var getSafeProperty = function(object4, prop) {
   if (isPlainObject(object4) && isSafeProperty(object4, prop)) {
     return object4[prop];
@@ -3680,7 +3680,7 @@ var safeNativeMethods = {
   toLocaleString: true
 };
 
-// recipesdules/mathjs/lib/esm/function/alg
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/map.js
 function isMap(object4) {
   if (!object4) {
     return false;
@@ -3706,7 +3706,7 @@ class ObjectWrappingMap {
   }
 }
 
-// recipesdules/mathjs/lib/esm/function/algebra/spars
+// /home/alex/diet/node_modules/mathjs/lib/esm/core/function/typed.js
 var throwNoBignumber = function(x) {
   throw new Error("Cannot convert value ".concat(x, " into a BigNumber: no class 'BigNumber' provided"));
 };
@@ -4068,7 +4068,7 @@ var createTyped = factory("typed", dependencies, function createTyped2(_ref) {
   };
   return typed;
 });
-// recipesdules/mathjs/lib/esm/functio
+// /home/alex/diet/node_modules/decimal.js/decimal.mjs
 var digitsToString = function(d) {
   var i, k, ws, indexOfLastWord = d.length - 1, str = "", w = d[0];
   if (indexOfLastWord > 0) {
@@ -6369,7 +6369,7 @@ LN10 = new Decimal(LN10);
 PI = new Decimal(PI);
 var decimal_default = Decimal;
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csF
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/bignumber/BigNumber.js
 var name = "BigNumber";
 var dependencies2 = ["?on", "config"];
 var createBigNumberClass = factory(name, dependencies2, (_ref) => {
@@ -6406,7 +6406,7 @@ var createBigNumberClass = factory(name, dependencies2, (_ref) => {
 }, {
   isClass: true
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/complex/Complex.js
 var import_complex = __toESM(require_complex(), 1);
 var name2 = "Complex";
 var dependencies3 = [];
@@ -6528,7 +6528,7 @@ var createComplexClass = factory(name2, dependencies3, () => {
 }, {
   isClass: true
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/c
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/fraction/Fraction.js
 var import_fraction = __toESM(require_fraction(), 1);
 var name3 = "Fraction";
 var dependencies4 = [];
@@ -6553,7 +6553,7 @@ var createFractionClass = factory(name3, dependencies4, () => {
 }, {
   isClass: true
 });
-// recipesdules/mathjs/lib/esm/function/algebra/spar
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/Matrix.js
 var name4 = "Matrix";
 var dependencies5 = [];
 var createMatrixClass = factory(name4, dependencies5, () => {
@@ -6619,7 +6619,7 @@ var createMatrixClass = factory(name4, dependencies5, () => {
 }, {
   isClass: true
 });
-// recipesdules/mathjs/lib/esm/function/algebra/
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/lruQueue.js
 function lruQueue(limit) {
   var size = 0;
   var base = 1;
@@ -6675,7 +6675,7 @@ function lruQueue(limit) {
   };
 }
 
-// recipesdules/mathjs/lib/esm/function/algebra/
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/function.js
 function memoize(fn) {
   var {
     hasher,
@@ -6712,7 +6712,7 @@ function maxArgumentCount(fn) {
   }, -1);
 }
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/cs
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/DenseMatrix.js
 var name5 = "DenseMatrix";
 var dependencies6 = ["Matrix"];
 var createDenseMatrixClass = factory(name5, dependencies6, (_ref) => {
@@ -7220,7 +7220,7 @@ var createDenseMatrixClass = factory(name5, dependencies6, (_ref) => {
 }, {
   isClass: true
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sp
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/collection.js
 function deepMap(array2, callback, skipZeros) {
   if (array2 && typeof array2.map === "function") {
     return array2.map(function(x) {
@@ -7231,7 +7231,7 @@ function deepMap(array2, callback, skipZeros) {
   }
 }
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csF
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/utils/isInteger.js
 var name6 = "isInteger";
 var dependencies7 = ["typed"];
 var createIsInteger = factory(name6, dependencies7, (_ref) => {
@@ -7249,7 +7249,7 @@ var createIsInteger = factory(name6, dependencies7, (_ref) => {
     "Array | Matrix": typed.referToSelf((self2) => (x) => deepMap(x, self2))
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/cs
+// /home/alex/diet/node_modules/mathjs/lib/esm/plain/number/arithmetic.js
 function absNumber(a) {
   return Math.abs(a);
 }
@@ -7405,7 +7405,7 @@ xgcdNumber.signature = n2;
 powNumber.signature = n2;
 normNumber.signature = n1;
 
-// recipesdules/mathjs/lib/esm/function/algebra/spar
+// /home/alex/diet/node_modules/mathjs/lib/esm/plain/number/utils.js
 function isIntegerNumber(x) {
   return isInteger(x);
 }
@@ -7428,7 +7428,7 @@ isPositiveNumber.signature = n12;
 isZeroNumber.signature = n12;
 isNaNNumber.signature = n12;
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csF
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/utils/isNumeric.js
 var name7 = "isNumeric";
 var dependencies8 = ["typed"];
 var createIsNumeric = factory(name7, dependencies8, (_ref) => {
@@ -7441,7 +7441,7 @@ var createIsNumeric = factory(name7, dependencies8, (_ref) => {
     "Array | Matrix": typed.referToSelf((self2) => (x) => deepMap(x, self2))
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/utils/isZero.js
 var name8 = "isZero";
 var dependencies9 = ["typed"];
 var createIsZero = factory(name8, dependencies9, (_ref) => {
@@ -7463,7 +7463,7 @@ var createIsZero = factory(name8, dependencies9, (_ref) => {
     "Array | Matrix": typed.referToSelf((self2) => (x) => deepMap(x, self2))
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkee
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/bignumber/nearlyEqual.js
 function nearlyEqual2(x, y, epsilon) {
   if (epsilon === null || epsilon === undefined) {
     return x.eq(y);
@@ -7486,12 +7486,12 @@ function nearlyEqual2(x, y, epsilon) {
   return false;
 }
 
-// recipesdules/mathjs/lib/esm/function/algebra
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/complex.js
 function complexEquals(x, y, epsilon) {
   return nearlyEqual(x.re, y.re, epsilon) && nearlyEqual(x.im, y.im, epsilon);
 }
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jss
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/relational/compareUnits.js
 var createCompareUnits = factory("compareUnits", ["typed"], (_ref) => {
   var {
     typed
@@ -7506,7 +7506,7 @@ var createCompareUnits = factory("compareUnits", ["typed"], (_ref) => {
   };
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.js
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/relational/equalScalar.js
 var name9 = "equalScalar";
 var dependencies10 = ["typed", "config"];
 var createEqualScalar = factory(name9, dependencies10, (_ref) => {
@@ -7546,7 +7546,7 @@ var createEqualScalarNumber = factory(name9, ["typed", "config"], (_ref2) => {
     }
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csF
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/SparseMatrix.js
 var name10 = "SparseMatrix";
 var dependencies11 = ["typed", "equalScalar", "Matrix"];
 var createSparseMatrixClass = factory(name10, dependencies11, (_ref) => {
@@ -8377,7 +8377,7 @@ var createSparseMatrixClass = factory(name10, dependencies11, (_ref) => {
 }, {
   isClass: true
 });
-// recipesdules/mathjs/lib/esm/function/algeb
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/number.js
 var getNonDecimalNumberParts = function(input) {
   var nonDecimalWithRadixMatch = input.match(/(0[box])([0-9a-fA-F]*)\.([0-9a-fA-F]*)/);
   if (nonDecimalWithRadixMatch) {
@@ -8475,7 +8475,7 @@ var createNumber = factory(name11, dependencies12, (_ref) => {
   };
   return number14;
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jsss
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/bignumber/function/bignumber.js
 var name12 = "bignumber";
 var dependencies13 = ["typed", "BigNumber"];
 var createBignumber = factory(name12, dependencies13, (_ref) => {
@@ -8525,7 +8525,7 @@ var createBignumber = factory(name12, dependencies13, (_ref) => {
     "Array | Matrix": typed.referToSelf((self2) => (x) => deepMap(x, self2))
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.js
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/fraction/function/fraction.js
 var name13 = "fraction";
 var dependencies14 = ["typed", "Fraction"];
 var createFraction = factory(name13, dependencies14, (_ref) => {
@@ -8566,7 +8566,7 @@ var createFraction = factory(name13, dependencies14, (_ref) => {
     "Array | Matrix": typed.referToSelf((self2) => (x) => deepMap(x, self2))
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkee
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/function/matrix.js
 var name14 = "matrix";
 var dependencies15 = ["typed", "Matrix", "DenseMatrix", "SparseMatrix"];
 var createMatrix = factory(name14, dependencies15, (_ref) => {
@@ -8605,7 +8605,7 @@ var createMatrix = factory(name14, dependencies15, (_ref) => {
     throw new TypeError("Unknown matrix type " + JSON.stringify(format4) + ".");
   }
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.j
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/unaryMinus.js
 var name15 = "unaryMinus";
 var dependencies16 = ["typed"];
 var createUnaryMinus = factory(name15, dependencies16, (_ref) => {
@@ -8623,7 +8623,7 @@ var createUnaryMinus = factory(name15, dependencies16, (_ref) => {
     "Array | Matrix": typed.referToSelf((self2) => (x) => deepMap(x, self2, true))
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/cs
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/abs.js
 var name16 = "abs";
 var dependencies17 = ["typed"];
 var createAbs = factory(name16, dependencies17, (_ref) => {
@@ -8636,7 +8636,7 @@ var createAbs = factory(name16, dependencies17, (_ref) => {
     "Array | Matrix": typed.referToSelf((self2) => (x) => deepMap(x, self2, true))
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/addScalar.js
 var name17 = "addScalar";
 var dependencies18 = ["typed"];
 var createAddScalar = factory(name17, dependencies18, (_ref) => {
@@ -8670,7 +8670,7 @@ var createAddScalar = factory(name17, dependencies18, (_ref) => {
     })
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jssse
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/subtractScalar.js
 var name18 = "subtractScalar";
 var dependencies19 = ["typed"];
 var createSubtractScalar = factory(name18, dependencies19, (_ref) => {
@@ -8704,7 +8704,7 @@ var createSubtractScalar = factory(name18, dependencies19, (_ref) => {
     })
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.js
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/utils/matAlgo11xS0s.js
 var name19 = "matAlgo11xS0s";
 var dependencies20 = ["typed", "equalScalar"];
 var createMatAlgo11xS0s = factory(name19, dependencies20, (_ref) => {
@@ -8759,7 +8759,7 @@ var createMatAlgo11xS0s = factory(name19, dependencies20, (_ref) => {
   };
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.js
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/utils/matAlgo12xSfs.js
 var name20 = "matAlgo12xSfs";
 var dependencies21 = ["typed", "DenseMatrix"];
 var createMatAlgo12xSfs = factory(name20, dependencies21, (_ref) => {
@@ -8814,7 +8814,7 @@ var createMatAlgo12xSfs = factory(name20, dependencies21, (_ref) => {
   };
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.j
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/utils/matAlgo14xDs.js
 var name21 = "matAlgo14xDs";
 var dependencies22 = ["typed"];
 var createMatAlgo14xDs = factory(name21, dependencies22, (_ref) => {
@@ -8854,7 +8854,7 @@ var createMatAlgo14xDs = factory(name21, dependencies22, (_ref) => {
   }
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csF
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/ceil.js
 var name22 = "ceil";
 var dependencies23 = ["typed", "config", "round", "matrix", "equalScalar", "zeros", "DenseMatrix"];
 var createCeilNumber = factory(name22, ["typed", "config", "round"], (_ref) => {
@@ -8969,7 +8969,7 @@ var createCeil = factory(name22, dependencies23, (_ref2) => {
     })
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/cs
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/fix.js
 var name23 = "fix";
 var dependencies24 = ["typed", "Complex", "matrix", "ceil", "floor", "equalScalar", "zeros", "DenseMatrix"];
 var createFixNumber = factory(name23, ["typed", "ceil", "floor"], (_ref) => {
@@ -9054,7 +9054,7 @@ var createFix = factory(name23, dependencies24, (_ref2) => {
     })
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFk
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/floor.js
 var name24 = "floor";
 var dependencies25 = ["typed", "config", "round", "matrix", "equalScalar", "zeros", "DenseMatrix"];
 var createFloorNumber = factory(name24, ["typed", "config", "round"], (_ref) => {
@@ -9169,7 +9169,7 @@ var createFloor = factory(name24, dependencies25, (_ref2) => {
     })
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.js
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/utils/matAlgo03xDSf.js
 var name25 = "matAlgo03xDSf";
 var dependencies26 = ["typed"];
 var createMatAlgo03xDSf = factory(name25, dependencies26, (_ref) => {
@@ -9233,7 +9233,7 @@ var createMatAlgo03xDSf = factory(name25, dependencies26, (_ref) => {
   };
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.j
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/utils/matAlgo13xDD.js
 var name26 = "matAlgo13xDD";
 var dependencies27 = ["typed"];
 var createMatAlgo13xDD = factory(name26, dependencies27, (_ref) => {
@@ -9285,7 +9285,7 @@ var createMatAlgo13xDD = factory(name26, dependencies27, (_ref) => {
   }
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkee
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/utils/broadcast.js
 var name27 = "broadcast";
 var dependancies = ["concat"];
 var createBroadcast = factory(name27, dependancies, (_ref) => {
@@ -9332,7 +9332,7 @@ var createBroadcast = factory(name27, dependancies, (_ref) => {
   }
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jssseric/
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/utils/matrixAlgorithmSuite.js
 var name28 = "matrixAlgorithmSuite";
 var dependencies28 = ["typed", "matrix", "concat"];
 var createMatrixAlgorithmSuite = factory(name28, dependencies28, (_ref) => {
@@ -9459,7 +9459,7 @@ var createMatrixAlgorithmSuite = factory(name28, dependencies28, (_ref) => {
   };
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jssse
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/multiplyScalar.js
 var name29 = "multiplyScalar";
 var dependencies29 = ["typed"];
 var createMultiplyScalar = factory(name29, dependencies29, (_ref) => {
@@ -9481,7 +9481,7 @@ var createMultiplyScalar = factory(name29, dependencies29, (_ref) => {
     "Unit, number | Fraction | BigNumber | Complex | Unit": (x, y) => x.multiply(y)
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/multiply.js
 var name30 = "multiply";
 var dependencies30 = ["typed", "matrix", "addScalar", "multiplyScalar", "equalScalar", "dot"];
 var createMultiply = factory(name30, dependencies30, (_ref) => {
@@ -9965,7 +9965,7 @@ var createMultiply = factory(name30, dependencies30, (_ref) => {
     })
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.js
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/matrix/utils/matAlgo07xSSf.js
 var name31 = "matAlgo07xSSf";
 var dependencies31 = ["typed", "DenseMatrix"];
 var createMatAlgo07xSSf = factory(name31, dependencies31, (_ref) => {
@@ -10031,7 +10031,7 @@ var createMatAlgo07xSSf = factory(name31, dependencies31, (_ref) => {
   }
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/complex/conj.js
 var name32 = "conj";
 var dependencies32 = ["typed"];
 var createConj = factory(name32, dependencies32, (_ref) => {
@@ -10044,7 +10044,7 @@ var createConj = factory(name32, dependencies32, (_ref) => {
     "Array | Matrix": typed.referToSelf((self2) => (x) => deepMap(x, self2))
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/c
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/matrix/concat.js
 var name33 = "concat";
 var dependencies33 = ["typed", "matrix", "isInteger"];
 var createConcat = factory(name33, dependencies33, (_ref) => {
@@ -10103,7 +10103,7 @@ var createConcat = factory(name33, dependencies33, (_ref) => {
     }
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csF
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/matrix/identity.js
 var name34 = "identity";
 var dependencies34 = ["typed", "config", "matrix", "BigNumber", "DenseMatrix", "SparseMatrix"];
 var createIdentity = factory(name34, dependencies34, (_ref) => {
@@ -10191,7 +10191,7 @@ var createIdentity = factory(name34, dependencies34, (_ref) => {
     return res;
   }
 });
-// recipesdules/mathjs/lib/esm/function/alge
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/noop.js
 function noBignumber() {
   throw new Error('No "bignumber" implementation available');
 }
@@ -10202,7 +10202,7 @@ function noMatrix() {
   throw new Error('No "matrix" implementation available');
 }
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/matrix/size.js
 var name35 = "size";
 var dependencies35 = ["typed", "config", "?matrix"];
 var createSize = factory(name35, dependencies35, (_ref) => {
@@ -10224,7 +10224,7 @@ var createSize = factory(name35, dependencies35, (_ref) => {
     }
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/matrix/zeros.js
 var name36 = "zeros";
 var dependencies36 = ["typed", "config", "matrix", "BigNumber"];
 var createZeros = factory(name36, dependencies36, (_ref) => {
@@ -10294,7 +10294,7 @@ var createZeros = factory(name36, dependencies36, (_ref) => {
     });
   }
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/c
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/string/format.js
 var name37 = "format";
 var dependencies37 = ["typed"];
 var createFormat = factory(name37, dependencies37, (_ref) => {
@@ -10306,7 +10306,7 @@ var createFormat = factory(name37, dependencies37, (_ref) => {
     "any, Object | function | number": format3
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/c
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/utils/numeric.js
 var name38 = "numeric";
 var dependencies38 = ["number", "?bignumber", "?fraction"];
 var createNumeric = factory(name38, dependencies38, (_ref) => {
@@ -10346,7 +10346,7 @@ var createNumeric = factory(name38, dependencies38, (_ref) => {
     }
   };
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jss
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/divideScalar.js
 var name39 = "divideScalar";
 var dependencies39 = ["typed", "numeric"];
 var createDivideScalar = factory(name39, dependencies39, (_ref) => {
@@ -10371,7 +10371,7 @@ var createDivideScalar = factory(name39, dependencies39, (_ref) => {
     "number | Fraction | Complex | BigNumber, Unit": (x, y) => y.divideInto(x)
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/cs
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/pow.js
 var name40 = "pow";
 var dependencies40 = ["typed", "config", "identity", "multiply", "matrix", "inv", "fraction", "number", "Complex"];
 var createPow = factory(name40, dependencies40, (_ref) => {
@@ -10482,7 +10482,7 @@ var createPow = factory(name40, dependencies40, (_ref) => {
     return matrix(_powArray(x.valueOf(), y));
   }
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFk
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/arithmetic/round.js
 var NO_INT = "Number of decimals in function round must be an integer";
 var name41 = "round";
 var dependencies41 = ["typed", "matrix", "equalScalar", "zeros", "BigNumber", "DenseMatrix"];
@@ -10595,7 +10595,7 @@ var createRound = factory(name41, dependencies41, (_ref) => {
     })
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFk
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/relational/equal.js
 var name42 = "equal";
 var dependencies42 = ["typed", "matrix", "equalScalar", "DenseMatrix", "concat"];
 var createEqual = factory(name42, dependencies42, (_ref) => {
@@ -10655,7 +10655,7 @@ var createEqualNumber = factory(name42, ["typed", "equalScalar"], (_ref2) => {
     }
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/unit/Unit.js
 var defineProperty = __toESM(require_defineProperty(), 1);
 var extends4 = __toESM(require_extends(), 1);
 var ownKeys = function(e, r) {
@@ -10680,7 +10680,7 @@ var _objectSpread = function(e) {
   return e;
 };
 
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFk
+// /home/alex/diet/node_modules/mathjs/lib/esm/utils/bignumber/constants.js
 var hasher = function(args) {
   return args[0].precision;
 };
@@ -10705,7 +10705,7 @@ var createBigNumberTau = memoize(function(BigNumber) {
   hasher
 });
 
-// recipesdules/mathjs/lib/esm/function/algebra/
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/unit/Unit.js
 var name43 = "Unit";
 var dependencies43 = ["?on", "config", "addScalar", "subtractScalar", "multiplyScalar", "divideScalar", "pow", "abs", "fix", "round", "equal", "isNumeric", "format", "number", "Complex", "BigNumber", "Fraction"];
 var createUnitClass = factory(name43, dependencies43, (_ref) => {
@@ -13950,7 +13950,7 @@ var createUnitClass = factory(name43, dependencies43, (_ref) => {
 }, {
   isClass: true
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/cs
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/unit/function/unit.js
 var name44 = "unit";
 var dependencies44 = ["typed", "Unit"];
 var createUnitFunction = factory(name44, dependencies44, (_ref) => {
@@ -13979,7 +13979,7 @@ var createUnitFunction = factory(name44, dependencies44, (_ref) => {
     "Array | Matrix": typed.referToSelf((self2) => (x) => deepMap(x, self2))
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.
+// /home/alex/diet/node_modules/mathjs/lib/esm/type/unit/function/createUnit.js
 var name45 = "createUnit";
 var dependencies45 = ["typed", "Unit"];
 var createCreateUnit = factory(name45, dependencies45, (_ref) => {
@@ -14011,7 +14011,7 @@ var createCreateUnit = factory(name45, dependencies45, (_ref) => {
     }
   });
 });
-// recipesdules/mathjs/lib/esm/function/algebra/spars
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/matrix/dot.js
 var name46 = "dot";
 var dependencies46 = ["typed", "addScalar", "multiplyScalar", "conj", "size"];
 var createDot = factory(name46, dependencies46, (_ref) => {
@@ -14128,7 +14128,7 @@ var createDot = factory(name46, dependencies46, (_ref) => {
     return isMatrix(x) ? x.size() : size(x);
   }
 });
-// recipesdules/mathjs/lib/esm/function/algebra/spars
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/matrix/det.js
 var name47 = "det";
 var dependencies47 = ["typed", "matrix", "subtractScalar", "multiply", "divideScalar", "isZero", "unaryMinus"];
 var createDet = factory(name47, dependencies47, (_ref) => {
@@ -14222,7 +14222,7 @@ var createDet = factory(name47, dependencies47, (_ref) => {
     }
   }
 });
-// recipesdules/mathjs/lib/esm/function/algebra/spars
+// /home/alex/diet/node_modules/mathjs/lib/esm/function/matrix/inv.js
 var name48 = "inv";
 var dependencies48 = ["typed", "matrix", "divideScalar", "addScalar", "multiply", "unaryMinus", "det", "identity", "abs"];
 var createInv = factory(name48, dependencies48, (_ref) => {
@@ -14345,7 +14345,7 @@ var createInv = factory(name48, dependencies48, (_ref) => {
     }
   }
 });
-// recipesdules/mathjs/lib/esm/function/algebra/sparse/csFkeep.jss
+// /home/alex/diet/node_modules/mathjs/lib/esm/entry/pureFunctionsAny.generated.js
 var BigNumber = createBigNumberClass({
   config: config3
 });
@@ -14566,7 +14566,7 @@ var unit = createUnitFunction({
   typed
 });
 
-// recipesdules/mathjs/lib/e
+// recipesode_modules/mathjs
 createUnit("tsp", {
   definition: "1 teaspoon",
   aliases: ["tsp", "ts", "t"]
@@ -14618,7 +14618,7 @@ createUnit("bit", {
   aliases: ["bit", "bits"]
 }, { override: true });
 
-// recipesdules/mathjs/li
+// recipesode_modules/mat
 function parseQuantity(value) {
   if (value === undefined)
     return;
@@ -14629,7 +14629,7 @@ function parseQuantity(value) {
   }
 }
 
-// recipesdules/mathjs/
+// recipesode_modules/m
 class Recipe extends RecipeContainer {
   name;
   description;
@@ -14643,7 +14643,7 @@ class Recipe extends RecipeContainer {
     this.servings = parseQuantity(props.servings);
   }
 }
-// recipesdules/mathjs/l
+// recipesode_modules/ma
 function joinStringChildren(children) {
   if (children === undefined) {
     return;
@@ -14657,7 +14657,7 @@ function joinStringChildren(children) {
   return children.join("");
 }
 
-// recipesdules/mathjs/lib/
+// recipesode_modules/mathj
 class Ingredient {
   key;
   name;
@@ -14674,13 +14674,13 @@ class Ingredient {
     this.manipulation = new Options(props.manipulation);
   }
 }
-// recipesdules/mathjs/lib/e
+// recipesode_modules/mathjs
 class Ingredients extends RecipeContainer {
   constructor() {
     super(...arguments);
   }
 }
-// recipesdules/mathj
+// recipesode_modules
 class Step extends RecipeContainer {
   duration;
   constructor(props) {
@@ -14688,19 +14688,19 @@ class Step extends RecipeContainer {
     this.duration = parseQuantity(props.duration);
   }
 }
-// recipesdules/mathjs/lib/e
+// recipesode_modules/mathjs
 class Preparation extends RecipeContainer {
   constructor() {
     super(...arguments);
   }
 }
-// recipesdules/mathjs/lib/
+// recipesode_modules/mathj
 class Directions extends RecipeContainer {
   constructor() {
     super(...arguments);
   }
 }
-// recipesdules/mathjs/lib/e
+// recipesode_modules/mathjs
 class Measurement {
   scale;
   quantity;
@@ -14710,9 +14710,9 @@ class Measurement {
     this.quantity = parseQuantity(quantity);
   }
 }
-// recipesdules/m
+// recipesode_mod
 var recipes = {};
-// recipesdules/mathjs/lib/
+// recipesode_modules/mathj
 function buildCookbook() {
   const list = Object.keys(recipes);
   const groups = Object.values(recipes).reduce((groups2, recipe) => {
@@ -14751,7 +14751,7 @@ export {
   Ingredient,
   Directions
 };
-// recipesdules/mathjs/lib/esm/function/algeb
+// recipesode_modules/mathjs/lib/esm/function
 recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
   name: "Egg and Vegetable Scramble",
   meal: "breakfast",
@@ -14777,7 +14777,7 @@ recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
   quantity: "60g",
   manipulation: "wash,dice"
 }, "tomatoes"), ".")));
-// recipesdules/mathjs/lib/esm/function/al
+// recipesode_modules/mathjs/lib/esm/funct
 recipes["Ranch Chicken Meal Prep"] = jsx(Recipe, {
   name: "Ranch Chicken Meal Prep",
   description: "This simple chicken meal prep features garlic herb chicken, roasted potatoes and broccoli, and a little ranch dressing to drizzle over top!",
@@ -14814,7 +14814,7 @@ recipes["Ranch Chicken Meal Prep"] = jsx(Recipe, {
 }, "Roast the potatoes and broccoli together for 10 minutes."), jsx(Step, null, "Then, add the chicken to the baking sheet."), jsx(Step, {
   duration: "20 minutes"
 }, "Continue roasting for an additional 15-20 minutes or until the chicken is fully cooked, the potatoes are golden and crispy, and the broccoli is tender and browned at the edges")));
-// recipesdules/mathjs/lib/esm/func
+// recipesode_modules/mathjs/lib/es
 recipes["Chicken Stir-Fry"] = jsx(Recipe, {
   name: "Chicken Stir-Fry",
   meal: "dinner",

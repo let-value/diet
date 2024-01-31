@@ -1,25 +1,7 @@
 {
 	"compilerOptions": {
-		"lib": ["ESNext", "ESNext.Object"],
+		"lib": ["ESNext"],
 		"target": "ESNext",
 		"module": "ESNext",
-		"moduleDetection": "force",
-
-		"outFile": "dist/index.d.ts",
-
-		"declaration": true,
-		"emitDeclarationOnly": true,
-
-		"jsx": "react",
-		"jsxFactory": "jsx",
-
-		"importHelpers": false,
-
-		"moduleResolution": "Bundler",
-		"types": ["bun",],
-		"paths": {
-			"@/*": ["./src/*"]
-		}
-	},
-	"exclude": ["dist"]
+	}
 }

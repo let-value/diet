@@ -17,10 +17,6 @@ const watcher = watch(watchPath, { recursive: true }).on(
 	handleFileChange,
 );
 
-// const watcher = chokidar
-// 	.watch(watchPath, { ignoreInitial: true })
-// 	.on("all", handleFileChange);
-
 console.log(`Watching ${watchPath} for changes...`);
 
 const server = startServer();

@@ -1,26 +1,14 @@
 {
   "name": "diet",
-  "module": "index.ts",
+  "private": true,
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "@biomejs/biome": "^1.4.1",
     "@types/bun": "latest",
-    "chokidar": "^3.5.3",
     "node-watch": "^0.7.4",
     "typescript": "beta"
-  },
-  "scripts": {
-    "test": "bun test",
-    "test:watch": "bun test --watch --update-snapshots",
-    "build": "bun build.ts",
-    "serve": "bun serve.ts",
-    "watch": "bun watch.ts"
-  },
-  "dependencies": {
-    "@types/js-quantities": "^1.6.6",
-    "js-quantities": "^1.8.0",
-    "mathjs": "^12.3.0"
   }
 }

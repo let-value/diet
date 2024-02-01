@@ -44,7 +44,10 @@ function combineOptions(options: Options<string>[]) {
 	return Array.from(set);
 }
 
-export function gatherIngredients(recipe: Recipe) {
+/**
+ * @inheritdoc assertIngredientPart
+ */
+export function gatherIngredients(recipe: RecipeContainer) {
 	const ingredientsContainer = findRecipeContainer(
 		recipe,
 		(node): node is Ingredients => node instanceof Ingredients,

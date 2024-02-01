@@ -9,4 +9,6 @@ export * from "./Options";
 export * from "./Preparation";
 export * from "./Directions";
 export * from "./Measurement";
+export * from "./Plan";
+
 export * from "./customUnits";

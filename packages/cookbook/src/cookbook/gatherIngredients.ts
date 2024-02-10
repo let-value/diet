@@ -1,10 +1,9 @@
 import {
-	Recipe,
 	Ingredient,
 	Ingredients,
 	RecipeContainer,
-	parseQuantity,
 	Options,
+	assertValidQuantity,
 } from "@/scheme";
 
 import {
@@ -33,14 +32,20 @@ export function getIngredientKey({ key, name }: Ingredient) {
 }
 
 function combineQuantity(ingredients: Ingredient[]) {
-	return ingredients.reduce(
-		(acc, { quantity }) => (quantity ? acc.add(quantity) : acc),
-		parseQuantity("0g"),
-	);
+	const result = ingredients
+		.map(({ quantity }) => quantity?.clone())
+		.filter(Boolean)
+		.reduceRight((acc, quantity = undefined) =>
+			quantity ? acc.add(quantity) : acc,
+		);
+
+	assertValidQuantity(result, "combine quantity");
+
+	return result;
 }
 
 function combineOptions(options: Options<string>[]) {
-	const set = new Set([].concat(...options));
+	const set = new Set<string>(options.flat());
 	return Array.from(set);
 }
 
@@ -72,13 +77,14 @@ export function gatherIngredients(recipe: RecipeContainer) {
 		//const others = variants.filter((ingredient) => ingredient !== main);
 
 		const name = main?.name ?? variants.map(({ name }) => name).find(Boolean);
-		assertIngredientPart("name", name);
+		assertIngredientPart("name", name, key);
 
-		const quantity = main?.quantity ?? combineQuantity(variants);
-		assertIngredientPart("quantity", quantity);
+		const quantity = main?.quantity?.clone() ?? combineQuantity(variants);
+		assertIngredientPart("quantity", quantity, name);
+		assertValidQuantity(quantity, `quantity for ingredient ${name}`);
 
 		const category = combineOptions(variants.map(({ category }) => category));
-		assertIngredientPart("category", quantity);
+		assertIngredientPart("category", category, name);
 
 		const manipulation = combineOptions(
 			variants.map(({ manipulation }) => manipulation),
@@ -101,8 +107,8 @@ export function gatherIngredients(recipe: RecipeContainer) {
 /**
  * @throws Missing part for ingredient
  */
-function assertIngredientPart(part: string, name: unknown) {
+function assertIngredientPart(part: string, name: unknown, ingredient: string) {
 	if (!name) {
-		throw new Error(`Missing ${part} for ingredient`);
+		throw new Error(`Missing ${part} for ingredient ${ingredient}`);
 	}
 }

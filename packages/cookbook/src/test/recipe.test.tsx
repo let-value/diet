@@ -64,11 +64,7 @@ export const exotic_recipe = (
 			<Ingredient name="mango" quantity="1" category="fruit" />
 			<Ingredient name="kiwi" quantity="3" category="fruit" />
 			<Ingredient name="pomegranate seeds" quantity="1 cup" category="fruit" />
-			<Ingredient
-				name="fresh mint leaves"
-				quantity="a handful"
-				category="herb"
-			/>
+			<Ingredient name="fresh mint leaves" quantity="15 g" category="herb" />
 			<Ingredient name="lime juice" quantity="2 tbsp" category="liquid" />
 			<Ingredient
 				name="honey"

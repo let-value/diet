@@ -35,7 +35,7 @@ describe("gatherIngredients", () => {
 
 		expect(
 			ingredients.map(({ quantity }) => quantity.simplify().toString()),
-		).toEqual(["1 g", "2000 g", "20 slices", "1 tsp", "1"]);
+		).toEqual(["1 g", "2 kg", "20 slices", "1 tsp", "1"]);
 
 		expect(ingredients.flatMap(({ category }) => category)).toEqual([
 			"category1",
@@ -73,7 +73,7 @@ describe("gatherIngredients", () => {
 
 		expect(
 			ingredients.map(({ quantity }) => quantity.simplify().toString()),
-		).toEqual(["2", "1", "3", "1 cup", "0 g", "2 tbsp", "1 tbsp"]);
+		).toEqual(["2", "1", "3", "1 cup", "15 g", "2 tbsp", "1 tbsp"]);
 
 		expect([
 			...new Set(ingredients.flatMap(({ category }) => category)),
@@ -121,17 +121,17 @@ describe("gatherIngredients", () => {
 				.map(({ quantity }) => quantity.simplify().toString())
 				.toSorted(),
 		).toEqual([
-			"0 g",
 			"1",
 			"1",
 			"1 cup",
 			"1 g",
 			"1 tbsp",
 			"1 tsp",
+			"15 g",
 			"2",
+			"2 kg",
 			"2 tbsp",
 			"20 slices",
-			"2000 g",
 			"3",
 		]);
 

@@ -11,8 +11,28 @@ export function parseQuantity(value?: QuantityProp): Unit | undefined {
 	if (value === undefined) return undefined;
 
 	try {
-		return unit(value as never);
+		const result = unit(value?.toString());
+		assertValidQuantity(result);
+		return result;
 	} catch (error) {
+		if (error instanceof QuantityAssertionError) {
+			console.error(error);
+		}
+
 		return undefined;
+	}
+}
+
+export class QuantityAssertionError extends Error {}
+
+export function assertValidQuantity(quantity: Unit, message = "") {
+	const value = quantity.getNormalizedValue();
+	const isnan = Number.isNaN(value);
+	const notNumber = typeof value !== "number";
+
+	if (isnan || notNumber) {
+		throw new QuantityAssertionError(
+			`not valid quantity "${quantity.toString()}", isNaN: ${isnan}, notNumber: ${notNumber}, message: ${message}`,
+		);
 	}
 }

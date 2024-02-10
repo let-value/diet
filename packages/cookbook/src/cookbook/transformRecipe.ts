@@ -1,18 +1,27 @@
 import {
-	Recipe,
 	Ingredient,
 	Measurement,
-	unit,
 	Quantity,
 	Unit,
+	RecipeContainer,
+	parseQuantity,
+	QuantityAssertionError,
 } from "@/scheme";
 
 import { mapRecipeContainer } from "./recipeContainerExtensions";
 
-export function scaleRecipe(original: Recipe, days: number): Recipe {
+export function scaleRecipe<TContainer extends RecipeContainer>(
+	original: TContainer,
+	days: number,
+): TContainer {
 	return mapRecipeContainer(original, (node) => {
 		if (node instanceof Ingredient && node.quantity) {
 			const quantity = node.quantity.mul(days);
+
+			assertValidQuantity(
+				quantity,
+				`multiply ${node.quantity.toString()} by ${days}`,
+			);
 
 			const result = new Ingredient(node);
 			result.quantity = quantity;
@@ -23,6 +32,11 @@ export function scaleRecipe(original: Recipe, days: number): Recipe {
 		if (node instanceof Measurement && node.quantity && node.scale) {
 			const quantity = node.quantity.mul(days);
 
+			assertValidQuantity(
+				quantity,
+				`multiply ${node.quantity.toString()} by ${days}`,
+			);
+
 			const result = new Measurement(node);
 			result.quantity = quantity;
 
@@ -30,16 +44,21 @@ export function scaleRecipe(original: Recipe, days: number): Recipe {
 		}
 
 		return node;
-	}) as Recipe;
+	}) as TContainer;
 }
 
-export function convertRecipeUnits(
-	original: Recipe,
+export function convertRecipeUnits<TContainer extends RecipeContainer>(
+	original: TContainer,
 	system: "normal" | "us",
-): Recipe {
+): TContainer {
 	return mapRecipeContainer(original, (node) => {
 		if (node instanceof Ingredient && node.quantity) {
 			const quantity = node.quantity.simplify({ system });
+
+			assertValidQuantity(
+				quantity,
+				`convert ${node.quantity.toString()} to ${system}`,
+			);
 
 			const result = new Ingredient(node);
 			result.quantity = quantity;
@@ -50,6 +69,11 @@ export function convertRecipeUnits(
 		if (node instanceof Measurement && node.quantity) {
 			const quantity = node.quantity.simplify({ system });
 
+			assertValidQuantity(
+				quantity,
+				`convert ${node.quantity.toString()} to ${system}`,
+			);
+
 			const result = new Measurement(node);
 			result.quantity = quantity;
 
@@ -57,7 +81,7 @@ export function convertRecipeUnits(
 		}
 
 		return node;
-	}) as Recipe;
+	}) as TContainer;
 }
 
 const timeUnits = {
@@ -108,4 +132,11 @@ export function formatQuantity(
 	}
 
 	return quantity.simplify(simplify).toString(format);
+}
+
+function assertValidQuantity(quantity: Unit, message = "") {
+	const value = quantity.getValue();
+	if (Number.isNaN(value)) {
+		throw new QuantityAssertionError(`not valid quantity message: ${message}`);
+	}
 }

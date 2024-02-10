@@ -53,8 +53,8 @@ export function filterRecipeContainer<S = unknown>(
 	return found;
 }
 
-export function mapRecipeContainer<T extends RecipeContainer>(
-	container: T,
+export function mapRecipeContainer<TContainer extends RecipeContainer>(
+	container: TContainer,
 	map: (node: unknown) => unknown,
 ) {
 	let mapped = map(container);

@@ -4,7 +4,6 @@
 	servings="4 servings"
 	meal="lunch,dinner"
 >
-	<Ingredients />
 	<Preparation>
 		<Step>
 			Clean and dice the{" "}

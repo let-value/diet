@@ -20,6 +20,6 @@ export function normalizeRecipe(original: Recipe): Recipe {
 		name: original.name ?? "",
 		meal: original.meal,
 		servings: original.servings,
-		children: [ingredients, preparation, directions],
+		children: [ingredients, preparation, directions].filter(Boolean),
 	});
 }

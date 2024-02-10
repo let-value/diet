@@ -2020,78 +2020,90 @@ class RecipeContainer {
 
 // recipeskbook/utils.tsitma
 var import_unitmath = __toESM(require_UnitMath(), 1);
-var tsp = {
-  name: "tsp",
-  definition: "1 teaspoon",
-  aliases: ["tsp", "ts", "t"]
-};
-var tbsp = {
-  name: "tbsp",
-  definition: "1 tablespoon",
-  aliases: ["tbsp", "tbs", "tb"]
-};
-var things = {
-  name: "things",
-  aliases: [
-    "slice",
-    "slices",
-    "serving",
-    "servings",
-    "thing",
-    "item",
-    "items",
-    "piece",
-    "pieces",
-    "portion",
-    "portions",
-    "part",
-    "parts",
-    "unit",
-    "units",
-    "chunk",
-    "chunks",
-    "hunk",
-    "hunks",
-    "slab",
-    "slabs",
-    "sliver",
-    "slivers",
-    "wedge",
-    "wedges",
-    "container",
-    "containers",
-    "package",
-    "packages",
-    "dash",
-    "dashes",
-    "stalk",
-    "stalks"
-  ]
-};
-var bit = {
-  name: "bit",
-  definition: "1 thing",
-  aliases: ["bit", "bits"]
-};
 var unit = import_unitmath.default.config({
   definitions: {
     units: {
-      [tsp.name]: {
-        value: tsp.definition,
-        aliases: tsp.aliases
+      tbsp: {
+        value: "15 ml",
+        aliases: ["tbsp", "tbs", "tb", "tablespoon"]
       },
-      [tbsp.name]: {
-        value: tbsp.definition,
-        aliases: tbsp.aliases
+      tsp: {
+        value: "1/3 tbsp",
+        aliases: ["tsp", "ts", "t", "teaspoon"]
       },
-      [things.name]: {
+      things: {
         value: "1",
-        aliases: things.aliases
+        aliases: [
+          "slice",
+          "slices",
+          "serving",
+          "servings",
+          "thing",
+          "item",
+          "items",
+          "piece",
+          "pieces",
+          "portion",
+          "portions",
+          "part",
+          "parts",
+          "unit",
+          "units",
+          "chunk",
+          "chunks",
+          "hunk",
+          "hunks",
+          "slab",
+          "slabs",
+          "sliver",
+          "slivers",
+          "wedge",
+          "wedges",
+          "container",
+          "containers",
+          "package",
+          "packages",
+          "dash",
+          "dashes",
+          "stalk",
+          "stalks"
+        ]
       },
-      [bit.name]: {
-        value: bit.definition,
-        aliases: bit.aliases
+      bit: {
+        value: "1 thing",
+        aliases: ["bit", "bits"]
       }
+    },
+    systems: {
+      normal: [
+        "m",
+        "meter",
+        "s",
+        "A",
+        "kg",
+        "degC",
+        "mol",
+        "rad",
+        "b",
+        "F",
+        "C",
+        "S",
+        "V",
+        "J",
+        "N",
+        "Hz",
+        "ohm",
+        "H",
+        "cd",
+        "lm",
+        "lx",
+        "Wb",
+        "T",
+        "W",
+        "Pa",
+        "ohm",
+        "sr"
+      ]
     }
   }
 });
@@ -2101,9 +2113,28 @@ function parseQuantity(value) {
   if (value === undefined)
     return;
   try {
-    return unit(value);
+    const result = unit(value?.toString());
+    assertValidQuantity(result);
+    return result;
   } catch (error) {
+    if (error instanceof QuantityAssertionError) {
+      console.error(error);
+    }
     return;
+  }
+}
+function assertValidQuantity(quantity, message = "") {
+  const value = quantity.getNormalizedValue();
+  const isnan = Number.isNaN(value);
+  const notNumber = typeof value !== "number";
+  if (isnan || notNumber) {
+    throw new QuantityAssertionError(`not valid quantity "${quantity.toString()}", isNaN: ${isnan}, notNumber: ${notNumber}, message: ${message}`);
+  }
+}
+
+class QuantityAssertionError extends Error {
+  constructor() {
+    super(...arguments);
   }
 }
 
@@ -2146,7 +2177,7 @@ class Ingredient {
   optional;
   constructor(props) {
     this.key = props.key;
-    this.name = joinStringChildren(props.children) ?? props.name;
+    this.name = props.name ?? joinStringChildren(props.children);
     this.description = props.description;
     this.quantity = parseQuantity(props.quantity);
     this.category = new Options(props.category);
@@ -2190,9 +2221,15 @@ class Measurement {
     this.quantity = parseQuantity(quantity);
   }
 }
+// recipeskbook/utils
+class Plan extends RecipeContainer {
+  constructor() {
+    super(...arguments);
+  }
+}
 // recipeskbook/utils.tsitmath/dist/UnitMath
 function findRecipeContainer(container, predicate) {
-  for (const child of container.children) {
+  for (const child of container?.children ?? []) {
     if (predicate(child)) {
       return child;
     }
@@ -2207,7 +2244,7 @@ function findRecipeContainer(container, predicate) {
 }
 function filterRecipeContainer(container, predicate) {
   const found = [];
-  for (const child of container.children) {
+  for (const child of container?.children ?? []) {
     if (predicate(child)) {
       found.push(child);
     }
@@ -2258,10 +2295,12 @@ function getIngredientKey({ key, name }) {
   return cleanName ?? name?.trim();
 }
 var combineQuantity = function(ingredients) {
-  return ingredients.reduce((acc, { quantity }) => quantity ? acc.add(quantity) : acc, parseQuantity("0g"));
+  const result = ingredients.map(({ quantity }) => quantity?.clone()).filter(Boolean).reduceRight((acc, quantity = undefined) => quantity ? acc.add(quantity) : acc);
+  assertValidQuantity(result, "combine quantity");
+  return result;
 };
 var combineOptions = function(options) {
-  const set = new Set([].concat(...options));
+  const set = new Set(options.flat());
   return Array.from(set);
 };
 function gatherIngredients(recipe) {
@@ -2276,11 +2315,12 @@ function gatherIngredients(recipe) {
       main = variants[0];
     }
     const name = main?.name ?? variants.map(({ name: name2 }) => name2).find(Boolean);
-    assertIngredientPart("name", name);
-    const quantity = main?.quantity ?? combineQuantity(variants);
-    assertIngredientPart("quantity", quantity);
+    assertIngredientPart("name", name, key);
+    const quantity = main?.quantity?.clone() ?? combineQuantity(variants);
+    assertIngredientPart("quantity", quantity, name);
+    assertValidQuantity(quantity, `quantity for ingredient ${name}`);
     const category = combineOptions(variants.map(({ category: category2 }) => category2));
-    assertIngredientPart("category", quantity);
+    assertIngredientPart("category", category, name);
     const manipulation = combineOptions(variants.map(({ manipulation: manipulation2 }) => manipulation2));
     const ingredient = new Ingredient({
       key,
@@ -2293,9 +2333,9 @@ function gatherIngredients(recipe) {
   }
   return new Ingredients({ children });
 }
-var assertIngredientPart = function(part, name) {
+var assertIngredientPart = function(part, name, ingredient) {
   if (!name) {
-    throw new Error(`Missing ${part} for ingredient`);
+    throw new Error(`Missing ${part} for ingredient ${ingredient}`);
   }
 };
 
@@ -2308,15 +2348,23 @@ function normalizeRecipe(original) {
     name: original.name ?? "",
     meal: original.meal,
     servings: original.servings,
-    children: [ingredients, preparation, directions]
+    children: [ingredients, preparation, directions].filter(Boolean)
   });
 }
 // recipeskbook/utils.tsitmath/dis
 function scaleRecipe(original, days) {
   return mapRecipeContainer(original, (node) => {
     if (node instanceof Ingredient && node.quantity) {
-      const quantity = node.quantity.mul(unit(`${days}`));
+      const quantity = node.quantity.mul(days);
+      assertValidQuantity2(quantity, `multiply ${node.quantity.toString()} by ${days}`);
       const result = new Ingredient(node);
+      result.quantity = quantity;
+      return result;
+    }
+    if (node instanceof Measurement && node.quantity && node.scale) {
+      const quantity = node.quantity.mul(days);
+      assertValidQuantity2(quantity, `multiply ${node.quantity.toString()} by ${days}`);
+      const result = new Measurement(node);
       result.quantity = quantity;
       return result;
     }
@@ -2327,13 +2375,63 @@ function convertRecipeUnits(original, system) {
   return mapRecipeContainer(original, (node) => {
     if (node instanceof Ingredient && node.quantity) {
       const quantity = node.quantity.simplify({ system });
+      assertValidQuantity2(quantity, `convert ${node.quantity.toString()} to ${system}`);
       const result = new Ingredient(node);
+      result.quantity = quantity;
+      return result;
+    }
+    if (node instanceof Measurement && node.quantity) {
+      const quantity = node.quantity.simplify({ system });
+      assertValidQuantity2(quantity, `convert ${node.quantity.toString()} to ${system}`);
+      const result = new Measurement(node);
       result.quantity = quantity;
       return result;
     }
     return node;
   });
 }
+var formatTime = function(quantity) {
+  let seconds = quantity.to("second").getValue();
+  let result = "";
+  if (seconds >= timeUnits.day) {
+    const days = Math.floor(seconds / timeUnits.day);
+    result += `${days} d `;
+    seconds %= timeUnits.day;
+  }
+  if (seconds >= timeUnits.hour) {
+    const hours = Math.floor(seconds / timeUnits.hour);
+    result += `${hours} h `;
+    seconds %= timeUnits.hour;
+  }
+  if (seconds >= timeUnits.minute) {
+    const minutes = Math.floor(seconds / timeUnits.minute);
+    result += `${minutes} m `;
+    seconds %= timeUnits.minute;
+  }
+  if (seconds > 0)
+    result += `${seconds} s`;
+  return result.trim();
+};
+function formatQuantity(quantity, {
+  simplify = { prefixMin: 1, prefixMax: 100 },
+  format = { precision: 2 }
+} = {}) {
+  if (Object.keys(quantity.dimension).includes("TIME")) {
+    return formatTime(quantity);
+  }
+  return quantity.simplify(simplify).toString(format);
+}
+var assertValidQuantity2 = function(quantity, message = "") {
+  const value = quantity.getValue();
+  if (Number.isNaN(value)) {
+    throw new QuantityAssertionError(`not valid quantity message: ${message}`);
+  }
+};
+var timeUnits = {
+  day: 86400,
+  hour: 3600,
+  minute: 60
+};
 // recipeskbook/u
 var recipes = {};
 export {
@@ -2343,12 +2441,16 @@ export {
   parseQuantity,
   normalizeRecipe,
   jsx,
+  formatQuantity,
   convertRecipeUnits,
   buildCookbook,
+  assertValidQuantity,
   Step,
   RecipeContainer,
   Recipe,
+  QuantityAssertionError,
   Preparation,
+  Plan,
   Options,
   Measurement,
   Ingredients,
@@ -2387,7 +2489,7 @@ recipes["Ranch Chicken Meal Prep"] = jsx(Recipe, {
   description: "This simple chicken meal prep features garlic herb chicken, roasted potatoes and broccoli, and a little ranch dressing to drizzle over top!",
   servings: "4 servings",
   meal: "lunch,dinner"
-}, jsx(Ingredients, null), jsx(Preparation, null, jsx(Step, null, "Clean and dice the", " ", jsx(Ingredient, {
+}, jsx(Preparation, null, jsx(Step, null, "Clean and dice the", " ", jsx(Ingredient, {
   manipulation: "clean,dice"
 }, "potatoes"), " into roughly", " ", jsx(Measurement, null, "2 cm"), "pieces."), jsx(Step, null, "In a small bowl, combine the", " ", jsx(Ingredient, {
   quantity: "1/3 cup"

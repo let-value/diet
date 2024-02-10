@@ -18,7 +18,7 @@ export function findRecipeContainer<S = unknown>(
 	container: RecipeContainer,
 	predicate: (node: unknown) => node is S,
 ): S | undefined {
-	for (const child of container.children) {
+	for (const child of container?.children ?? []) {
 		if (predicate(child)) {
 			return child;
 		}
@@ -40,7 +40,7 @@ export function filterRecipeContainer<S = unknown>(
 ): S[] {
 	const found: S[] = [];
 
-	for (const child of container.children) {
+	for (const child of container?.children ?? []) {
 		if (predicate(child)) {
 			found.push(child);
 		}

@@ -10,14 +10,14 @@ async function buildTypings() {
 	console.log(text);
 }
 
-function getEntryPoints() {
+export function getEntryPoints() {
 	const glob = new Glob("./src/recipes/*.tsx");
 	const recipes = glob.scanSync({ cwd: "./" });
 
 	return ["./src/index.ts", ...recipes];
 }
 
-async function buildDist(entrypoints: string[]) {
+export async function buildDist(entrypoints: string[]) {
 	const buildOutput = await build({
 		entrypoints,
 		plugins: [recipePlugin],

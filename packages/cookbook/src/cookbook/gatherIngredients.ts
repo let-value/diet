@@ -4,6 +4,7 @@ import {
 	RecipeContainer,
 	Options,
 	assertValidQuantity,
+	parseQuantity,
 } from "@/scheme";
 
 import {
@@ -34,8 +35,7 @@ export function getIngredientKey({ key, name }: Ingredient) {
 function combineQuantity(ingredients: Ingredient[]) {
 	const result = ingredients
 		.map(({ quantity }) => quantity?.clone())
-		.filter(Boolean)
-		.reduceRight((acc, quantity = undefined) =>
+		.reduceRight((acc = parseQuantity("0g"), quantity = undefined) =>
 			quantity ? acc.add(quantity) : acc,
 		);
 

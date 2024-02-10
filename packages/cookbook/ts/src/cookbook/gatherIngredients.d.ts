@@ -1,3 +1,6 @@
-import { Recipe, Ingredient, Ingredients } from "@/scheme";
+import { Ingredient, Ingredients, RecipeContainer } from "@/scheme";
 export declare function getIngredientKey({ key, name }: Ingredient): string;
-export declare function gatherIngredients(recipe: Recipe): Ingredients;
+/**
+ * @inheritdoc assertIngredientPart
+ */
+export declare function gatherIngredients(recipe: RecipeContainer): Ingredients;

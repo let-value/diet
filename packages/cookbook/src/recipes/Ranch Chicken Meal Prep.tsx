@@ -7,13 +7,15 @@
 	<Preparation>
 		<Step>
 			Clean and dice the{" "}
-			<Ingredient manipulation="clean,dice">potatoes</Ingredient> into roughly{" "}
-			<Measurement>2 cm</Measurement>
+			<Ingredient quantity="1 kg" manipulation="clean,dice">
+				potatoes
+			</Ingredient>{" "}
+			into roughly <Measurement>2 cm</Measurement>
 			pieces.
 		</Step>
 		<Step>
 			In a small bowl, combine the{" "}
-			<Ingredient quantity="1/3 cup">Parmesan</Ingredient>,{" "}
+			<Ingredient quantity="1/3 cup">parmesan</Ingredient>,{" "}
 			<Ingredient quantity="1/2 tsp">garlic powder</Ingredient>,{" "}
 			<Ingredient quantity="1/4 tsp">paprika</Ingredient>, and{" "}
 			<Ingredient quantity="1/4 tsp">salt</Ingredient>.

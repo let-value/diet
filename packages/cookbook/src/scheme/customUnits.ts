@@ -14,6 +14,10 @@ export const unit: UnitFactory = unitmath.config({
 				value: "1/3 tbsp",
 				aliases: ["tsp", "ts", "t", "teaspoon"],
 			},
+			cups: {
+				value: "250 ml",
+				aliases: ["cup"],
+			},
 			things: {
 				value: "1",
 				aliases: [

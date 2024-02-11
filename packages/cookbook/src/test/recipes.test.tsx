@@ -5,6 +5,7 @@ import os from "os";
 import * as everything from "@/.";
 
 import { getEntryPoints, buildDist } from "../../build";
+import type { Ingredients as IngredientsContainer } from "@/.";
 
 const entrypoints = getEntryPoints();
 const dist = await buildDist(entrypoints);
@@ -14,35 +15,44 @@ for (const output of dist.outputs) {
 	blobs.push(await output.text());
 }
 
-test("blobs", () => {
-	expect(blobs).toHaveLength(4);
-});
-
 const temp_file = path.join(os.tmpdir(), "temp.js");
 
 try {
 	const code = blobs.join("\n");
 	await writeFile(temp_file, code);
 
-	const { recipes, buildCookbook, normalizeRecipe }: typeof everything =
-		await import(temp_file);
+	const {
+		recipes,
+		buildCookbook,
+		normalizeRecipe,
+		findRecipeContainer,
+		formatQuantity,
+		Ingredients,
+	}: typeof everything = await import(temp_file);
 
 	describe("recipes", () => {
-		test("names", () => {
-			const names = Object.keys(recipes);
-			expect(names).toHaveLength(3);
-			expect(names).toMatchSnapshot();
-		});
-
 		test("normalization", () => {
 			const names = Object.values(recipes);
-			const normalized = names.map(normalizeRecipe);
-			expect(normalized).toHaveLength(3);
+
+			const normalized = names.map(normalizeRecipe).map((recipe) => {
+				const ingredients = findRecipeContainer(
+					recipe,
+					(node): node is IngredientsContainer => node instanceof Ingredients,
+				)?.children.map(
+					({ name, quantity }) => `${name} ${formatQuantity(quantity)}`,
+				);
+
+				return [recipe.name, ingredients];
+			});
+			expect(normalized).toMatchSnapshot();
 		});
 	});
 
-	describe("cookbook", () => {
-		const cookbook = buildCookbook();
+	test("cookbook", () => {
+		const { list, groups } = buildCookbook();
+
+		expect(list).toMatchSnapshot();
+		expect(groups).toMatchSnapshot();
 	});
 } finally {
 	await unlink(temp_file);

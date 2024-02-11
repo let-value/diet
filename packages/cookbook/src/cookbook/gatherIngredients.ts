@@ -65,41 +65,42 @@ export function gatherIngredients(recipe: RecipeContainer) {
 
 	const children: Ingredient[] = [];
 
-	for (const [key, variants] of Object.entries(similar)) {
-		let main = variants.find((ingredient) =>
-			mainIngredients.includes(ingredient),
-		);
+	for (const [key, variants] of Object.entries(similar))
+		try {
+			let main = variants.find((ingredient) =>
+				mainIngredients.includes(ingredient),
+			);
 
-		if (!main) {
-			main = variants[0];
+			if (!main) {
+				main = variants[0];
+			}
+
+			const name = main?.name ?? variants.map(({ name }) => name).find(Boolean);
+			assertIngredientPart("name", name, key);
+
+			const quantity = main?.quantity?.clone() ?? combineQuantity(variants);
+			assertIngredientPart("quantity", quantity, name);
+			assertValidQuantity(quantity, `quantity for ingredient ${name}`);
+
+			const category = combineOptions(variants.map(({ category }) => category));
+			assertIngredientPart("category", category, name);
+
+			const manipulation = combineOptions(
+				variants.map(({ manipulation }) => manipulation),
+			);
+
+			const ingredient = new Ingredient({
+				key,
+				name,
+				quantity,
+				category,
+				manipulation,
+			});
+
+			children.push(ingredient);
+		} catch (error) {
+			throw new Error(`Error combining ingredient "${key}"`, { cause: error });
 		}
-
-		//const others = variants.filter((ingredient) => ingredient !== main);
-
-		const name = main?.name ?? variants.map(({ name }) => name).find(Boolean);
-		assertIngredientPart("name", name, key);
-
-		const quantity = main?.quantity?.clone() ?? combineQuantity(variants);
-		assertIngredientPart("quantity", quantity, name);
-		assertValidQuantity(quantity, `quantity for ingredient ${name}`);
-
-		const category = combineOptions(variants.map(({ category }) => category));
-		assertIngredientPart("category", category, name);
-
-		const manipulation = combineOptions(
-			variants.map(({ manipulation }) => manipulation),
-		);
-
-		const ingredient = new Ingredient({
-			key,
-			name,
-			quantity,
-			category,
-			manipulation,
-		});
-
-		children.push(ingredient);
-	}
 
 	return new Ingredients({ children });
 }

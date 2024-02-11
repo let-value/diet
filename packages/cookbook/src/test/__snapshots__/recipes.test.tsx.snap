@@ -1,9 +1,74 @@
 // Bun Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`recipes names 1`] = `
+exports[`recipes normalization 1`] = `
+[
+  [
+    "Egg and Vegetable Scramble",
+    [
+      "Large eggs 3",
+      "Bell peppers (mixed colors) 60 g",
+      "Tortillas 1 slice",
+      "onions 60 g",
+      "tomatoes 60 g",
+    ],
+  ],
+  [
+    "Ranch Chicken Meal Prep",
+    [
+      "potatoes 1 kg",
+      "parmesan 0.33 cup",
+      "garlic powder 0.5 tsp",
+      "paprika 0.25 tsp",
+      "salt 0.25 tsp",
+      "cooking oil 1 tbsp",
+      "broccoli florets 1 lb",
+      "pepper 0.25 tsp",
+      "chicken breast 1 lb",
+      "garlic herb seasoning 1 tbsp",
+    ],
+  ],
+  [
+    "Chicken Stir-Fry",
+    [
+      "Chicken breast (raw) 120 g",
+      "Egg (whole, fresh) 1",
+      "Asparagus (raw) 34 g",
+      "Broccoli (raw) 23 g",
+      "Mushrooms (white, raw) 35 g",
+      "Carrots (raw) 15 g",
+      "Cayenne pepper (spices) 100 mg",
+      "Ginger (ground) 0.5 g",
+      "Chicken broth (ready-to-serve) 15 g",
+      "chicken breast 120 g",
+      "asparagus 34 g",
+      "broccoli 23 g",
+      "mushrooms 35 g",
+      "carrots 15 g",
+      "egg 1",
+    ],
+  ],
+]
+`;
+
+exports[`cookbook 1`] = `
 [
   "Egg and Vegetable Scramble",
   "Ranch Chicken Meal Prep",
   "Chicken Stir-Fry",
 ]
+`;
+
+exports[`cookbook 2`] = `
+{
+  "breakfast": [
+    "Egg and Vegetable Scramble",
+  ],
+  "dinner": [
+    "Ranch Chicken Meal Prep",
+    "Chicken Stir-Fry",
+  ],
+  "lunch": [
+    "Ranch Chicken Meal Prep",
+  ],
+}
 `;

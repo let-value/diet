@@ -133,7 +133,7 @@ var require_UnitMath = __commonJS((exports, module) => {
           return null;
         }
       }
-      function parse(str) {
+      function parse2(str) {
         text = str;
         index = -1;
         c = "";
@@ -208,7 +208,7 @@ var require_UnitMath = __commonJS((exports, module) => {
         }
         return unit;
       }
-      return parse;
+      return parse2;
     }
     function normalize(unitList, value, type) {
       let unitValue, unitOffset, unitPower, unitPrefixValue;
@@ -1964,7 +1964,7 @@ var require_UnitMath = __commonJS((exports, module) => {
   });
 });
 
-// recipeskbook/utils.tsitm
+// recipeskbook/utils.tsgre
 function buildCookbook() {
   const list = Object.keys(recipes);
   const groups = Object.values(recipes).reduce((groups2, recipe) => {
@@ -2010,7 +2010,7 @@ class Options extends Array {
   }
 }
 
-// recipeskbook/utils.tsitmath/d
+// recipeskbook/utils.tsgredient
 class RecipeContainer {
   children;
   constructor(props) {
@@ -2018,7 +2018,514 @@ class RecipeContainer {
   }
 }
 
-// recipeskbook/utils.tsitma
+// /home/alex/diet/node_modules/fraction.js/fraction.js
+var assign = function(n, s) {
+  if (isNaN(n = parseInt(n, 10))) {
+    throw InvalidParameter();
+  }
+  return n * s;
+};
+var newFraction = function(n, d) {
+  if (d === 0) {
+    throw DivisionByZero();
+  }
+  var f = Object.create(Fraction.prototype);
+  f["s"] = n < 0 ? -1 : 1;
+  n = n < 0 ? -n : n;
+  var a = gcd(n, d);
+  f["n"] = n / a;
+  f["d"] = d / a;
+  return f;
+};
+var factorize = function(num) {
+  var factors = {};
+  var n = num;
+  var i = 2;
+  var s = 4;
+  while (s <= n) {
+    while (n % i === 0) {
+      n /= i;
+      factors[i] = (factors[i] || 0) + 1;
+    }
+    s += 1 + 2 * i++;
+  }
+  if (n !== num) {
+    if (n > 1)
+      factors[n] = (factors[n] || 0) + 1;
+  } else {
+    factors[num] = (factors[num] || 0) + 1;
+  }
+  return factors;
+};
+var modpow = function(b, e, m) {
+  var r = 1;
+  for (;e > 0; b = b * b % m, e >>= 1) {
+    if (e & 1) {
+      r = r * b % m;
+    }
+  }
+  return r;
+};
+var cycleLen = function(n, d) {
+  for (;d % 2 === 0; d /= 2) {
+  }
+  for (;d % 5 === 0; d /= 5) {
+  }
+  if (d === 1)
+    return 0;
+  var rem = 10 % d;
+  var t = 1;
+  for (;rem !== 1; t++) {
+    rem = rem * 10 % d;
+    if (t > MAX_CYCLE_LEN)
+      return 0;
+  }
+  return t;
+};
+var cycleStart = function(n, d, len) {
+  var rem1 = 1;
+  var rem2 = modpow(10, len, d);
+  for (var t = 0;t < 300; t++) {
+    if (rem1 === rem2)
+      return t;
+    rem1 = rem1 * 10 % d;
+    rem2 = rem2 * 10 % d;
+  }
+  return 0;
+};
+var gcd = function(a, b) {
+  if (!a)
+    return b;
+  if (!b)
+    return a;
+  while (true) {
+    a %= b;
+    if (!a)
+      return b;
+    b %= a;
+    if (!b)
+      return a;
+  }
+};
+var MAX_CYCLE_LEN = 2000;
+var P = {
+  s: 1,
+  n: 0,
+  d: 1
+};
+var parse = function(p1, p2) {
+  var n = 0, d = 1, s = 1;
+  var v = 0, w = 0, x = 0, y = 1, z = 1;
+  var A = 0, B = 1;
+  var C = 1, D = 1;
+  var N = 1e7;
+  var M;
+  if (p1 === undefined || p1 === null) {
+  } else if (p2 !== undefined) {
+    n = p1;
+    d = p2;
+    s = n * d;
+    if (n % 1 !== 0 || d % 1 !== 0) {
+      throw NonIntegerParameter();
+    }
+  } else
+    switch (typeof p1) {
+      case "object": {
+        if ("d" in p1 && "n" in p1) {
+          n = p1["n"];
+          d = p1["d"];
+          if ("s" in p1)
+            n *= p1["s"];
+        } else if (0 in p1) {
+          n = p1[0];
+          if (1 in p1)
+            d = p1[1];
+        } else {
+          throw InvalidParameter();
+        }
+        s = n * d;
+        break;
+      }
+      case "number": {
+        if (p1 < 0) {
+          s = p1;
+          p1 = -p1;
+        }
+        if (p1 % 1 === 0) {
+          n = p1;
+        } else if (p1 > 0) {
+          if (p1 >= 1) {
+            z = Math.pow(10, Math.floor(1 + Math.log(p1) / Math.LN10));
+            p1 /= z;
+          }
+          while (B <= N && D <= N) {
+            M = (A + C) / (B + D);
+            if (p1 === M) {
+              if (B + D <= N) {
+                n = A + C;
+                d = B + D;
+              } else if (D > B) {
+                n = C;
+                d = D;
+              } else {
+                n = A;
+                d = B;
+              }
+              break;
+            } else {
+              if (p1 > M) {
+                A += C;
+                B += D;
+              } else {
+                C += A;
+                D += B;
+              }
+              if (B > N) {
+                n = C;
+                d = D;
+              } else {
+                n = A;
+                d = B;
+              }
+            }
+          }
+          n *= z;
+        } else if (isNaN(p1) || isNaN(p2)) {
+          d = n = NaN;
+        }
+        break;
+      }
+      case "string": {
+        B = p1.match(/\d+|./g);
+        if (B === null)
+          throw InvalidParameter();
+        if (B[A] === "-") {
+          s = -1;
+          A++;
+        } else if (B[A] === "+") {
+          A++;
+        }
+        if (B.length === A + 1) {
+          w = assign(B[A++], s);
+        } else if (B[A + 1] === "." || B[A] === ".") {
+          if (B[A] !== ".") {
+            v = assign(B[A++], s);
+          }
+          A++;
+          if (A + 1 === B.length || B[A + 1] === "(" && B[A + 3] === ")" || B[A + 1] === "'" && B[A + 3] === "'") {
+            w = assign(B[A], s);
+            y = Math.pow(10, B[A].length);
+            A++;
+          }
+          if (B[A] === "(" && B[A + 2] === ")" || B[A] === "'" && B[A + 2] === "'") {
+            x = assign(B[A + 1], s);
+            z = Math.pow(10, B[A + 1].length) - 1;
+            A += 3;
+          }
+        } else if (B[A + 1] === "/" || B[A + 1] === ":") {
+          w = assign(B[A], s);
+          y = assign(B[A + 2], 1);
+          A += 3;
+        } else if (B[A + 3] === "/" && B[A + 1] === " ") {
+          v = assign(B[A], s);
+          w = assign(B[A + 2], s);
+          y = assign(B[A + 4], 1);
+          A += 5;
+        }
+        if (B.length <= A) {
+          d = y * z;
+          s = n = x + d * v + z * w;
+          break;
+        }
+      }
+      default:
+        throw InvalidParameter();
+    }
+  if (d === 0) {
+    throw DivisionByZero();
+  }
+  P["s"] = s < 0 ? -1 : 1;
+  P["n"] = Math.abs(n);
+  P["d"] = Math.abs(d);
+};
+function Fraction(a, b) {
+  parse(a, b);
+  if (this instanceof Fraction) {
+    a = gcd(P["d"], P["n"]);
+    this["s"] = P["s"];
+    this["n"] = P["n"] / a;
+    this["d"] = P["d"] / a;
+  } else {
+    return newFraction(P["s"] * P["n"], P["d"]);
+  }
+}
+var DivisionByZero = function() {
+  return new Error("Division by Zero");
+};
+var InvalidParameter = function() {
+  return new Error("Invalid argument");
+};
+var NonIntegerParameter = function() {
+  return new Error("Parameters must be integer");
+};
+Fraction.prototype = {
+  s: 1,
+  n: 0,
+  d: 1,
+  abs: function() {
+    return newFraction(this["n"], this["d"]);
+  },
+  neg: function() {
+    return newFraction(-this["s"] * this["n"], this["d"]);
+  },
+  add: function(a, b) {
+    parse(a, b);
+    return newFraction(this["s"] * this["n"] * P["d"] + P["s"] * this["d"] * P["n"], this["d"] * P["d"]);
+  },
+  sub: function(a, b) {
+    parse(a, b);
+    return newFraction(this["s"] * this["n"] * P["d"] - P["s"] * this["d"] * P["n"], this["d"] * P["d"]);
+  },
+  mul: function(a, b) {
+    parse(a, b);
+    return newFraction(this["s"] * P["s"] * this["n"] * P["n"], this["d"] * P["d"]);
+  },
+  div: function(a, b) {
+    parse(a, b);
+    return newFraction(this["s"] * P["s"] * this["n"] * P["d"], this["d"] * P["n"]);
+  },
+  clone: function() {
+    return newFraction(this["s"] * this["n"], this["d"]);
+  },
+  mod: function(a, b) {
+    if (isNaN(this["n"]) || isNaN(this["d"])) {
+      return new Fraction(NaN);
+    }
+    if (a === undefined) {
+      return newFraction(this["s"] * this["n"] % this["d"], 1);
+    }
+    parse(a, b);
+    if (P["n"] === 0 && this["d"] === 0) {
+      throw DivisionByZero();
+    }
+    return newFraction(this["s"] * (P["d"] * this["n"]) % (P["n"] * this["d"]), P["d"] * this["d"]);
+  },
+  gcd: function(a, b) {
+    parse(a, b);
+    return newFraction(gcd(P["n"], this["n"]) * gcd(P["d"], this["d"]), P["d"] * this["d"]);
+  },
+  lcm: function(a, b) {
+    parse(a, b);
+    if (P["n"] === 0 && this["n"] === 0) {
+      return newFraction(0, 1);
+    }
+    return newFraction(P["n"] * this["n"], gcd(P["n"], this["n"]) * gcd(P["d"], this["d"]));
+  },
+  ceil: function(places) {
+    places = Math.pow(10, places || 0);
+    if (isNaN(this["n"]) || isNaN(this["d"])) {
+      return new Fraction(NaN);
+    }
+    return newFraction(Math.ceil(places * this["s"] * this["n"] / this["d"]), places);
+  },
+  floor: function(places) {
+    places = Math.pow(10, places || 0);
+    if (isNaN(this["n"]) || isNaN(this["d"])) {
+      return new Fraction(NaN);
+    }
+    return newFraction(Math.floor(places * this["s"] * this["n"] / this["d"]), places);
+  },
+  round: function(places) {
+    places = Math.pow(10, places || 0);
+    if (isNaN(this["n"]) || isNaN(this["d"])) {
+      return new Fraction(NaN);
+    }
+    return newFraction(Math.round(places * this["s"] * this["n"] / this["d"]), places);
+  },
+  roundTo: function(a, b) {
+    parse(a, b);
+    return newFraction(this["s"] * Math.round(this["n"] * P["d"] / (this["d"] * P["n"])) * P["n"], P["d"]);
+  },
+  inverse: function() {
+    return newFraction(this["s"] * this["d"], this["n"]);
+  },
+  pow: function(a, b) {
+    parse(a, b);
+    if (P["d"] === 1) {
+      if (P["s"] < 0) {
+        return newFraction(Math.pow(this["s"] * this["d"], P["n"]), Math.pow(this["n"], P["n"]));
+      } else {
+        return newFraction(Math.pow(this["s"] * this["n"], P["n"]), Math.pow(this["d"], P["n"]));
+      }
+    }
+    if (this["s"] < 0)
+      return null;
+    var N = factorize(this["n"]);
+    var D = factorize(this["d"]);
+    var n = 1;
+    var d = 1;
+    for (var k in N) {
+      if (k === "1")
+        continue;
+      if (k === "0") {
+        n = 0;
+        break;
+      }
+      N[k] *= P["n"];
+      if (N[k] % P["d"] === 0) {
+        N[k] /= P["d"];
+      } else
+        return null;
+      n *= Math.pow(k, N[k]);
+    }
+    for (var k in D) {
+      if (k === "1")
+        continue;
+      D[k] *= P["n"];
+      if (D[k] % P["d"] === 0) {
+        D[k] /= P["d"];
+      } else
+        return null;
+      d *= Math.pow(k, D[k]);
+    }
+    if (P["s"] < 0) {
+      return newFraction(d, n);
+    }
+    return newFraction(n, d);
+  },
+  equals: function(a, b) {
+    parse(a, b);
+    return this["s"] * this["n"] * P["d"] === P["s"] * P["n"] * this["d"];
+  },
+  compare: function(a, b) {
+    parse(a, b);
+    var t = this["s"] * this["n"] * P["d"] - P["s"] * P["n"] * this["d"];
+    return (0 < t) - (t < 0);
+  },
+  simplify: function(eps) {
+    if (isNaN(this["n"]) || isNaN(this["d"])) {
+      return this;
+    }
+    eps = eps || 0.001;
+    var thisABS = this["abs"]();
+    var cont = thisABS["toContinued"]();
+    for (var i = 1;i < cont.length; i++) {
+      var s = newFraction(cont[i - 1], 1);
+      for (var k = i - 2;k >= 0; k--) {
+        s = s["inverse"]()["add"](cont[k]);
+      }
+      if (Math.abs(s["sub"](thisABS).valueOf()) < eps) {
+        return s["mul"](this["s"]);
+      }
+    }
+    return this;
+  },
+  divisible: function(a, b) {
+    parse(a, b);
+    return !(!(P["n"] * this["d"]) || this["n"] * P["d"] % (P["n"] * this["d"]));
+  },
+  valueOf: function() {
+    return this["s"] * this["n"] / this["d"];
+  },
+  toFraction: function(excludeWhole) {
+    var whole, str = "";
+    var n = this["n"];
+    var d = this["d"];
+    if (this["s"] < 0) {
+      str += "-";
+    }
+    if (d === 1) {
+      str += n;
+    } else {
+      if (excludeWhole && (whole = Math.floor(n / d)) > 0) {
+        str += whole;
+        str += " ";
+        n %= d;
+      }
+      str += n;
+      str += "/";
+      str += d;
+    }
+    return str;
+  },
+  toLatex: function(excludeWhole) {
+    var whole, str = "";
+    var n = this["n"];
+    var d = this["d"];
+    if (this["s"] < 0) {
+      str += "-";
+    }
+    if (d === 1) {
+      str += n;
+    } else {
+      if (excludeWhole && (whole = Math.floor(n / d)) > 0) {
+        str += whole;
+        n %= d;
+      }
+      str += "\\frac{";
+      str += n;
+      str += "}{";
+      str += d;
+      str += "}";
+    }
+    return str;
+  },
+  toContinued: function() {
+    var t;
+    var a = this["n"];
+    var b = this["d"];
+    var res = [];
+    if (isNaN(a) || isNaN(b)) {
+      return res;
+    }
+    do {
+      res.push(Math.floor(a / b));
+      t = a % b;
+      a = b;
+      b = t;
+    } while (a !== 1);
+    return res;
+  },
+  toString: function(dec) {
+    var N = this["n"];
+    var D = this["d"];
+    if (isNaN(N) || isNaN(D)) {
+      return "NaN";
+    }
+    dec = dec || 15;
+    var cycLen = cycleLen(N, D);
+    var cycOff = cycleStart(N, D, cycLen);
+    var str = this["s"] < 0 ? "-" : "";
+    str += N / D | 0;
+    N %= D;
+    N *= 10;
+    if (N)
+      str += ".";
+    if (cycLen) {
+      for (var i = cycOff;i--; ) {
+        str += N / D | 0;
+        N %= D;
+        N *= 10;
+      }
+      str += "(";
+      for (var i = cycLen;i--; ) {
+        str += N / D | 0;
+        N %= D;
+        N *= 10;
+      }
+      str += ")";
+    } else {
+      for (var i = dec;N && i--; ) {
+        str += N / D | 0;
+        N %= D;
+        N *= 10;
+      }
+    }
+    return str;
+  }
+};
+
+// recipeskbook/utils.tsgred
 var import_unitmath = __toESM(require_UnitMath(), 1);
 var unit = import_unitmath.default.config({
   definitions: {
@@ -2030,6 +2537,10 @@ var unit = import_unitmath.default.config({
       tsp: {
         value: "1/3 tbsp",
         aliases: ["tsp", "ts", "t", "teaspoon"]
+      },
+      cups: {
+        value: "250 ml",
+        aliases: ["cup"]
       },
       things: {
         value: "1",
@@ -2108,12 +2619,33 @@ var unit = import_unitmath.default.config({
   }
 });
 
-// recipeskbook/utils.tsi
-function parseQuantity(value) {
-  if (value === undefined)
+// recipeskbook/utils.tsg
+function parseFraction(prop) {
+  const variants = Array.from({ length: prop.length }, (_, i) => {
+    const value2 = prop.slice(0, i + 1);
+    const rest2 = prop.slice(i + 1);
+    let fraction2 = null;
+    try {
+      fraction2 = new Fraction(value2);
+    } catch {
+    }
+    return { fraction: fraction2, rest: rest2 };
+  });
+  const { fraction, rest } = variants.findLast(({ fraction: fraction2 }) => fraction2) ?? {
+    fraction: new Fraction(0),
+    rest: ""
+  };
+  const value = fraction.n / fraction.d * fraction.s;
+  return [value, rest];
+}
+function parseQuantity(prop) {
+  if (prop === undefined)
     return;
+  if (typeof prop === "object" && "clone" in prop)
+    return prop.clone();
+  const [value, unitStr] = parseFraction(Array.isArray(prop) ? prop.join(" ") : prop);
   try {
-    const result = unit(value?.toString());
+    const result = unit(value, unitStr);
     assertValidQuantity(result);
     return result;
   } catch (error) {
@@ -2124,7 +2656,7 @@ function parseQuantity(value) {
   }
 }
 function assertValidQuantity(quantity, message = "") {
-  const value = quantity.getNormalizedValue();
+  const value = quantity.getValue();
   const isnan = Number.isNaN(value);
   const notNumber = typeof value !== "number";
   if (isnan || notNumber) {
@@ -2166,7 +2698,7 @@ function joinStringChildren(children) {
   return children.join("");
 }
 
-// recipeskbook/utils.tsitm
+// recipeskbook/utils.tsgre
 class Ingredient {
   key;
   name;
@@ -2185,7 +2717,7 @@ class Ingredient {
     this.optional = Boolean(props.optional);
   }
 }
-// recipeskbook/utils.tsitma
+// recipeskbook/utils.tsgred
 class Ingredients extends RecipeContainer {
   constructor() {
     super(...arguments);
@@ -2199,19 +2731,19 @@ class Step extends RecipeContainer {
     this.duration = parseQuantity(props.duration);
   }
 }
-// recipeskbook/utils.tsitma
+// recipeskbook/utils.tsgred
 class Preparation extends RecipeContainer {
   constructor() {
     super(...arguments);
   }
 }
-// recipeskbook/utils.tsitm
+// recipeskbook/utils.tsgre
 class Directions extends RecipeContainer {
   constructor() {
     super(...arguments);
   }
 }
-// recipeskbook/utils.tsitma
+// recipeskbook/utils.tsgred
 class Measurement {
   scale;
   quantity;
@@ -2227,7 +2759,18 @@ class Plan extends RecipeContainer {
     super(...arguments);
   }
 }
-// recipeskbook/utils.tsitmath/dist/UnitMath
+// recipeskbook/utils.tsgredients.tsUnitMath
+function flattenRecipeContainer(container) {
+  const result = [container];
+  for (const child of container.children) {
+    if (child instanceof RecipeContainer) {
+      result.push(...flattenRecipeContainer(child));
+    } else {
+      result.push(child);
+    }
+  }
+  return result;
+}
 function findRecipeContainer(container, predicate) {
   for (const child of container?.children ?? []) {
     if (predicate(child)) {
@@ -2282,7 +2825,7 @@ function groupBy(array, getKey) {
   return grouped;
 }
 
-// recipeskbook/utils.tsitmath/dist/
+// recipeskbook/utils.tsgredients.ts
 var getIngredients = function(container) {
   return filterRecipeContainer(container, (node) => node instanceof Ingredient);
 };
@@ -2295,7 +2838,7 @@ function getIngredientKey({ key, name }) {
   return cleanName ?? name?.trim();
 }
 var combineQuantity = function(ingredients) {
-  const result = ingredients.map(({ quantity }) => quantity?.clone()).filter(Boolean).reduceRight((acc, quantity = undefined) => quantity ? acc.add(quantity) : acc);
+  const result = ingredients.map(({ quantity }) => quantity?.clone()).reduceRight((acc = parseQuantity("0g"), quantity = undefined) => quantity ? acc.add(quantity) : acc);
   assertValidQuantity(result, "combine quantity");
   return result;
 };
@@ -2309,28 +2852,31 @@ function gatherIngredients(recipe) {
   const allIngredients = getIngredients(recipe);
   const similar = groupBy(allIngredients, getIngredientKey);
   const children = [];
-  for (const [key, variants] of Object.entries(similar)) {
-    let main = variants.find((ingredient2) => mainIngredients.includes(ingredient2));
-    if (!main) {
-      main = variants[0];
+  for (const [key, variants] of Object.entries(similar))
+    try {
+      let main = variants.find((ingredient2) => mainIngredients.includes(ingredient2));
+      if (!main) {
+        main = variants[0];
+      }
+      const name = main?.name ?? variants.map(({ name: name2 }) => name2).find(Boolean);
+      assertIngredientPart("name", name, key);
+      const quantity = main?.quantity?.clone() ?? combineQuantity(variants);
+      assertIngredientPart("quantity", quantity, name);
+      assertValidQuantity(quantity, `quantity for ingredient ${name}`);
+      const category = combineOptions(variants.map(({ category: category2 }) => category2));
+      assertIngredientPart("category", category, name);
+      const manipulation = combineOptions(variants.map(({ manipulation: manipulation2 }) => manipulation2));
+      const ingredient = new Ingredient({
+        key,
+        name,
+        quantity,
+        category,
+        manipulation
+      });
+      children.push(ingredient);
+    } catch (error) {
+      throw new Error(`Error combining ingredient "${key}"`, { cause: error });
     }
-    const name = main?.name ?? variants.map(({ name: name2 }) => name2).find(Boolean);
-    assertIngredientPart("name", name, key);
-    const quantity = main?.quantity?.clone() ?? combineQuantity(variants);
-    assertIngredientPart("quantity", quantity, name);
-    assertValidQuantity(quantity, `quantity for ingredient ${name}`);
-    const category = combineOptions(variants.map(({ category: category2 }) => category2));
-    assertIngredientPart("category", category, name);
-    const manipulation = combineOptions(variants.map(({ manipulation: manipulation2 }) => manipulation2));
-    const ingredient = new Ingredient({
-      key,
-      name,
-      quantity,
-      category,
-      manipulation
-    });
-    children.push(ingredient);
-  }
   return new Ingredients({ children });
 }
 var assertIngredientPart = function(part, name, ingredient) {
@@ -2339,19 +2885,25 @@ var assertIngredientPart = function(part, name, ingredient) {
   }
 };
 
-// recipeskbook/utils.tsitmath/dis
+// recipeskbook/utils.tsgredients.
 function normalizeRecipe(original) {
-  const ingredients = gatherIngredients(original);
-  const preparation = findRecipeContainer(original, (node) => node instanceof Preparation);
-  const directions = findRecipeContainer(original, (node) => node instanceof Directions);
-  return new Recipe({
-    name: original.name ?? "",
-    meal: original.meal,
-    servings: original.servings,
-    children: [ingredients, preparation, directions].filter(Boolean)
-  });
+  try {
+    const ingredients = gatherIngredients(original);
+    const preparation = findRecipeContainer(original, (node) => node instanceof Preparation);
+    const directions = findRecipeContainer(original, (node) => node instanceof Directions);
+    return new Recipe({
+      name: original.name ?? "",
+      meal: original.meal,
+      servings: original.servings,
+      children: [ingredients, preparation, directions].filter(Boolean)
+    });
+  } catch (error) {
+    throw new Error(`Error normalizing recipe ${original.name}`, {
+      cause: error
+    });
+  }
 }
-// recipeskbook/utils.tsitmath/dis
+// recipeskbook/utils.tsgredients.
 function scaleRecipe(original, days) {
   return mapRecipeContainer(original, (node) => {
     if (node instanceof Ingredient && node.quantity) {
@@ -2439,9 +2991,14 @@ export {
   scaleRecipe,
   recipes,
   parseQuantity,
+  parseFraction,
   normalizeRecipe,
+  mapRecipeContainer,
   jsx,
   formatQuantity,
+  flattenRecipeContainer,
+  findRecipeContainer,
+  filterRecipeContainer,
   convertRecipeUnits,
   buildCookbook,
   assertValidQuantity,
@@ -2457,7 +3014,7 @@ export {
   Ingredient,
   Directions
 };
-// recipeskbook/utils.tsitmath/dist/UnitMath.
+// recipeskbook/utils.tsgredients.tsUnitMath.
 recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
   name: "Egg and Vegetable Scramble",
   meal: "breakfast",
@@ -2483,17 +3040,18 @@ recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
   quantity: "60g",
   manipulation: "wash,dice"
 }, "tomatoes"), ".")));
-// recipeskbook/utils.tsitmath/dist/UnitMa
+// recipeskbook/utils.tsgredients.tsUnitMa
 recipes["Ranch Chicken Meal Prep"] = jsx(Recipe, {
   name: "Ranch Chicken Meal Prep",
   description: "This simple chicken meal prep features garlic herb chicken, roasted potatoes and broccoli, and a little ranch dressing to drizzle over top!",
   servings: "4 servings",
   meal: "lunch,dinner"
 }, jsx(Preparation, null, jsx(Step, null, "Clean and dice the", " ", jsx(Ingredient, {
+  quantity: "1 kg",
   manipulation: "clean,dice"
-}, "potatoes"), " into roughly", " ", jsx(Measurement, null, "2 cm"), "pieces."), jsx(Step, null, "In a small bowl, combine the", " ", jsx(Ingredient, {
+}, "potatoes"), " ", "into roughly ", jsx(Measurement, null, "2 cm"), "pieces."), jsx(Step, null, "In a small bowl, combine the", " ", jsx(Ingredient, {
   quantity: "1/3 cup"
-}, "Parmesan"), ",", " ", jsx(Ingredient, {
+}, "parmesan"), ",", " ", jsx(Ingredient, {
   quantity: "1/2 tsp"
 }, "garlic powder"), ",", " ", jsx(Ingredient, {
   quantity: "1/4 tsp"
@@ -2520,7 +3078,7 @@ recipes["Ranch Chicken Meal Prep"] = jsx(Recipe, {
 }, "Roast the potatoes and broccoli together for 10 minutes."), jsx(Step, null, "Then, add the chicken to the baking sheet."), jsx(Step, {
   duration: "20 minutes"
 }, "Continue roasting for an additional 15-20 minutes or until the chicken is fully cooked, the potatoes are golden and crispy, and the broccoli is tender and browned at the edges")));
-// recipeskbook/utils.tsitmath/dist
+// recipeskbook/utils.tsgredients.t
 recipes["Chicken Stir-Fry"] = jsx(Recipe, {
   name: "Chicken Stir-Fry",
   meal: "dinner",

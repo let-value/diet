@@ -1,14 +1,15 @@
 {
-  "name": "diet",
-  "private": true,
-  "type": "module",
-  "workspaces": [
-    "packages/*"
-  ],
-  "devDependencies": {
-    "@biomejs/biome": "^1.4.1",
-    "@types/bun": "latest",
-    "node-watch": "^0.7.4",
-    "typescript": "beta"
-  }
+	"name": "diet",
+	"private": true,
+	"type": "module",
+	"workspaces": ["packages/*"],
+	"devDependencies": {
+		"@biomejs/biome": "^1.5.3",
+		"@types/bun": "latest",
+		"node-watch": "^0.7.4",
+		"typescript": "beta"
+	},
+	"scripts": {
+		"format": "biome check --apply packages"
+	}
 }

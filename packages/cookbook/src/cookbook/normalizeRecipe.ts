@@ -1,4 +1,4 @@
-import { Recipe, Preparation, Directions } from "@/scheme";
+import { Recipe, Preparation, Directions, Plan } from "@/scheme";
 
 import { gatherIngredients } from "./gatherIngredients";
 import { findRecipeContainer } from "./recipeContainerExtensions";
@@ -28,4 +28,9 @@ export function normalizeRecipe(original: Recipe): Recipe {
 			cause: error,
 		});
 	}
+}
+
+export function createPlan(recipes: (Recipe | undefined | null)[]) {
+	const children = recipes.filter(Boolean).map(normalizeRecipe);
+	return new Plan({ children });
 }

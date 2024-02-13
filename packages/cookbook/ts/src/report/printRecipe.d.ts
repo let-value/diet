@@ -1,0 +1,11 @@
+import { Recipe, Ingredients, Preparation, Directions, Step, Ingredient, Measurement } from "@/scheme";
+type Printers = Map<unknown, (node: unknown, availablePrinters: Printers) => string>;
+export declare function printRecipe({ name, meal, children }: Recipe, availablePrinters?: Printers): string;
+export declare function printIngredients({ children }: Ingredients, availablePrinters?: Printers): string;
+export declare function printIngredient({ name, quantity }: Ingredient): string;
+export declare function printMeasurement({ quantity }: Measurement): string;
+export declare function printSimpleIngredient({ name }: Ingredient): string;
+export declare function printPreparation({ children }: Preparation, availablePrinters?: Printers): string;
+export declare function printDirections({ children }: Directions, availablePrinters?: Printers): string;
+export declare function printStep({ children, duration }: Step, availablePrinters?: Printers): string;
+export {};

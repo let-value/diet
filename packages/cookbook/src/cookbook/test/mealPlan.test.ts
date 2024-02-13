@@ -1,18 +1,16 @@
 import { test, expect } from "bun:test";
 
 import { test_recipe, exotic_recipe } from "@/test/recipe.test";
-import { Plan } from "@/scheme";
 
-import { normalizeRecipe } from "../normalizeRecipe";
-import { formatQuantity, scaleRecipe } from "../transformRecipe";
+import { createPlan } from "../normalizeRecipe";
+import { scaleRecipe } from "../transformRecipe";
+import { formatQuantity } from "../formatQuantity";
 import { gatherIngredients } from "../gatherIngredients";
 
 test("meal plan", () => {
 	const days = 2;
 
-	const recipes = [test_recipe, exotic_recipe].map(normalizeRecipe);
-
-	const plan = new Plan({ children: recipes });
+	const plan = createPlan([test_recipe, exotic_recipe]);
 
 	const { children: ingredients } = gatherIngredients(plan);
 

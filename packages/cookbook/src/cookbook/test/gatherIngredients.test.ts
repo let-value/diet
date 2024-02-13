@@ -1,8 +1,7 @@
 import { describe, test, expect } from "bun:test";
 
-import { Plan } from "@/scheme";
-
 import { test_recipe, exotic_recipe } from "@/test/recipe.test";
+import { createPlan } from "../normalizeRecipe";
 import { getIngredientKey, gatherIngredients } from "../gatherIngredients";
 
 test("getIngredientKey", () => {
@@ -81,7 +80,7 @@ describe("gatherIngredients", () => {
 	});
 
 	test("plan", () => {
-		const plan = new Plan({ children: [test_recipe, exotic_recipe] });
+		const plan = createPlan([test_recipe, exotic_recipe]);
 		const { children: ingredients } = gatherIngredients(plan);
 
 		expect(ingredients).toHaveLength(12);

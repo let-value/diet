@@ -1964,7 +1964,7 @@ var require_UnitMath = __commonJS((exports, module) => {
   });
 });
 
-// recipeskbook/utils.tsgre
+// recipeskbook/utils.tsitm
 function buildCookbook() {
   const list = Object.keys(recipes);
   const groups = Object.values(recipes).reduce((groups2, recipe) => {
@@ -2010,7 +2010,7 @@ class Options extends Array {
   }
 }
 
-// recipeskbook/utils.tsgredient
+// recipeskbook/utils.tsitmath/d
 class RecipeContainer {
   children;
   constructor(props) {
@@ -2525,7 +2525,7 @@ Fraction.prototype = {
   }
 };
 
-// recipeskbook/utils.tsgred
+// recipeskbook/utils.tsitma
 var import_unitmath = __toESM(require_UnitMath(), 1);
 var unit = import_unitmath.default.config({
   definitions: {
@@ -2619,7 +2619,7 @@ var unit = import_unitmath.default.config({
   }
 });
 
-// recipeskbook/utils.tsg
+// recipeskbook/utils.tsi
 function parseFraction(prop) {
   const variants = Array.from({ length: prop.length }, (_, i) => {
     const value2 = prop.slice(0, i + 1);
@@ -2698,7 +2698,7 @@ function joinStringChildren(children) {
   return children.join("");
 }
 
-// recipeskbook/utils.tsgre
+// recipeskbook/utils.tsitm
 class Ingredient {
   key;
   name;
@@ -2717,7 +2717,7 @@ class Ingredient {
     this.optional = Boolean(props.optional);
   }
 }
-// recipeskbook/utils.tsgred
+// recipeskbook/utils.tsitma
 class Ingredients extends RecipeContainer {
   constructor() {
     super(...arguments);
@@ -2731,19 +2731,19 @@ class Step extends RecipeContainer {
     this.duration = parseQuantity(props.duration);
   }
 }
-// recipeskbook/utils.tsgred
+// recipeskbook/utils.tsitma
 class Preparation extends RecipeContainer {
   constructor() {
     super(...arguments);
   }
 }
-// recipeskbook/utils.tsgre
+// recipeskbook/utils.tsitm
 class Directions extends RecipeContainer {
   constructor() {
     super(...arguments);
   }
 }
-// recipeskbook/utils.tsgred
+// recipeskbook/utils.tsitma
 class Measurement {
   scale;
   quantity;
@@ -2759,7 +2759,7 @@ class Plan extends RecipeContainer {
     super(...arguments);
   }
 }
-// recipeskbook/utils.tsgredients.tsUnitMath
+// recipeskbook/utils.tsitmath/dist/UnitMath
 function flattenRecipeContainer(container) {
   const result = [container];
   for (const child of container.children) {
@@ -2825,7 +2825,7 @@ function groupBy(array, getKey) {
   return grouped;
 }
 
-// recipeskbook/utils.tsgredients.ts
+// recipeskbook/utils.tsitmath/dist/
 var getIngredients = function(container) {
   return filterRecipeContainer(container, (node) => node instanceof Ingredient);
 };
@@ -2885,7 +2885,7 @@ var assertIngredientPart = function(part, name, ingredient) {
   }
 };
 
-// recipeskbook/utils.tsgredients.
+// recipeskbook/utils.tsitmath/dis
 function normalizeRecipe(original) {
   try {
     const ingredients = gatherIngredients(original);
@@ -2903,7 +2903,11 @@ function normalizeRecipe(original) {
     });
   }
 }
-// recipeskbook/utils.tsgredients.
+function createPlan(recipes2) {
+  const children = recipes2.filter(Boolean).map(normalizeRecipe);
+  return new Plan({ children });
+}
+// recipeskbook/utils.tsitmath/dis
 function scaleRecipe(original, days) {
   return mapRecipeContainer(original, (node) => {
     if (node instanceof Ingredient && node.quantity) {
@@ -2942,6 +2946,13 @@ function convertRecipeUnits(original, system) {
     return node;
   });
 }
+var assertValidQuantity2 = function(quantity, message = "") {
+  const value = quantity.getValue();
+  if (Number.isNaN(value)) {
+    throw new QuantityAssertionError(`not valid quantity message: ${message}`);
+  }
+};
+// recipeskbook/utils.tsitmath/di
 var formatTime = function(quantity) {
   let seconds = quantity.to("second").getValue();
   let result = "";
@@ -2968,28 +2979,81 @@ function formatQuantity(quantity, {
   simplify = { prefixMin: 1, prefixMax: 100 },
   format = { precision: 2 }
 } = {}) {
-  if (Object.keys(quantity.dimension).includes("TIME")) {
+  const dimensions = Object.keys(quantity?.dimension ?? {});
+  if (dimensions.includes("TIME")) {
     return formatTime(quantity);
   }
-  return quantity.simplify(simplify).toString(format);
+  return quantity?.simplify(simplify)?.toString(format);
 }
-var assertValidQuantity2 = function(quantity, message = "") {
-  const value = quantity.getValue();
-  if (Number.isNaN(value)) {
-    throw new QuantityAssertionError(`not valid quantity message: ${message}`);
-  }
-};
 var timeUnits = {
   day: 86400,
   hour: 3600,
   minute: 60
 };
+// recipeskbook/utils.tsitma
+var printNode = function(node, availablePrinters = printers) {
+  const printer = availablePrinters.get(node.constructor);
+  if (printer) {
+    return printer(node, availablePrinters);
+  }
+  return node.toString();
+};
+function printRecipe({ name, meal, children }, availablePrinters = printers) {
+  const childrenText = children.map((child) => printNode(child, availablePrinters)).join("\n");
+  return `${name} (${meal.join(", ")})\n${childrenText}`;
+}
+function printIngredients({ children }, availablePrinters = printers) {
+  const childrenText = children.map((child) => printNode(child, availablePrinters)).map((child) => `- ${child}`).join("\n");
+  return `Ingredients\n${childrenText}`;
+}
+function printIngredient({ name, quantity }) {
+  return `${name} ${formatQuantity(quantity)}`;
+}
+function printMeasurement({ quantity }) {
+  return formatQuantity(quantity);
+}
+function printSimpleIngredient({ name }) {
+  return `${name}`;
+}
+function printPreparation({ children }, availablePrinters = printers) {
+  const printersOverride = new Map(availablePrinters);
+  printersOverride.set(Ingredient, printSimpleIngredient);
+  const childrenText = children.map((child) => printNode(child, printersOverride)).join("\n");
+  return `Preparation\n${childrenText}`;
+}
+function printDirections({ children }, availablePrinters = printers) {
+  const printersOverride = new Map(availablePrinters);
+  printersOverride.set(Ingredient, printSimpleIngredient);
+  const childrenText = children.map((child) => printNode(child, printersOverride)).join("\n");
+  return `Directions\n${childrenText}`;
+}
+function printStep({ children, duration }, availablePrinters = printers) {
+  const childrenText = children.map((child) => printNode(child, availablePrinters)).join("");
+  return `-${duration ? ` (duration ${formatQuantity(duration)})` : ""} ${childrenText}`;
+}
+var printers = new Map([
+  [Recipe, printRecipe],
+  [Ingredients, printIngredients],
+  [Ingredient, printIngredient],
+  [Measurement, printMeasurement],
+  [Preparation, printPreparation],
+  [Directions, printDirections],
+  [Step, printStep]
+]);
 // recipeskbook/u
 var recipes = {};
 export {
   unit,
   scaleRecipe,
   recipes,
+  printStep,
+  printSimpleIngredient,
+  printRecipe,
+  printPreparation,
+  printMeasurement,
+  printIngredients,
+  printIngredient,
+  printDirections,
   parseQuantity,
   parseFraction,
   normalizeRecipe,
@@ -2999,6 +3063,7 @@ export {
   flattenRecipeContainer,
   findRecipeContainer,
   filterRecipeContainer,
+  createPlan,
   convertRecipeUnits,
   buildCookbook,
   assertValidQuantity,
@@ -3014,7 +3079,7 @@ export {
   Ingredient,
   Directions
 };
-// recipeskbook/utils.tsgredients.tsUnitMath.
+// recipeskbook/utils.tsitmath/dist/UnitMath.
 recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
   name: "Egg and Vegetable Scramble",
   meal: "breakfast",
@@ -3040,7 +3105,7 @@ recipes["Egg and Vegetable Scramble"] = jsx(Recipe, {
   quantity: "60g",
   manipulation: "wash,dice"
 }, "tomatoes"), ".")));
-// recipeskbook/utils.tsgredients.tsUnitMa
+// recipeskbook/utils.tsitmath/dist/UnitMa
 recipes["Ranch Chicken Meal Prep"] = jsx(Recipe, {
   name: "Ranch Chicken Meal Prep",
   description: "This simple chicken meal prep features garlic herb chicken, roasted potatoes and broccoli, and a little ranch dressing to drizzle over top!",
@@ -3078,7 +3143,7 @@ recipes["Ranch Chicken Meal Prep"] = jsx(Recipe, {
 }, "Roast the potatoes and broccoli together for 10 minutes."), jsx(Step, null, "Then, add the chicken to the baking sheet."), jsx(Step, {
   duration: "20 minutes"
 }, "Continue roasting for an additional 15-20 minutes or until the chicken is fully cooked, the potatoes are golden and crispy, and the broccoli is tender and browned at the edges")));
-// recipeskbook/utils.tsgredients.t
+// recipeskbook/utils.tsitmath/dist
 recipes["Chicken Stir-Fry"] = jsx(Recipe, {
   name: "Chicken Stir-Fry",
   meal: "dinner",
